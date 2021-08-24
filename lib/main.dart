@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Screen Imports
 import './screens/home_screen.dart';
+import './screens/add_task.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomeScreen(),
+      routes: {
+        AddTask.routeName: (ctx) => AddTask(),
+      },
     );
   }
 }

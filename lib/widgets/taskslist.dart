@@ -23,6 +23,7 @@ class _ListOfTasksState extends State<ListOfTasks> {
   @override
   Widget build(BuildContext context) {
     final toDos = Provider.of<Tasks>(context).getToDos();
+    print(Provider.of<Tasks>(context).toDosLength());
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
       child: ExpansionPanelList(

@@ -10,6 +10,7 @@ class Tasks with ChangeNotifier {
 
   void addToDo(String id, String taskName, String taskDesc) {
     toDosList.add(Task(id, taskName, taskDesc));
+    print(toDosList.length);
     notifyListeners();
   }
 
@@ -18,7 +19,7 @@ class Tasks with ChangeNotifier {
   }
 
   List<Task> getToDos() {
-    return [...toDosList];
+    return toDosList;
   }
 
   void removeTask(String id) {

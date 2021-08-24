@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:card_swiper/card_swiper.dart';
+import 'package:provider/provider.dart';
+
+// Provider Imports
+import '../provider/tasks.dart';
 
 // Widgets Imports
 import '../widgets/carousel_card.dart';
-import '../widgets/list_of_tasks.dart';
+import '../widgets/taskslist.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<String> tips = [
@@ -28,37 +32,44 @@ class HomeScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: mediaQuery.size.height / 3.5,
-              margin: EdgeInsets.all(10),
-              child: Swiper(
-                itemBuilder: (BuildContext context, int index) {
-                  return CarouselCard(
-                    tips[index],
-                    "${index + 1}",
-                    mediaQuery.size.height / 3.5,
-                  );
-                },
-                itemCount: 5,
-                itemWidth: 300.0,
-                layout: SwiperLayout.STACK,
-                autoplay: true,
-              ),
-            ),
-            Container(
-              child: Text(
-                'Your Tasks',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
+      body: MultiProvider(
+        providers: [
+          ChangeNotifierProvider.value(
+            value: Tasks(),
+          ),
+        ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: mediaQuery.size.height / 3.5,
+                margin: EdgeInsets.all(10),
+                child: Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return CarouselCard(
+                      tips[index],
+                      "${index + 1}",
+                      mediaQuery.size.height / 3.5,
+                    );
+                  },
+                  itemCount: 5,
+                  itemWidth: 300.0,
+                  layout: SwiperLayout.STACK,
+                  autoplay: true,
                 ),
               ),
-            ),
-            ListOfTasks(),
-          ],
+              Container(
+                child: Text(
+                  'Your Tasks',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ListOfTasks(),
+            ],
+          ),
         ),
       ),
     );

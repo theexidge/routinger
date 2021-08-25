@@ -3,6 +3,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 
 class NotificationService with ChangeNotifier {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
@@ -44,14 +45,29 @@ class NotificationService with ChangeNotifier {
     int minutes,
   ) async {
     tz.initializeTimeZones();
+    String dtz = await FlutterNativeTimezone.getLocalTimezone();
+    final localTimeZone = tz.getLocation(dtz);
+    tz.setLocalLocation(localTimeZone);
+    print(
+      tz.TZDateTime.now(tz.local)
+          .add(
+            Duration(
+              hours: hours,
+              minutes: minutes,
+              days: days,
+            ),
+          )
+          .toString(),
+    );
+    await _flutterLocalNotificationsPlugin.cancelAll();
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       taskName,
       taskInfo,
       tz.TZDateTime.now(tz.local).add(
         Duration(
-          hours: DateTime.now().timeZoneOffset.inHours + hours,
-          minutes: DateTime.now().timeZoneOffset.inMinutes + minutes,
+          hours: hours,
+          minutes: minutes,
           days: days,
         ),
       ),
@@ -62,5 +78,11 @@ class NotificationService with ChangeNotifier {
           UILocalNotificationDateInterpretation.absoluteTime,
       androidAllowWhileIdle: true,
     );
+    final List<PendingNotificationRequest> pendingNotificationRequests =
+        await _flutterLocalNotificationsPlugin.pendingNotificationRequests();
+    print(pendingNotificationRequests.length.toString() + " Something");
+    for (int i = 0; i < pendingNotificationRequests.length; i++) {
+      print(pendingNotificationRequests[i].title.toString() + " YES");
+    }
   }
 }

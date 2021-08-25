@@ -27,6 +27,7 @@ dependencies:
   card_swiper: ^1.0.4
   flutter_local_notifications: ^8.1.1+1
   intl: ^0.17.0
+  flutter_native_timezone: ^2.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

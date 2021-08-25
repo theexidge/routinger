@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import './task.dart';
 
 class Tasks with ChangeNotifier {
-  List<Task> toDosList = [
+  static List<Task> toDosList = [
     Task(DateTime.now().toString(), 'Test Task', ''),
+    Task('2', 'Task 2', ''),
   ];
 
   void addToDo(String id, String taskName, String taskDesc) {
-    toDosList.add(Task(id, taskName, taskDesc));
-    print(toDosList.length);
+    toDosList = [...toDosList, Task(id, taskName, taskDesc)];
     notifyListeners();
   }
 
@@ -19,7 +19,7 @@ class Tasks with ChangeNotifier {
   }
 
   List<Task> getToDos() {
-    return toDosList;
+    return [...toDosList];
   }
 
   void removeTask(String id) {

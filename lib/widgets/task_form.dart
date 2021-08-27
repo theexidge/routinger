@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 
 // Services Imports
 import '../services/notifications.dart';
+import '../services/sleep_cycle.dart';
 
 // Provider Imports
 import '../provider/tasks.dart';
@@ -277,6 +278,9 @@ class _TaskFormState extends State<TaskForm> {
           child: ElevatedButton.icon(
             icon: Icon(Icons.add),
             onPressed: () async {
+              if (_titleController.text.isEmpty) {
+                return;
+              }
               if (dropDownValue == 'Scheduled-Task') {
                 final intChosen = _randomInt();
                 final days = currentDate.day - DateTime.now().day;
@@ -292,9 +296,6 @@ class _TaskFormState extends State<TaskForm> {
                 if (days == 0 && hours == 0 && minutes < 0) {
                   return;
                 }
-                if (_titleController.text.isEmpty) {
-                  return;
-                }
 
                 print('$days $hours $minutes');
                 Provider.of<Tasks>(context, listen: false).addScheduled(
@@ -307,6 +308,75 @@ class _TaskFormState extends State<TaskForm> {
                 Navigator.of(context).pop();
                 await NotificationService().scheduledNotification(
                     intChosen, _titleController.text, '', days, hours, minutes);
+                return;
+              }
+              if (dropDownValue == 'Recurring-Task') {
+                Provider.of<Tasks>(context, listen: false).addRecurring(
+                  _randomInt(),
+                  _remindDropDownValues[remindDropDownValue],
+                  _titleController.text,
+                  '',
+                );
+
+                List<DateTime> listOfNotifTimes = [];
+
+                DateTime sleepTime = DateTime(
+                  DateTime.now().year,
+                  DateTime.now().month,
+                  DateTime.now().day,
+                  SleepCycle().sleepTime.hour,
+                  SleepCycle().sleepTime.minute,
+                );
+
+                DateTime wakeUpTime = DateTime(
+                  DateTime.now().year,
+                  DateTime.now().month,
+                  DateTime.now().day,
+                  SleepCycle().wakeUpTime.hour,
+                  SleepCycle().wakeUpTime.minute,
+                );
+
+                DateTime dynamicTime = DateTime(
+                  DateTime.now().year,
+                  DateTime.now().month,
+                  DateTime.now().day,
+                  SleepCycle().wakeUpTime.hour,
+                  SleepCycle().wakeUpTime.minute,
+                );
+                while (dynamicTime.hour > sleepTime.hour &&
+                    dynamicTime.day == sleepTime.day) {
+                  if (remindDropDownValue == 0) {
+                    dynamicTime = dynamicTime.add(Duration(
+                      minutes: 30,
+                    ));
+                  } else {
+                    dynamicTime =
+                        dynamicTime.add(Duration(hours: remindDropDownValue));
+                  }
+                  if (dynamicTime.hour < wakeUpTime.hour &&
+                      dynamicTime.hour > sleepTime.hour) {
+                    break;
+                  }
+                  listOfNotifTimes.add(dynamicTime);
+                  print(dynamicTime.toString());
+                }
+
+                // print(DateTime(
+                //         DateTime.now().year,
+                //         DateTime.now().month,
+                //         DateTime.now().day,
+                //         SleepCycle().wakeUpTime.hour,
+                //         SleepCycle().wakeUpTime.minute)
+                //     .subtract(
+                //       Duration(
+                //         hours: SleepCycle().sleepTime.hour,
+                //         minutes: SleepCycle().sleepTime.minute,
+                //       ),
+                //     )
+                //     .toString());
+
+                Navigator.of(context).pop();
+
                 return;
               }
               Provider.of<Tasks>(context, listen: false).addToDo(

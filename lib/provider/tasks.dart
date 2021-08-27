@@ -33,6 +33,14 @@ class Tasks with ChangeNotifier {
     ];
   }
 
+  void addRecurring(
+      int id, String remindTime, String taskName, String taskDesc) {
+    recurringList = [
+      ...recurringList,
+      RecurringTask(id, remindTime, taskName, taskDesc)
+    ];
+  }
+
   int toDosLength() {
     return toDosList.length;
   }

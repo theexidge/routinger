@@ -29,10 +29,6 @@ class _ListOfTasksState extends State<ListOfTasks> {
     final toDos = Provider.of<Tasks>(context).getToDos();
     final scheduledTasks = Provider.of<Tasks>(context).getScheduled();
     final recurringTasks = Provider.of<Tasks>(context).getRecurring();
-
-    print(Provider.of<Tasks>(context).scheduledLength());
-
-    print(Provider.of<Tasks>(context).toDosLength());
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
       child: ExpansionPanelList(

@@ -7,6 +7,12 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 
 class NotificationService with ChangeNotifier {
+  List<int> recurringNoificationIds = [];
+
+  void addRecurringNotificationIds(int id) {
+    recurringNoificationIds.add(id);
+  }
+
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   Future<void> initialize() async {

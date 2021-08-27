@@ -23,6 +23,22 @@ class _TaskFormState extends State<TaskForm> {
   late DateTime currentDate;
   late TimeOfDay curentTime;
   String dropDownValue = 'To-Do';
+  int remindDropDownValue = 0;
+  final List<String> _remindDropDownValues = [
+    'Remind Every 30 min',
+    'Remind Every Hour',
+    'Remind Every 2 Hours',
+    'Remind Every 3 Hours',
+    'Remind Every 4 Hours',
+    'Remind Every 5 Hours',
+    'Remind Every 6 Hours',
+    'Remind Every 7 Hours',
+    'Remind Every 8 Hours',
+    'Remind Every 9 Hours',
+    'Remind Every 10 Hours',
+    'Remind Every 11 Hours',
+    'Remind Every 12 Hours',
+  ];
 
   @override
   void initState() {
@@ -206,6 +222,53 @@ class _TaskFormState extends State<TaskForm> {
                         ),
                       ],
                     ),
+              dropDownValue != "Recurring-Task"
+                  ? SizedBox(
+                      height: 0,
+                    )
+                  : Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5.0, horizontal: 15.0),
+                          width: double.infinity,
+                          child: DropdownButton(
+                            isExpanded: true,
+                            value: remindDropDownValue,
+                            items: _remindDropDownValues
+                                .map<DropdownMenuItem>(
+                                    (item) => DropdownMenuItem(
+                                          child: Text(item),
+                                          value: _remindDropDownValues
+                                              .indexOf(item),
+                                        ))
+                                .toList(),
+                            onChanged: (dynamic newVal) {
+                              if (newVal == null) {
+                                return;
+                              } else {
+                                setState(() {
+                                  remindDropDownValue = newVal as int;
+                                  print(remindDropDownValue);
+                                });
+                              }
+                            },
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5.0, horizontal: 15.0),
+                          width: double.infinity,
+                          child: Text(
+                            'You will receive notifications between your Wake Up time and Sleep time only. Set them accordingly.',
+                            softWrap: true,
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
             ],
           ),
         ),

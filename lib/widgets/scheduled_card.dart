@@ -13,11 +13,19 @@ class ScheduledCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheduledTask = Provider.of<ScheduledTask>(context);
     return ListTile(
-      title: Text(scheduledTask.taskName),
+      title: Text(
+        scheduledTask.taskName,
+        style: TextStyle(
+          fontFamily: 'KleeOne',
+        ),
+      ),
       subtitle: Text(
         DateFormat.yMMMMd().format(scheduledTask.pickedDateTime) +
             "   " +
             DateFormat.jm().format(scheduledTask.pickedDateTime),
+        style: TextStyle(
+          fontFamily: 'KleeOne',
+        ),
       ),
       trailing: IconButton(
         icon: Icon(Icons.delete),

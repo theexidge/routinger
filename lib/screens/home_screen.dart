@@ -13,6 +13,7 @@ import '../provider/tasks.dart';
 // Widgets Imports
 import '../widgets/carousel_card.dart';
 import '../widgets/taskslist.dart';
+import '../widgets/sleep_cycle_column.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<String> tips = [
@@ -22,6 +23,29 @@ class HomeScreen extends StatelessWidget {
     "Tie your Habit to a sweet reward and make your habit more attractive",
     "Don't spend time in an environment where you have to practice self restraint.",
   ];
+
+  Future<void> showSleepDialog(BuildContext context) async {
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: Container(
+              width: double.infinity,
+              alignment: Alignment.center,
+              child: const Text(
+                'Your Sleep Cycle',
+                style: TextStyle(
+                  fontFamily: 'KleeOne',
+                ),
+              ),
+            ),
+            children: [
+              SleepCycleColumn(),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -69,12 +93,27 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                child: Text(
-                  'Your Tasks',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
+                padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      'Your Tasks',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        showSleepDialog(context);
+                      },
+                      icon: Icon(Icons.alarm_add),
+                    )
+                  ],
                 ),
               ),
               ListOfTasks(),

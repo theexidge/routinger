@@ -16,6 +16,10 @@ class Tasks with ChangeNotifier {
     ScheduledTask(0, DateTime.now(), 'Test Scheduled', ''),
   ];
 
+  static List<RecurringTask> recurringList = [
+    RecurringTask(0, 'Remind Every 8 Hours', 'Recuring Test', ''),
+  ];
+
   void addToDo(String id, String taskName, String taskDesc) {
     toDosList = [...toDosList, Task(id, taskName, taskDesc)];
     notifyListeners();
@@ -37,12 +41,20 @@ class Tasks with ChangeNotifier {
     return scheduledList.length;
   }
 
+  int recurringLength() {
+    return recurringList.length;
+  }
+
   List<Task> getToDos() {
     return [...toDosList];
   }
 
   List<ScheduledTask> getScheduled() {
     return [...scheduledList];
+  }
+
+  List<RecurringTask> getRecurring() {
+    return [...recurringList];
   }
 
   void removeTask(String id) {
@@ -53,6 +65,11 @@ class Tasks with ChangeNotifier {
   Future<void> removeScheduled(int id) async {
     scheduledList.removeWhere((element) => element.id == id);
     await NotificationService().cancelNotification(id);
+    notifyListeners();
+  }
+
+  void removeRecurring(int id) async {
+    recurringList.removeWhere((element) => element.id == id);
     notifyListeners();
   }
 }

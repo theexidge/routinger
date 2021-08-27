@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:provider/provider.dart';
+import 'package:routinger/widgets/recurring_card.dart';
 
 // Provider Imports
 import '../provider/tasks.dart';
@@ -21,11 +22,14 @@ class _ListOfTasksState extends State<ListOfTasks> {
   List<TaskProfile> _taskProfile = [
     TaskProfile('To Dos', false),
     TaskProfile('Scheduled Tasks', false),
+    TaskProfile('Recurring Tasks', false),
   ];
   @override
   Widget build(BuildContext context) {
     final toDos = Provider.of<Tasks>(context).getToDos();
     final scheduledTasks = Provider.of<Tasks>(context).getScheduled();
+    final recurringTasks = Provider.of<Tasks>(context).getRecurring();
+
     print(Provider.of<Tasks>(context).scheduledLength());
 
     print(Provider.of<Tasks>(context).toDosLength());
@@ -83,6 +87,29 @@ class _ListOfTasksState extends State<ListOfTasks> {
               itemCount: Provider.of<Tasks>(context).scheduledLength(),
             ),
             isExpanded: _taskProfile[1].isExpanded,
+          ),
+          ExpansionPanel(
+            headerBuilder: (BuildContext context, bool isExpanded) {
+              return ListTile(
+                title: Text(
+                  _taskProfile[2].headerValue,
+                  style: TextStyle(
+                    fontFamily: 'KleeOne',
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              );
+            },
+            body: ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+                value: recurringTasks[i],
+                child: RecurringCard(),
+              ),
+              itemCount: Provider.of<Tasks>(context).recurringLength(),
+            ),
+            isExpanded: _taskProfile[2].isExpanded,
           ),
         ],
       ),

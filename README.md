@@ -4,5 +4,5 @@ This is a simple app that will allow you to schedule your tasks, create a simple
 
 The app released under the organization/devloper name "Codeluent" will be completely free of in-app purchases as of now and free of advertisements. It can however include a way to support the developers if you like. It really helps me a lot.
 
-With Regards
+With Regards  
 Kushal A.

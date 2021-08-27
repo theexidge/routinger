@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:provider/provider.dart';
-import 'package:routinger/widgets/scheduled_card.dart';
 
 // Provider Imports
 import '../provider/tasks.dart';
 
 // Widgets Imports
 import './toDo_card.dart';
+import './scheduled_card.dart';
 
 class ListOfTasks extends StatefulWidget {
   const ListOfTasks({Key? key}) : super(key: key);

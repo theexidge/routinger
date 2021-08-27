@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+// Third Party Packages
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
@@ -46,6 +47,9 @@ class NotificationService with ChangeNotifier {
   ) async {
     tz.initializeTimeZones();
     String dtz = await FlutterNativeTimezone.getLocalTimezone();
+    if (dtz == "Asia/Calcutta") {
+      dtz = "Asia/Kolkata";
+    }
     final localTimeZone = tz.getLocation(dtz);
     tz.setLocalLocation(localTimeZone);
     print(
@@ -78,11 +82,15 @@ class NotificationService with ChangeNotifier {
           UILocalNotificationDateInterpretation.absoluteTime,
       androidAllowWhileIdle: true,
     );
-    final List<PendingNotificationRequest> pendingNotificationRequests =
-        await _flutterLocalNotificationsPlugin.pendingNotificationRequests();
-    print(pendingNotificationRequests.length.toString() + " Something");
-    for (int i = 0; i < pendingNotificationRequests.length; i++) {
-      print(pendingNotificationRequests[i].title.toString() + " YES");
-    }
+    // final List<PendingNotificationRequest> pendingNotificationRequests =
+    //     await _flutterLocalNotificationsPlugin.pendingNotificationRequests();
+    // print(pendingNotificationRequests.length.toString() + " Something");
+    // for (int i = 0; i < pendingNotificationRequests.length; i++) {
+    //   print(pendingNotificationRequests[i].title.toString() + " YES");
+    // }
+  }
+
+  Future<void> cancelNotification(int id) async {
+    await _flutterLocalNotificationsPlugin.cancel(id);
   }
 }

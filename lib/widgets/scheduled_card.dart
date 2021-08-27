@@ -3,7 +3,9 @@ import 'package:intl/intl.dart';
 
 // Third Party Packages
 import 'package:provider/provider.dart';
-import 'package:routinger/provider/task.dart';
+
+// Provider Imports
+import '../provider/task.dart';
 import '../provider/tasks.dart';
 
 class ScheduledCard extends StatelessWidget {

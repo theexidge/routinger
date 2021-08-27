@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// Services Imports
+import '../services/notifications.dart';
+
 // Provider Imports
 import './task.dart';
 
@@ -47,8 +50,9 @@ class Tasks with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeScheduled(int id) {
+  Future<void> removeScheduled(int id) async {
     scheduledList.removeWhere((element) => element.id == id);
+    await NotificationService().cancelNotification(id);
     notifyListeners();
   }
 }

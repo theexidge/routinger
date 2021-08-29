@@ -43,14 +43,9 @@ class NotificationService with ChangeNotifier {
         .show(0, 'Demo', 'Demo Again', platform, payload: "Welcome");
   }
 
-  Future<void> scheduledNotification(
-    int id,
-    String taskName,
-    String taskInfo,
-    int days,
-    int hours,
-    int minutes,
-  ) async {
+  Future<void> scheduledNotification(int id, String taskName, String taskInfo,
+      int days, int hours, int minutes,
+      [bool scheduleAlways = false]) async {
     tz.initializeTimeZones();
     String dtz = await FlutterNativeTimezone.getLocalTimezone();
     if (dtz == "Asia/Calcutta") {
@@ -69,7 +64,29 @@ class NotificationService with ChangeNotifier {
           )
           .toString(),
     );
-    await _flutterLocalNotificationsPlugin.cancelAll();
+    // await _flutterLocalNotificationsPlugin.cancelAll();
+    if (scheduleAlways) {
+      await _flutterLocalNotificationsPlugin.zonedSchedule(
+        id,
+        taskName,
+        taskInfo,
+        tz.TZDateTime.now(tz.local).add(
+          Duration(
+            hours: hours,
+            minutes: minutes,
+            days: days,
+          ),
+        ),
+        const NotificationDetails(
+            android: AndroidNotificationDetails(
+                'scheduledNotif', 'scheduledNotif', 'scheduledNotif')),
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+        androidAllowWhileIdle: true,
+        matchDateTimeComponents: DateTimeComponents.time,
+      );
+      return;
+    }
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       taskName,

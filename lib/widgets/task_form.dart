@@ -14,6 +14,9 @@ import '../services/sleep_cycle.dart';
 // Provider Imports
 import '../provider/tasks.dart';
 
+// Helper Imports
+import '../helper/list_of_notif.dart';
+
 class TaskForm extends StatefulWidget {
   @override
   _TaskFormState createState() => _TaskFormState();
@@ -311,31 +314,7 @@ class _TaskFormState extends State<TaskForm> {
                 return;
               }
               if (dropDownValue == 'Recurring-Task') {
-                Provider.of<Tasks>(context, listen: false).addRecurring(
-                  _randomInt(),
-                  _remindDropDownValues[remindDropDownValue],
-                  _titleController.text,
-                  '',
-                );
-
-                List<DateTime> listOfNotifTimes = [];
-
-                DateTime sleepTime = DateTime(
-                  DateTime.now().year,
-                  DateTime.now().month,
-                  DateTime.now().day,
-                  SleepCycle().sleepTime.hour,
-                  SleepCycle().sleepTime.minute,
-                );
-
-                DateTime wakeUpTime = DateTime(
-                  DateTime.now().year,
-                  DateTime.now().month,
-                  DateTime.now().day,
-                  SleepCycle().wakeUpTime.hour,
-                  SleepCycle().wakeUpTime.minute,
-                );
-
+                List<ListOfNotif> listOfNotifTimes = [];
                 DateTime dynamicTime = DateTime(
                   DateTime.now().year,
                   DateTime.now().month,
@@ -343,40 +322,56 @@ class _TaskFormState extends State<TaskForm> {
                   SleepCycle().wakeUpTime.hour,
                   SleepCycle().wakeUpTime.minute,
                 );
-                while (dynamicTime.hour > sleepTime.hour &&
-                    dynamicTime.day == sleepTime.day) {
-                  if (remindDropDownValue == 0) {
-                    dynamicTime = dynamicTime.add(Duration(
-                      minutes: 30,
-                    ));
-                  } else {
+                print('Running');
+                if (remindDropDownValue == 0) {
+                  for (int i = 0; i < 48; i++) {
+                    dynamicTime = dynamicTime.add(Duration(minutes: 30));
+                    if (dynamicTime.hour <
+                            max(SleepCycle().wakeUpTime.hour,
+                                SleepCycle().sleepTime.hour) &&
+                        dynamicTime.hour >
+                            min(SleepCycle().wakeUpTime.hour,
+                                SleepCycle().sleepTime.hour)) {
+                      print('Nope');
+                    } else {
+                      print(dynamicTime.toString() + " Your Time");
+                      int _intChosen = _randomInt();
+                      listOfNotifTimes
+                          .add(ListOfNotif(_intChosen, dynamicTime));
+                    }
+                  }
+                } else {
+                  for (int i = 0; i < 24 / remindDropDownValue; i++) {
                     dynamicTime =
                         dynamicTime.add(Duration(hours: remindDropDownValue));
+                    if (dynamicTime.hour <
+                            max(SleepCycle().wakeUpTime.hour,
+                                SleepCycle().sleepTime.hour) &&
+                        dynamicTime.hour >
+                            min(SleepCycle().wakeUpTime.hour,
+                                SleepCycle().sleepTime.hour)) {
+                      print('Nope');
+                    } else {
+                      print(dynamicTime.toString() + " Your Time");
+                      int _intChosen = _randomInt();
+                      listOfNotifTimes
+                          .add(ListOfNotif(_intChosen, dynamicTime));
+                    }
                   }
-                  if (dynamicTime.hour < wakeUpTime.hour &&
-                      dynamicTime.hour > sleepTime.hour) {
-                    break;
-                  }
-                  listOfNotifTimes.add(dynamicTime);
-                  print(dynamicTime.toString());
                 }
-
-                // print(DateTime(
-                //         DateTime.now().year,
-                //         DateTime.now().month,
-                //         DateTime.now().day,
-                //         SleepCycle().wakeUpTime.hour,
-                //         SleepCycle().wakeUpTime.minute)
-                //     .subtract(
-                //       Duration(
-                //         hours: SleepCycle().sleepTime.hour,
-                //         minutes: SleepCycle().sleepTime.minute,
-                //       ),
-                //     )
-                //     .toString());
-
+                // print(listOfNotifTimes
+                //         .map<int>((e) => e.intId)
+                //         .toList()[0]
+                //         .toString() +
+                //     " " +
+                //     listOfNotifTimes[0].intId.toString());
+                Provider.of<Tasks>(context, listen: false).addRecurring(
+                    _randomInt(),
+                    _remindDropDownValues[remindDropDownValue],
+                    _titleController.text,
+                    '',
+                    listOfNotifTimes.map<int>((e) => e.intId).toList());
                 Navigator.of(context).pop();
-
                 return;
               }
               Provider.of<Tasks>(context, listen: false).addToDo(

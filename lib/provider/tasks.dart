@@ -17,7 +17,7 @@ class Tasks with ChangeNotifier {
   ];
 
   static List<RecurringTask> recurringList = [
-    RecurringTask(0, 'Remind Every 8 Hours', 'Recuring Test', ''),
+    RecurringTask(0, 'Remind Every 8 Hours', 'Recuring Test', '', []),
   ];
 
   void addToDo(String id, String taskName, String taskDesc) {
@@ -33,11 +33,11 @@ class Tasks with ChangeNotifier {
     ];
   }
 
-  void addRecurring(
-      int id, String remindTime, String taskName, String taskDesc) {
+  void addRecurring(int id, String remindTime, String taskName, String taskDesc,
+      List<int> intList) {
     recurringList = [
       ...recurringList,
-      RecurringTask(id, remindTime, taskName, taskDesc)
+      RecurringTask(id, remindTime, taskName, taskDesc, intList)
     ];
   }
 

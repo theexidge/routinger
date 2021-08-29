@@ -24,7 +24,8 @@ class RecurringTask with ChangeNotifier {
   final String taskDesc;
   List<int> _thisRecurringTaskIds = [];
 
-  RecurringTask(this.id, this.remindTime, this.taskName, this.taskDesc);
+  RecurringTask(this.id, this.remindTime, this.taskName, this.taskDesc,
+      this._thisRecurringTaskIds);
 
   void addRecurringTaskId(int id) {
     _thisRecurringTaskIds.add(id);

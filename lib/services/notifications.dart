@@ -43,9 +43,14 @@ class NotificationService with ChangeNotifier {
         .show(0, 'Demo', 'Demo Again', platform, payload: "Welcome");
   }
 
-  Future<void> scheduledNotification(int id, String taskName, String taskInfo,
-      int days, int hours, int minutes,
-      [bool scheduleAlways = false]) async {
+  Future<void> scheduledNotification(
+    int id,
+    String taskName,
+    String taskInfo,
+    int days,
+    int hours,
+    int minutes,
+  ) async {
     tz.initializeTimeZones();
     String dtz = await FlutterNativeTimezone.getLocalTimezone();
     if (dtz == "Asia/Calcutta") {
@@ -53,6 +58,7 @@ class NotificationService with ChangeNotifier {
     }
     final localTimeZone = tz.getLocation(dtz);
     tz.setLocalLocation(localTimeZone);
+
     print(
       tz.TZDateTime.now(tz.local)
           .add(
@@ -64,29 +70,6 @@ class NotificationService with ChangeNotifier {
           )
           .toString(),
     );
-    // await _flutterLocalNotificationsPlugin.cancelAll();
-    if (scheduleAlways) {
-      await _flutterLocalNotificationsPlugin.zonedSchedule(
-        id,
-        taskName,
-        taskInfo,
-        tz.TZDateTime.now(tz.local).add(
-          Duration(
-            hours: hours,
-            minutes: minutes,
-            days: days,
-          ),
-        ),
-        const NotificationDetails(
-            android: AndroidNotificationDetails(
-                'scheduledNotif', 'scheduledNotif', 'scheduledNotif')),
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-        androidAllowWhileIdle: true,
-        matchDateTimeComponents: DateTimeComponents.time,
-      );
-      return;
-    }
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       taskName,
@@ -111,6 +94,54 @@ class NotificationService with ChangeNotifier {
     // for (int i = 0; i < pendingNotificationRequests.length; i++) {
     //   print(pendingNotificationRequests[i].title.toString() + " YES");
     // }
+  }
+
+  Future<void> recurringNotif(
+    int id,
+    String taskName,
+    String taskInfo,
+    int days,
+    int hours,
+    int minutes,
+  ) async {
+    tz.initializeTimeZones();
+    String dtz = await FlutterNativeTimezone.getLocalTimezone();
+    if (dtz == "Asia/Calcutta") {
+      dtz = "Asia/Kolkata";
+    }
+    final localTimeZone = tz.getLocation(dtz);
+    tz.setLocalLocation(localTimeZone);
+    print(
+      tz.TZDateTime.now(tz.local)
+          .add(
+            Duration(
+              hours: hours,
+              minutes: minutes,
+              days: days,
+            ),
+          )
+          .toString(),
+    );
+    // await _flutterLocalNotificationsPlugin.cancelAll();
+    await _flutterLocalNotificationsPlugin.zonedSchedule(
+      id,
+      taskName,
+      taskInfo,
+      tz.TZDateTime.now(tz.local).add(
+        Duration(
+          hours: hours,
+          minutes: minutes,
+          days: days,
+        ),
+      ),
+      const NotificationDetails(
+          android: AndroidNotificationDetails(
+              'recurringNotif', 'recurringNotif', 'recurringNotif')),
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      androidAllowWhileIdle: true,
+      matchDateTimeComponents: DateTimeComponents.time,
+    );
   }
 
   Future<void> cancelNotification(int id) async {

@@ -336,8 +336,18 @@ class _TaskFormState extends State<TaskForm> {
                     } else {
                       print(dynamicTime.toString() + " Your Time");
                       int _intChosen = _randomInt();
+                      if (dynamicTime.hour < DateTime.now().hour ||
+                          dynamicTime.minute < DateTime.now().minute) {
+                        dynamicTime.add(Duration(days: 1));
+                      }
+                      final days = dynamicTime.day - DateTime.now().day;
+                      final hours = dynamicTime.hour - DateTime.now().hour;
+                      final minutes =
+                          dynamicTime.minute - DateTime.now().minute;
                       listOfNotifTimes
                           .add(ListOfNotif(_intChosen, dynamicTime));
+                      await NotificationService().recurringNotif(_randomInt(),
+                          _titleController.text, '', days, hours, minutes);
                     }
                   }
                 } else {

@@ -14,6 +14,7 @@ import '../provider/tasks.dart';
 import '../widgets/carousel_card.dart';
 import '../widgets/taskslist.dart';
 import '../widgets/sleep_cycle_column.dart';
+import '../widgets/initialiser.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<String> tips = [
@@ -117,6 +118,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               ListOfTasks(),
+              Initialiser(),
             ],
           ),
         ),

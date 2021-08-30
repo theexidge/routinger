@@ -24,6 +24,7 @@ class _ListOfTasksState extends State<ListOfTasks> {
     TaskProfile('Scheduled Tasks', false),
     TaskProfile('Recurring Tasks', false),
   ];
+
   @override
   Widget build(BuildContext context) {
     final toDos = Provider.of<Tasks>(context).getToDos();

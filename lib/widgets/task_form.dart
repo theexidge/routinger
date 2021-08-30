@@ -384,8 +384,9 @@ class _TaskFormState extends State<TaskForm> {
                 Navigator.of(context).pop();
                 return;
               }
+              final onFlyId = DateTime.now().toString();
               Provider.of<Tasks>(context, listen: false).addToDo(
-                DateTime.now().toString(),
+                onFlyId,
                 _titleController.text,
                 '',
               );

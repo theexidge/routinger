@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CarouselCard extends StatelessWidget {
-  final String description;
-  final String number;
   final double height;
+  final String number;
+  final String description;
 
   CarouselCard(this.description, this.number, this.height);
-
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -4,8 +4,9 @@ class Task with ChangeNotifier {
   final String id;
   final String taskName;
   final String taskDesc;
+  bool isOver;
 
-  Task(this.id, this.taskName, this.taskDesc);
+  Task(this.id, this.taskName, this.taskDesc, [this.isOver = false]);
 }
 
 class ScheduledTask with ChangeNotifier {

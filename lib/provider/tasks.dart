@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:routinger/services/sleep_cycle.dart';
 
 // Services Imports
 import '../services/notifications.dart';
@@ -110,6 +111,21 @@ class Tasks with ChangeNotifier {
                   .toList(),
             ))
         .toList();
+  }
+
+  Future<void> fetchAndSetSleepCycle() async {
+    final dataList = await DBHelper.getDataSleepCycle('sleep_cycle');
+    if (dataList.isEmpty) {
+      print(dataList);
+      return;
+    }
+    SleepCycle().setSleepTime(TimeOfDay(
+        hour: int.parse(dataList[0]['sleepTimeHour']),
+        minute: int.parse(dataList[0]['sleepTimeMinute'])));
+
+    SleepCycle().setWakeUpTime(TimeOfDay(
+        hour: int.parse(dataList[0]['wakeTimeHour']),
+        minute: int.parse(dataList[0]['wakeTimeMinute'])));
   }
 
   int toDosLength() {

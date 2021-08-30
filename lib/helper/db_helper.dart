@@ -45,7 +45,23 @@ class DBHelper {
     }, version: 1);
   }
 
-  Future<void> deleteDatabase(int index) async {
+  static Future<sql.Database> sleepCycle() async {
+    final dbPath = await sql.getDatabasesPath();
+    return sql.openDatabase(path.join(dbPath, 'routingerSleepCycle.db'),
+        onCreate: (db, version) {
+      return db.execute(
+          'CREATE TABLE sleep_cycle(id INTEGER PRIMARY KEY, sleepTimeHour TEXT, sleepTimeMinute TEXT, wakeTimeHour TEXT, wakeTimeMinute Text)');
+    }, version: 1);
+  }
+
+  static Future<void> insertSleepCycle(
+      String table, Map<String, Object?> data) async {
+    sql.Database db = await DBHelper.sleepCycle();
+    await db.insert(table, data,
+        conflictAlgorithm: sql.ConflictAlgorithm.replace);
+  }
+
+  static Future<void> deleteDatabases(int index) async {
     final dbPath = await sql.getDatabasesPath();
     var finalPath = dbPath;
     if (index == 1) {
@@ -56,6 +72,9 @@ class DBHelper {
     }
     if (index == 3) {
       finalPath = path.join(dbPath, 'routingerRecurring.db');
+    }
+    if (index == 4) {
+      finalPath = path.join(dbPath, 'routingerSleepCycle.db');
     }
     await sql.databaseFactory.deleteDatabase(finalPath);
   }
@@ -70,6 +89,12 @@ class DBHelper {
     if (index == 3) {
       db = await DBHelper.databaseRecurring();
     }
+    return db.query(table);
+  }
+
+  static Future<List<Map<String, dynamic>>> getDataSleepCycle(
+      String table) async {
+    var db = await DBHelper.sleepCycle();
     return db.query(table);
   }
 

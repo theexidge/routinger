@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Third Party Packages
 import 'package:card_swiper/card_swiper.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // Screen Imports
 import '../screens/add_task.dart';
@@ -50,6 +51,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
+    Future<void> _launchURL() async {
+      const url = 'https://www.buymeacoffee.com/agrkushal';
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -66,6 +76,17 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.white,
+        actions: [
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 7, horizontal: 7),
+            child: ElevatedButton.icon(
+              onPressed: _launchURL,
+              icon: Icon(Icons.coffee),
+              label: Text('Buy me a Coffee'),
+              style: ButtonStyle(),
+            ),
+          )
+        ],
       ),
       body: MultiProvider(
         providers: [

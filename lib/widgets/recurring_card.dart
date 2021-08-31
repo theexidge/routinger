@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages Imports
 import 'package:provider/provider.dart';
+import 'package:routinger/helper/db_helper.dart';
 
 // Provider Imports
 import '../provider/task.dart';
@@ -28,6 +29,7 @@ class RecurringCard extends StatelessWidget {
         onPressed: () {
           Provider.of<Tasks>(context, listen: false)
               .removeRecurring(recurringTask.id);
+          DBHelper.deleteRecurring(recurringTask.id);
         },
         icon: Icon(Icons.delete),
       ),

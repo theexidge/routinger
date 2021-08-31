@@ -104,6 +104,16 @@ class DBHelper {
     await db.rawDelete('DELETE FROM todo WHERE id = ?', [id]);
   }
 
+  static Future<void> deleteScheduled(int id) async {
+    var db = await DBHelper.databaseScheduled();
+    await db.rawDelete('DELETE FROM user_scheduled WHERE id = ?', [id]);
+  }
+
+  static Future<void> deleteRecurring(int id) async {
+    var db = await DBHelper.databaseRecurring();
+    await db.rawDelete('DELETE FROM user_recurring WHERE id = ?', [id]);
+  }
+
   static Future<void> updateIsOver(String id, bool isOver) async {
     sql.Database db;
     db = await DBHelper.databaseToDo();

@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 // Third Party Packages
 import 'package:provider/provider.dart';
+import 'package:routinger/helper/db_helper.dart';
 
 // Provider Imports
 import '../provider/task.dart';
@@ -32,6 +33,7 @@ class ScheduledCard extends StatelessWidget {
         onPressed: () {
           Provider.of<Tasks>(context, listen: false)
               .removeScheduled(scheduledTask.id);
+          DBHelper.deleteScheduled(scheduledTask.id);
         },
       ),
     );

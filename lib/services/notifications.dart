@@ -72,8 +72,8 @@ class NotificationService with ChangeNotifier {
     );
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       id,
+      'Routinger',
       taskName,
-      taskInfo,
       tz.TZDateTime.now(tz.local).add(
         Duration(
           hours: hours,
@@ -125,8 +125,8 @@ class NotificationService with ChangeNotifier {
     // await _flutterLocalNotificationsPlugin.cancelAll();
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       id,
+      'Routinger',
       taskName,
-      taskInfo,
       tz.TZDateTime.now(tz.local).add(
         Duration(
           hours: hours,

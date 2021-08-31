@@ -32,7 +32,7 @@ class RecurringTask with ChangeNotifier {
     _thisRecurringTaskIds.add(id);
   }
 
-  List<int> getRecurringTaskId(int id) {
+  List<int> getRecurringTaskId() {
     return [..._thisRecurringTaskIds];
   }
 }

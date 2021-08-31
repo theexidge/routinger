@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Third Party Packages Imports
 import 'package:provider/provider.dart';
 import 'package:routinger/helper/db_helper.dart';
+import 'package:routinger/services/notifications.dart';
 
 // Provider Imports
 import '../provider/task.dart';
@@ -30,6 +31,10 @@ class RecurringCard extends StatelessWidget {
           Provider.of<Tasks>(context, listen: false)
               .removeRecurring(recurringTask.id);
           DBHelper.deleteRecurring(recurringTask.id);
+          var tempList = recurringTask.getRecurringTaskId();
+          for (int i = 0; i < tempList.length; i++) {
+            NotificationService().cancelNotification(tempList[i]);
+          }
         },
         icon: Icon(Icons.delete),
       ),

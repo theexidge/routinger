@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.routinger">
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="routinger"
+        android:label="Routinger"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -30,6 +30,7 @@ dependencies:
   flutter_native_timezone: ^2.0.0
   sqflite: ^2.0.0+4
   url_launcher: ^6.0.9
+  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -39,6 +40,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.2
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "dev_assets/routinger-icon.png"
+  adaptive_icon_background: "#D1D1D1"
+  adaptive_icon_foreground: "dev_assets/routinger-adaptive.png"
+  adaptive_icon_foreground_scale_factor: 0.50
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

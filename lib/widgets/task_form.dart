@@ -253,7 +253,7 @@ class _TaskFormState extends State<TaskForm> {
                               } else {
                                 setState(() {
                                   remindDropDownValue = newVal as int;
-                                  print(remindDropDownValue);
+                                  // print(remindDropDownValue);
                                 });
                               }
                             },
@@ -300,7 +300,7 @@ class _TaskFormState extends State<TaskForm> {
                   return;
                 }
 
-                print('$days $hours $minutes');
+                // print('$days $hours $minutes');
                 Provider.of<Tasks>(context, listen: false).addScheduled(
                   intChosen,
                   _titleController.text,

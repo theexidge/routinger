@@ -142,6 +142,12 @@ class NotificationService with ChangeNotifier {
       androidAllowWhileIdle: true,
       matchDateTimeComponents: DateTimeComponents.time,
     );
+    final List<PendingNotificationRequest> pendingNotificationRequests =
+        await _flutterLocalNotificationsPlugin.pendingNotificationRequests();
+    print(pendingNotificationRequests.length.toString() + " Something");
+    for (int i = 0; i < pendingNotificationRequests.length; i++) {
+      print(pendingNotificationRequests[i].title.toString() + " YES");
+    }
   }
 
   Future<void> cancelNotification(int id) async {

@@ -1,8 +1,6 @@
 # Routinger
 
-This is a simple app that will allow you to schedule your tasks, create a simple to-do, and also make recurring tasks. It is meant to be a cross platform app. Due to certain limitations it will be first released only for Android Users on Play Store under the organization name of "Codeluent", after resolving some problems it will be released to iOS store under the same developer/organization name.
-
-The app released under the organization/devloper name "Codeluent" will be completely free of in-app purchases as of now and free of advertisements. It can however include a way to support the developers if you like.
+This is a simple app that will allow you to schedule your tasks, create a simple to-do, and also make recurring tasks. The app ends you notifications to remind you of your taks. The app as of now works on storing data on local storage only. It is meant to be a cross platform app. 
 
 The general structure of the project is as follows-:
 - All the database related functions are located in the helper directory along with a list_of_notif model used by Rountinger.
@@ -12,5 +10,6 @@ The general structure of the project is as follows-:
 - The widgets directory: All the presentation logic is present in the widgets directory. Every thing that you see on screen has been made into a different widget file for easier debugging.
 - The main.dart file is kept cluttered free. 
 
-With Regards  
-Kushal A.
+Check the [Contributions](https://github.com/Kushalrock/routinger/blob/master/CONTRIBUTING.md) guideline before contributing to make sure you are contributing the rightway.
+
+Have a good day.

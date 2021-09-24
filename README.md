@@ -12,4 +12,8 @@ The general structure of the project is as follows-:
 
 Check the [Contributions](https://github.com/Kushalrock/routinger/blob/master/CONTRIBUTING.md) guideline before contributing to make sure you are contributing the rightway.
 
+**Be sure to follow the [Code Of Conduct](https://github.com/Kushalrock/routinger/blob/master/CODE_OF_CONDUCT.md) at all times.** 
+
+Being part of a community means there are certain simple rules and etiquettes that needs to be followed. Following these simple rules makes everyone feel like they are a part of community and are not being mistreated. 
+
 Have a good day.

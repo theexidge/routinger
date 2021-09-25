@@ -14,6 +14,13 @@ Open Source is driven by contributions. We are very happy seeing you here. We wa
 4. [OPTIONAL] Update the Readme file.
 5. Issue that pull request.
 
+**[NON CODING BACKGROUND] If you are from a non-coding background and still want to contribute to the `artistic` labeled issues. The issue's discussion will contain a brief description of `How to contribute` but mostly you will be asked to navigate to `lib/dev_assets` folder and copy your assets that you want to contribute over there.**
+
+**[FOR CODERS] People willing to use dependency other than those listed in pubspec.yaml have to discuss it first in the issues tab. Therefore, we recommend you to first open an issue for the thing you are going to change. They should make sure that-:**
+-  The package they are going to use adhers to the new null safety protocols set by flutter.
+-  The version used should be a stable release version.
+-  It should be compatible with the other packages that are in use and must not break them. If for some reason two packages are incompatible. The person suggesting the change has to also suggest a new package to be used and refactor the code accordingly before issuing the pull request.
+
 ## Any contribution you make will be under GPL 3.0
 Your contributions will be covered under the same license GPL 3.0 as the whole project. You can contact the maintainers for more assistance.
 

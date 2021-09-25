@@ -33,14 +33,22 @@ class ScheduledCard extends StatelessWidget {
           fontFamily: 'KleeOne',
         ),
       ),
-      trailing: IconButton(
-        icon: Icon(Icons.delete),
-        onPressed: () {
-          Provider.of<Tasks>(context, listen: false)
-              .removeScheduled(scheduledTask.id);
-          DBHelper.deleteScheduled(scheduledTask.id);
-          NotificationService().cancelNotification(scheduledTask.id);
-        },
+      trailing: Wrap(
+        children: [
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: () {
+              Provider.of<Tasks>(context, listen: false)
+                  .removeScheduled(scheduledTask.id);
+              DBHelper.deleteScheduled(scheduledTask.id);
+              NotificationService().cancelNotification(scheduledTask.id);
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.check),
+            onPressed: () {},
+          ),
+        ],
       ),
     );
   }

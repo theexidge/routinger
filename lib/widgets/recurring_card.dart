@@ -30,17 +30,25 @@ class RecurringCard extends StatelessWidget {
           fontFamily: 'KleeOne',
         ),
       ),
-      trailing: IconButton(
-        onPressed: () {
-          Provider.of<Tasks>(context, listen: false)
-              .removeRecurring(recurringTask.id);
-          DBHelper.deleteRecurring(recurringTask.id);
-          var tempList = recurringTask.getRecurringTaskId();
-          for (int i = 0; i < tempList.length; i++) {
-            NotificationService().cancelNotification(tempList[i]);
-          }
-        },
-        icon: Icon(Icons.delete),
+      trailing: Wrap(
+        children: [
+          IconButton(
+            onPressed: () {
+              Provider.of<Tasks>(context, listen: false)
+                  .removeRecurring(recurringTask.id);
+              DBHelper.deleteRecurring(recurringTask.id);
+              var tempList = recurringTask.getRecurringTaskId();
+              for (int i = 0; i < tempList.length; i++) {
+                NotificationService().cancelNotification(tempList[i]);
+              }
+            },
+            icon: Icon(Icons.delete),
+          ),
+          IconButton(
+            icon: Icon(Icons.check),
+            onPressed: () {},
+          ),
+        ],
       ),
     );
   }

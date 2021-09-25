@@ -2,8 +2,8 @@
 name: Bug report
 about: Create a report to help us improve
 title: BUG
-labels: ''
-assignees: Kushalrock
+labels: bug
+assignees: ''
 
 ---
 
@@ -28,4 +28,7 @@ If applicable, add screenshots to help explain your problem.
 Add any other context about the problem here.
 
 **Ways to solve it**
-This is completely optional. If you have a way to tackle the issue. You can suggest it here. Try to summarise as much information as possible. Try not to make this part huge.
+[OPTIONAL]. If you have a way to tackle the issue. You can suggest it here. Try to summarise as much information as possible. Try not to make this part huge.
+
+**Ideas about why is this happening**
+[OPTIONAL]. This field is completely optional. If you don't know the ways to solve it. You can attach screenshots of code or write about the files where you think the code is breaking and causing undesired behavior and attach a brief description explaining your views. This will help others to specifically pinpoint where the issue is.

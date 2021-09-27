@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 // Third Party Packages
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:routinger/constants/enums.dart';
 
 // Services Imports
 import '../services/notifications.dart';
@@ -26,6 +27,7 @@ class _TaskFormState extends State<TaskForm> {
   late TextEditingController _titleController;
   late DateTime currentDate;
   late TimeOfDay curentTime;
+
   String dropDownValue = 'To-Do';
   int remindDropDownValue = 0;
   final List<String> _remindDropDownValues = [
@@ -43,6 +45,8 @@ class _TaskFormState extends State<TaskForm> {
     'Remind Every 11 Hours',
     'Remind Every 12 Hours',
   ];
+
+  Difficulty difficultyDropDownValue = Difficulty.Easy;
 
   @override
   void initState() {
@@ -150,6 +154,37 @@ class _TaskFormState extends State<TaskForm> {
                     }
                     setState(() {
                       dropDownValue = newVal;
+                    });
+                  },
+                ),
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
+                width: double.infinity,
+                child: DropdownButton(
+                  isExpanded: true,
+                  items: [
+                    DropdownMenuItem(
+                      child: Text('Easy'),
+                      value: Difficulty.Easy,
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Doable'),
+                      value: Difficulty.Doable,
+                    ),
+                    DropdownMenuItem(
+                      child: Text('Hard'),
+                      value: Difficulty.Hard,
+                    ),
+                  ],
+                  value: difficultyDropDownValue,
+                  onChanged: (Difficulty? newVal) {
+                    if (newVal == null || newVal == difficultyDropDownValue) {
+                      return;
+                    }
+                    setState(() {
+                      difficultyDropDownValue = newVal;
                     });
                   },
                 ),
@@ -302,11 +337,8 @@ class _TaskFormState extends State<TaskForm> {
 
                 // print('$days $hours $minutes');
                 Provider.of<Tasks>(context, listen: false).addScheduled(
-                  intChosen,
-                  _titleController.text,
-                  currentDate,
-                  '',
-                );
+                    intChosen, _titleController.text, currentDate, '',
+                    difficultyOfTask: difficultyDropDownValue);
 
                 Navigator.of(context).pop();
                 await NotificationService().scheduledNotification(
@@ -380,7 +412,8 @@ class _TaskFormState extends State<TaskForm> {
                     _remindDropDownValues[remindDropDownValue],
                     _titleController.text,
                     '',
-                    listOfNotifTimes.map<int>((e) => e.intId).toList());
+                    listOfNotifTimes.map<int>((e) => e.intId).toList(),
+                    difficultyOfTask: difficultyDropDownValue);
                 Navigator.of(context).pop();
                 return;
               }

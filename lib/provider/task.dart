@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:routinger/constants/enums.dart';
 
 class Task with ChangeNotifier {
   final String id;
@@ -14,8 +15,10 @@ class ScheduledTask with ChangeNotifier {
   final DateTime pickedDateTime;
   final String taskName;
   final String taskDesc;
+  final Difficulty difficulty;
 
-  ScheduledTask(this.id, this.pickedDateTime, this.taskName, this.taskDesc);
+  ScheduledTask(this.id, this.pickedDateTime, this.taskName, this.taskDesc,
+      {this.difficulty = Difficulty.Easy});
 }
 
 class RecurringTask with ChangeNotifier {
@@ -24,9 +27,11 @@ class RecurringTask with ChangeNotifier {
   final String taskName;
   final String taskDesc;
   List<int> _thisRecurringTaskIds = [];
+  final Difficulty difficulty;
 
   RecurringTask(this.id, this.remindTime, this.taskName, this.taskDesc,
-      this._thisRecurringTaskIds);
+      this._thisRecurringTaskIds,
+      {this.difficulty = Difficulty.Easy});
 
   void addRecurringTaskId(int id) {
     _thisRecurringTaskIds.add(id);

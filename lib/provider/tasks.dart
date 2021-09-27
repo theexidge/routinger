@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:routinger/constants/enums.dart';
 import 'package:routinger/services/sleep_cycle.dart';
 
 // Services Imports
@@ -34,10 +35,12 @@ class Tasks with ChangeNotifier {
   }
 
   void addScheduled(
-      int id, String taskName, DateTime pickedDateTime, String taskDesc) {
+      int id, String taskName, DateTime pickedDateTime, String taskDesc,
+      {Difficulty difficultyOfTask = Difficulty.Easy}) {
     scheduledList = [
       ...scheduledList,
-      ScheduledTask(id, pickedDateTime, taskName, taskDesc)
+      ScheduledTask(id, pickedDateTime, taskName, taskDesc,
+          difficulty: difficultyOfTask)
     ];
     DBHelper.insert(
         'user_scheduled',
@@ -51,10 +54,12 @@ class Tasks with ChangeNotifier {
   }
 
   void addRecurring(int id, String remindTime, String taskName, String taskDesc,
-      List<int> intList) {
+      List<int> intList,
+      {Difficulty difficultyOfTask = Difficulty.Easy}) {
     recurringList = [
       ...recurringList,
-      RecurringTask(id, remindTime, taskName, taskDesc, intList)
+      RecurringTask(id, remindTime, taskName, taskDesc, intList,
+          difficulty: difficultyOfTask)
     ];
     DBHelper.insert(
         'user_recurring',

@@ -51,7 +51,7 @@ class ScheduledCard extends StatelessWidget {
             icon: Icon(Icons.check),
             onPressed: () {
               Provider.of<ExperiencePoints>(context, listen: false)
-                  .addPoints(5);
+                  .addPointsWithDifficulty(scheduledTask.difficulty);
               Provider.of<Tasks>(context, listen: false)
                   .removeScheduled(scheduledTask.id);
               DBHelper.deleteScheduled(scheduledTask.id);

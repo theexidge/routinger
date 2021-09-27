@@ -49,7 +49,7 @@ class RecurringCard extends StatelessWidget {
             icon: Icon(Icons.check),
             onPressed: () {
               Provider.of<ExperiencePoints>(context, listen: false)
-                  .addPoints(5);
+                  .addPointsWithDifficulty(recurringTask.difficulty);
             },
           ),
         ],

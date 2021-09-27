@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:routinger/constants/enums.dart';
 
 class ExperiencePoints with ChangeNotifier {
   List<String> posts = const [
@@ -96,6 +97,21 @@ class ExperiencePoints with ChangeNotifier {
 
   void addPoints(int pointsToBeAdded) {
     currentPoints += pointsToBeAdded;
+    while (currentPoints >= points[hiredIndex]) {
+      currentPoints -= points[hiredIndex];
+      hiredIndex += 1;
+    }
+    notifyListeners();
+  }
+
+  void addPointsWithDifficulty(Difficulty difficultyOfTheTask) {
+    if (difficultyOfTheTask == Difficulty.Doable) {
+      currentPoints += 5;
+    } else if (difficultyOfTheTask == Difficulty.Hard) {
+      currentPoints += 7;
+    } else {
+      currentPoints += 2;
+    }
     while (currentPoints >= points[hiredIndex]) {
       currentPoints -= points[hiredIndex];
       hiredIndex += 1;

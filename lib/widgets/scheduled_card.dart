@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 // Third Party Packages
 import 'package:provider/provider.dart';
+import 'package:routinger/provider/experience_points.dart';
 
 // Helper Imports
 import '../helper/db_helper.dart';
@@ -38,6 +39,8 @@ class ScheduledCard extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.delete),
             onPressed: () {
+              Provider.of<ExperiencePoints>(context, listen: false)
+                  .subtractPoints(3);
               Provider.of<Tasks>(context, listen: false)
                   .removeScheduled(scheduledTask.id);
               DBHelper.deleteScheduled(scheduledTask.id);
@@ -46,7 +49,14 @@ class ScheduledCard extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.check),
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<ExperiencePoints>(context, listen: false)
+                  .addPoints(5);
+              Provider.of<Tasks>(context, listen: false)
+                  .removeScheduled(scheduledTask.id);
+              DBHelper.deleteScheduled(scheduledTask.id);
+              NotificationService().cancelNotification(scheduledTask.id);
+            },
           ),
         ],
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages Imports
 import 'package:provider/provider.dart';
+import 'package:routinger/provider/experience_points.dart';
 
 // Helper Imports
 import '../helper/db_helper.dart';
@@ -46,7 +47,10 @@ class RecurringCard extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.check),
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<ExperiencePoints>(context, listen: false)
+                  .addPoints(5);
+            },
           ),
         ],
       ),

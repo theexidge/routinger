@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:card_swiper/card_swiper.dart';
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Screen Imports
 import '../screens/add_task.dart';
-
-// Provider Imports
-import '../provider/tasks.dart';
 
 // Widgets Imports
 import '../widgets/carousel_card.dart';
@@ -116,67 +112,60 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: MultiProvider(
-        providers: [
-          ChangeNotifierProvider.value(
-            value: Tasks(),
-          ),
-        ],
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: mediaQuery.size.height / 3.5,
-                margin: EdgeInsets.all(10),
-                child: Swiper(
-                  itemBuilder: (BuildContext context, int index) {
-                    return CarouselCard(
-                      tips[index],
-                      "${index + 1}",
-                      mediaQuery.size.height / 3.5,
-                    );
-                  },
-                  itemCount: 5,
-                  itemWidth: 300.0,
-                  layout: SwiperLayout.STACK,
-                  autoplay: true,
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: mediaQuery.size.height / 3.5,
+              margin: EdgeInsets.all(10),
+              child: Swiper(
+                itemBuilder: (BuildContext context, int index) {
+                  return CarouselCard(
+                    tips[index],
+                    "${index + 1}",
+                    mediaQuery.size.height / 3.5,
+                  );
+                },
+                itemCount: 5,
+                itemWidth: 300.0,
+                layout: SwiperLayout.STACK,
+                autoplay: true,
               ),
-              _selectedIndexOfBottomNavBar == 1
-                  ? Container() // TODO: Make a your stats widget
-                  : Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10.0, vertical: 5.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 20,
+            ),
+            _selectedIndexOfBottomNavBar == 1
+                ? Container() // TODO: Make a your stats widget
+                : Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 5.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              'Your Tasks',
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                'Your Tasks',
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  showSleepDialog(context);
-                                },
-                                icon: Icon(Icons.alarm_add),
-                              )
-                            ],
-                          ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                showSleepDialog(context);
+                              },
+                              icon: Icon(Icons.alarm_add),
+                            )
+                          ],
                         ),
-                        ListOfTasks(),
-                        Initialiser(),
-                      ],
-                    ),
-            ],
-          ),
+                      ),
+                      ListOfTasks(),
+                      Initialiser(),
+                    ],
+                  ),
+          ],
         ),
       ),
     );

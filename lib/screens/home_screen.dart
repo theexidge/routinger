@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:card_swiper/card_swiper.dart';
+import 'package:routinger/widgets/your_stats.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Screen Imports
@@ -133,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             _selectedIndexOfBottomNavBar == 1
-                ? Container() // TODO: Make a your stats widget
+                ? YourStats()
                 : Column(
                     children: [
                       Container(

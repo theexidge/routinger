@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class ExperiencePoints with ChangeNotifier {
-  static List<String> posts = const [
+  List<String> posts = const [
     'Intern',
     'Team Member',
     'Team Lead',
@@ -13,12 +13,51 @@ class ExperiencePoints with ChangeNotifier {
     'Director',
   ];
 
-  static bool hired = false;
+  bool hired = false;
 
-  static int hiredIndex = 0;
-  static int currentPoints = 0;
+  int hiredIndex = 0;
+  int currentPoints = 0;
 
-  static List<int> points = [
+  List<List<String>> catchyPhrases = [
+    [
+      'You were hired as a programming intern, but you',
+      'are serving coffee now,',
+    ],
+    [
+      'You were settled down with the fact that you will',
+      'be serving coffee only. But voila a promotion.',
+    ],
+    [
+      'You putting in hours of effort and skipping parties',
+      'is making your friends jealous now.',
+    ],
+    [
+      'Finally I am beginning to think that MBA fees',
+      'didn\'t go down the drain.',
+    ],
+    [
+      'My irritating boss called me and said I am gonna be',
+      'be your boss again. But atleast you got promoted',
+    ],
+    [
+      'Is it worth the effort spending time in this company? You have ',
+      'got promoted. Yes, I am happy to spend my entire life here',
+    ],
+    [
+      'I shouldn\'t say this but I was happy going to someone\'s',
+      'funeral. Whose? Our President. I have got his job now.',
+    ],
+    [
+      'Finally my performance will drive up the share market',
+      'I am the King',
+    ],
+    [
+      'I was able to save up enough money to buy more shares of our company',
+      'I got it pretty cheap 1\$/1%. But atleast I am the director.',
+    ]
+  ];
+
+  List<int> points = [
     5,
     8,
     10,
@@ -29,6 +68,18 @@ class ExperiencePoints with ChangeNotifier {
     50,
     75,
   ];
+
+  String getProgress() {
+    return '$currentPoints/${points[hiredIndex]}';
+  }
+
+  double getProgressFraction() {
+    return currentPoints / points[hiredIndex];
+  }
+
+  String getPostName() {
+    return posts[hiredIndex];
+  }
 
   void findNewCompany() {
     hired = true;

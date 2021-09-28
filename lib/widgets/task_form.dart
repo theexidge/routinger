@@ -112,10 +112,11 @@ class _TaskFormState extends State<TaskForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: Column(
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
             children: [
               Padding(
                 padding:
@@ -158,37 +159,42 @@ class _TaskFormState extends State<TaskForm> {
                   },
                 ),
               ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
-                width: double.infinity,
-                child: DropdownButton(
-                  isExpanded: true,
-                  items: [
-                    DropdownMenuItem(
-                      child: Text('Easy'),
-                      value: Difficulty.Easy,
+              dropDownValue == "To-Do"
+                  ? SizedBox(
+                      height: 0,
+                    )
+                  : Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5.0, horizontal: 15.0),
+                      width: double.infinity,
+                      child: DropdownButton(
+                        isExpanded: true,
+                        items: [
+                          DropdownMenuItem(
+                            child: Text('Easy'),
+                            value: Difficulty.Easy,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Doable'),
+                            value: Difficulty.Doable,
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Hard'),
+                            value: Difficulty.Hard,
+                          ),
+                        ],
+                        value: difficultyDropDownValue,
+                        onChanged: (Difficulty? newVal) {
+                          if (newVal == null ||
+                              newVal == difficultyDropDownValue) {
+                            return;
+                          }
+                          setState(() {
+                            difficultyDropDownValue = newVal;
+                          });
+                        },
+                      ),
                     ),
-                    DropdownMenuItem(
-                      child: Text('Doable'),
-                      value: Difficulty.Doable,
-                    ),
-                    DropdownMenuItem(
-                      child: Text('Hard'),
-                      value: Difficulty.Hard,
-                    ),
-                  ],
-                  value: difficultyDropDownValue,
-                  onChanged: (Difficulty? newVal) {
-                    if (newVal == null || newVal == difficultyDropDownValue) {
-                      return;
-                    }
-                    setState(() {
-                      difficultyDropDownValue = newVal;
-                    });
-                  },
-                ),
-              ),
               dropDownValue != "Scheduled-Task"
                   ? SizedBox(
                       height: 0,
@@ -310,133 +316,133 @@ class _TaskFormState extends State<TaskForm> {
                     )
             ],
           ),
-        ),
-        Container(
-          width: double.infinity,
-          child: ElevatedButton.icon(
-            icon: Icon(Icons.add),
-            onPressed: () async {
-              if (_titleController.text.isEmpty) {
-                return;
-              }
-              if (dropDownValue == 'Scheduled-Task') {
-                final intChosen = _randomInt();
-                final days = currentDate.day - DateTime.now().day;
-                final hours = currentDate.hour - DateTime.now().hour;
-                final minutes = currentDate.minute - DateTime.now().minute;
-
-                if (days < 0) {
+          Container(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              icon: Icon(Icons.add),
+              onPressed: () async {
+                if (_titleController.text.isEmpty) {
                   return;
                 }
-                if (days == 0 && hours < 0) {
+                if (dropDownValue == 'Scheduled-Task') {
+                  final intChosen = _randomInt();
+                  final days = currentDate.day - DateTime.now().day;
+                  final hours = currentDate.hour - DateTime.now().hour;
+                  final minutes = currentDate.minute - DateTime.now().minute;
+
+                  if (days < 0) {
+                    return;
+                  }
+                  if (days == 0 && hours < 0) {
+                    return;
+                  }
+                  if (days == 0 && hours == 0 && minutes < 0) {
+                    return;
+                  }
+
+                  // print('$days $hours $minutes');
+                  Provider.of<Tasks>(context, listen: false).addScheduled(
+                      intChosen, _titleController.text, currentDate, '',
+                      difficultyOfTask: difficultyDropDownValue);
+
+                  Navigator.of(context).pop();
+                  await NotificationService().scheduledNotification(intChosen,
+                      _titleController.text, '', days, hours, minutes);
                   return;
                 }
-                if (days == 0 && hours == 0 && minutes < 0) {
-                  return;
-                }
-
-                // print('$days $hours $minutes');
-                Provider.of<Tasks>(context, listen: false).addScheduled(
-                    intChosen, _titleController.text, currentDate, '',
-                    difficultyOfTask: difficultyDropDownValue);
-
-                Navigator.of(context).pop();
-                await NotificationService().scheduledNotification(
-                    intChosen, _titleController.text, '', days, hours, minutes);
-                return;
-              }
-              if (dropDownValue == 'Recurring-Task') {
-                List<ListOfNotif> listOfNotifTimes = [];
-                DateTime dynamicTime = DateTime(
-                  DateTime.now().year,
-                  DateTime.now().month,
-                  DateTime.now().day,
-                  SleepCycle().wakeUpTime.hour,
-                  SleepCycle().wakeUpTime.minute,
-                );
-                print('Running');
-                if (remindDropDownValue == 0) {
-                  for (int i = 0; i < 48; i++) {
-                    dynamicTime = dynamicTime.add(Duration(minutes: 30));
-                    if (dynamicTime.hour <
-                            max(SleepCycle().wakeUpTime.hour,
-                                SleepCycle().sleepTime.hour) &&
-                        dynamicTime.hour >
-                            min(SleepCycle().wakeUpTime.hour,
-                                SleepCycle().sleepTime.hour)) {
-                      print('Nope');
-                    } else {
-                      print(dynamicTime.toString() + " Your Time");
-                      int _intChosen = _randomInt();
-                      if (dynamicTime.hour < DateTime.now().hour ||
-                          dynamicTime.minute < DateTime.now().minute) {
-                        dynamicTime.add(Duration(days: 1));
+                if (dropDownValue == 'Recurring-Task') {
+                  List<ListOfNotif> listOfNotifTimes = [];
+                  DateTime dynamicTime = DateTime(
+                    DateTime.now().year,
+                    DateTime.now().month,
+                    DateTime.now().day,
+                    SleepCycle().wakeUpTime.hour,
+                    SleepCycle().wakeUpTime.minute,
+                  );
+                  print('Running');
+                  if (remindDropDownValue == 0) {
+                    for (int i = 0; i < 48; i++) {
+                      dynamicTime = dynamicTime.add(Duration(minutes: 30));
+                      if (dynamicTime.hour <
+                              max(SleepCycle().wakeUpTime.hour,
+                                  SleepCycle().sleepTime.hour) &&
+                          dynamicTime.hour >
+                              min(SleepCycle().wakeUpTime.hour,
+                                  SleepCycle().sleepTime.hour)) {
+                        print('Nope');
+                      } else {
+                        print(dynamicTime.toString() + " Your Time");
+                        int _intChosen = _randomInt();
+                        if (dynamicTime.hour < DateTime.now().hour ||
+                            dynamicTime.minute < DateTime.now().minute) {
+                          dynamicTime.add(Duration(days: 1));
+                        }
+                        final days = dynamicTime.day - DateTime.now().day;
+                        final hours = dynamicTime.hour - DateTime.now().hour;
+                        final minutes =
+                            dynamicTime.minute - DateTime.now().minute;
+                        listOfNotifTimes
+                            .add(ListOfNotif(_intChosen, dynamicTime));
+                        await NotificationService().recurringNotif(_randomInt(),
+                            _titleController.text, '', days, hours, minutes);
                       }
-                      final days = dynamicTime.day - DateTime.now().day;
-                      final hours = dynamicTime.hour - DateTime.now().hour;
-                      final minutes =
-                          dynamicTime.minute - DateTime.now().minute;
-                      listOfNotifTimes
-                          .add(ListOfNotif(_intChosen, dynamicTime));
-                      await NotificationService().recurringNotif(_randomInt(),
-                          _titleController.text, '', days, hours, minutes);
+                    }
+                  } else {
+                    for (int i = 0; i < 24 / remindDropDownValue; i++) {
+                      dynamicTime =
+                          dynamicTime.add(Duration(hours: remindDropDownValue));
+                      if (dynamicTime.hour <
+                              max(SleepCycle().wakeUpTime.hour,
+                                  SleepCycle().sleepTime.hour) &&
+                          dynamicTime.hour >
+                              min(SleepCycle().wakeUpTime.hour,
+                                  SleepCycle().sleepTime.hour)) {
+                        print('Nope');
+                      } else {
+                        print(dynamicTime.toString() + " Your Time");
+                        int _intChosen = _randomInt();
+                        listOfNotifTimes
+                            .add(ListOfNotif(_intChosen, dynamicTime));
+                      }
                     }
                   }
-                } else {
-                  for (int i = 0; i < 24 / remindDropDownValue; i++) {
-                    dynamicTime =
-                        dynamicTime.add(Duration(hours: remindDropDownValue));
-                    if (dynamicTime.hour <
-                            max(SleepCycle().wakeUpTime.hour,
-                                SleepCycle().sleepTime.hour) &&
-                        dynamicTime.hour >
-                            min(SleepCycle().wakeUpTime.hour,
-                                SleepCycle().sleepTime.hour)) {
-                      print('Nope');
-                    } else {
-                      print(dynamicTime.toString() + " Your Time");
-                      int _intChosen = _randomInt();
-                      listOfNotifTimes
-                          .add(ListOfNotif(_intChosen, dynamicTime));
-                    }
-                  }
+                  // print(listOfNotifTimes
+                  //         .map<int>((e) => e.intId)
+                  //         .toList()[0]
+                  //         .toString() +
+                  //     " " +
+                  //     listOfNotifTimes[0].intId.toString());
+                  Provider.of<Tasks>(context, listen: false).addRecurring(
+                      _randomInt(),
+                      _remindDropDownValues[remindDropDownValue],
+                      _titleController.text,
+                      '',
+                      listOfNotifTimes.map<int>((e) => e.intId).toList(),
+                      difficultyOfTask: difficultyDropDownValue);
+                  Navigator.of(context).pop();
+                  return;
                 }
-                // print(listOfNotifTimes
-                //         .map<int>((e) => e.intId)
-                //         .toList()[0]
-                //         .toString() +
-                //     " " +
-                //     listOfNotifTimes[0].intId.toString());
-                Provider.of<Tasks>(context, listen: false).addRecurring(
-                    _randomInt(),
-                    _remindDropDownValues[remindDropDownValue],
-                    _titleController.text,
-                    '',
-                    listOfNotifTimes.map<int>((e) => e.intId).toList(),
-                    difficultyOfTask: difficultyDropDownValue);
+                final onFlyId = DateTime.now().toString();
+                Provider.of<Tasks>(context, listen: false).addToDo(
+                  onFlyId,
+                  _titleController.text,
+                  '',
+                );
                 Navigator.of(context).pop();
-                return;
-              }
-              final onFlyId = DateTime.now().toString();
-              Provider.of<Tasks>(context, listen: false).addToDo(
-                onFlyId,
-                _titleController.text,
-                '',
-              );
-              Navigator.of(context).pop();
-            },
-            label: Text(
-              'Add Task',
-              style: TextStyle(
-                fontSize: 18,
+              },
+              label: Text(
+                'Add Task',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              style: ButtonStyle(
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
             ),
-            style: ButtonStyle(
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:routinger/constants/enums.dart';
+import 'package:routinger/helper/util_functions.dart';
 import 'package:routinger/services/sleep_cycle.dart';
 
 // Services Imports
@@ -42,6 +43,7 @@ class Tasks with ChangeNotifier {
       ScheduledTask(id, pickedDateTime, taskName, taskDesc,
           difficulty: difficultyOfTask)
     ];
+    int difficultyInt = difficultyToIntConverter(difficultyOfTask);
     DBHelper.insert(
         'user_scheduled',
         {
@@ -49,6 +51,7 @@ class Tasks with ChangeNotifier {
           'taskName': taskName,
           'taskDesc': taskDesc,
           'dateTime': pickedDateTime.toString(),
+          'difficulty': difficultyInt
         },
         2);
   }
@@ -61,6 +64,7 @@ class Tasks with ChangeNotifier {
       RecurringTask(id, remindTime, taskName, taskDesc, intList,
           difficulty: difficultyOfTask)
     ];
+    int difficultyInt = difficultyToIntConverter(difficultyOfTask);
     DBHelper.insert(
         'user_recurring',
         {
@@ -70,6 +74,7 @@ class Tasks with ChangeNotifier {
           'remindTime': remindTime,
           'notifInts':
               intList.map<String>((e) => e.toString()).toList().join(','),
+          'difficulty': difficultyInt,
         },
         3);
   }
@@ -94,7 +99,10 @@ class Tasks with ChangeNotifier {
     }
     scheduledList = dataList
         .map((e) => ScheduledTask(e['id'], DateTime.parse(e['dateTime']),
-            e['taskName'], e['taskDesc']))
+            e['taskName'], e['taskDesc'],
+            difficulty: intToDifficultyCoverter(
+              e['difficulty'],
+            )))
         .toList();
   }
 
@@ -106,15 +114,15 @@ class Tasks with ChangeNotifier {
     }
     recurringList = dataList
         .map((e) => RecurringTask(
-              e['id'],
-              e['remindTime'],
-              e['taskName'],
-              e['taskDesc'],
-              (e['notifInts'] as String)
-                  .split(',')
-                  .map((e) => int.parse(e))
-                  .toList(),
-            ))
+            e['id'],
+            e['remindTime'],
+            e['taskName'],
+            e['taskDesc'],
+            (e['notifInts'] as String)
+                .split(',')
+                .map((e) => int.parse(e))
+                .toList(),
+            difficulty: intToDifficultyCoverter(e['difficulty'])))
         .toList();
   }
 

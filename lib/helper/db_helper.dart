@@ -32,7 +32,7 @@ class DBHelper {
     return sql.openDatabase(path.join(dbPath, 'routingerScheduled.db'),
         onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE user_scheduled(id INTEGER PRIMARY KEY, taskName TEXT, taskDesc TEXT, dateTime TEXT)');
+          'CREATE TABLE user_scheduled(id INTEGER PRIMARY KEY, taskName TEXT, taskDesc TEXT, dateTime TEXT, difficulty INTEGER)');
     }, version: 1);
   }
 
@@ -41,7 +41,7 @@ class DBHelper {
     return sql.openDatabase(path.join(dbPath, 'routingerRecurring.db'),
         onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE user_recurring(id INTEGER PRIMARY KEY, taskName TEXT, taskDesc TEXT, remindTime TEXT, notifInts TEXT)');
+          'CREATE TABLE user_recurring(id INTEGER PRIMARY KEY, taskName TEXT, taskDesc TEXT, remindTime TEXT, notifInts TEXT, difficulty INTEGER)');
     }, version: 1);
   }
 

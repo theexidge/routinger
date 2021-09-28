@@ -19,6 +19,10 @@ class ExperiencePoints with ChangeNotifier {
   int hiredIndex = 0;
   int currentPoints = 0;
 
+  int _easyTaskPoints = 2;
+  int _doableTaskPoints = 5;
+  int _hardTaskPoints = 7;
+
   List<List<String>> catchyPhrases = [
     [
       'You were hired as a programming intern, but you',
@@ -106,11 +110,11 @@ class ExperiencePoints with ChangeNotifier {
 
   void addPointsWithDifficulty(Difficulty difficultyOfTheTask) {
     if (difficultyOfTheTask == Difficulty.Doable) {
-      currentPoints += 5;
+      currentPoints += _doableTaskPoints;
     } else if (difficultyOfTheTask == Difficulty.Hard) {
-      currentPoints += 7;
+      currentPoints += _hardTaskPoints;
     } else {
-      currentPoints += 2;
+      currentPoints += _easyTaskPoints;
     }
     while (currentPoints >= points[hiredIndex]) {
       currentPoints -= points[hiredIndex];

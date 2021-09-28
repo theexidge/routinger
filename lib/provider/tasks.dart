@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:routinger/constants/enums.dart';
+import 'package:routinger/helper/util_functions.dart';
 import 'package:routinger/services/sleep_cycle.dart';
 
 // Services Imports
@@ -34,11 +36,14 @@ class Tasks with ChangeNotifier {
   }
 
   void addScheduled(
-      int id, String taskName, DateTime pickedDateTime, String taskDesc) {
+      int id, String taskName, DateTime pickedDateTime, String taskDesc,
+      {Difficulty difficultyOfTask = Difficulty.Easy}) {
     scheduledList = [
       ...scheduledList,
-      ScheduledTask(id, pickedDateTime, taskName, taskDesc)
+      ScheduledTask(id, pickedDateTime, taskName, taskDesc,
+          difficulty: difficultyOfTask)
     ];
+    int difficultyInt = difficultyToIntConverter(difficultyOfTask);
     DBHelper.insert(
         'user_scheduled',
         {
@@ -46,16 +51,20 @@ class Tasks with ChangeNotifier {
           'taskName': taskName,
           'taskDesc': taskDesc,
           'dateTime': pickedDateTime.toString(),
+          'difficulty': difficultyInt
         },
         2);
   }
 
   void addRecurring(int id, String remindTime, String taskName, String taskDesc,
-      List<int> intList) {
+      List<int> intList,
+      {Difficulty difficultyOfTask = Difficulty.Easy}) {
     recurringList = [
       ...recurringList,
-      RecurringTask(id, remindTime, taskName, taskDesc, intList)
+      RecurringTask(id, remindTime, taskName, taskDesc, intList,
+          difficulty: difficultyOfTask)
     ];
+    int difficultyInt = difficultyToIntConverter(difficultyOfTask);
     DBHelper.insert(
         'user_recurring',
         {
@@ -65,6 +74,7 @@ class Tasks with ChangeNotifier {
           'remindTime': remindTime,
           'notifInts':
               intList.map<String>((e) => e.toString()).toList().join(','),
+          'difficulty': difficultyInt,
         },
         3);
   }
@@ -89,7 +99,10 @@ class Tasks with ChangeNotifier {
     }
     scheduledList = dataList
         .map((e) => ScheduledTask(e['id'], DateTime.parse(e['dateTime']),
-            e['taskName'], e['taskDesc']))
+            e['taskName'], e['taskDesc'],
+            difficulty: intToDifficultyCoverter(
+              e['difficulty'],
+            )))
         .toList();
   }
 
@@ -101,15 +114,15 @@ class Tasks with ChangeNotifier {
     }
     recurringList = dataList
         .map((e) => RecurringTask(
-              e['id'],
-              e['remindTime'],
-              e['taskName'],
-              e['taskDesc'],
-              (e['notifInts'] as String)
-                  .split(',')
-                  .map((e) => int.parse(e))
-                  .toList(),
-            ))
+            e['id'],
+            e['remindTime'],
+            e['taskName'],
+            e['taskDesc'],
+            (e['notifInts'] as String)
+                .split(',')
+                .map((e) => int.parse(e))
+                .toList(),
+            difficulty: intToDifficultyCoverter(e['difficulty'])))
         .toList();
   }
 

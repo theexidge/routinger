@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:routinger/provider/experience_points.dart';
+
+// Provider Imports
+import 'package:routinger/provider/tasks.dart';
 
 // Screen Imports
 import './screens/home_screen.dart';
@@ -16,15 +21,25 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Routinger',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => Tasks(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ExperiencePoints(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Routinger',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: HomeScreen(),
+        routes: {
+          AddTask.routeName: (ctx) => AddTask(),
+        },
       ),
-      home: HomeScreen(),
-      routes: {
-        AddTask.routeName: (ctx) => AddTask(),
-      },
     );
   }
 }

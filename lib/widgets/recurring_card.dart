@@ -46,10 +46,14 @@ class RecurringCard extends StatelessWidget {
           fontFamily: 'KleeOne',
         ),
       ),
+      isThreeLine: true,
       subtitle: Wrap(
         children: [
           Text(
-            recurringTask.remindTime,
+            recurringTask.remindTime.split('y ')[0] +
+                'y' +
+                '\n' +
+                recurringTask.remindTime.split('y ')[1],
             style: TextStyle(
               fontFamily: 'KleeOne',
             ),

@@ -52,11 +52,12 @@ class ScheduledCard extends StatelessWidget {
           fontFamily: 'KleeOne',
         ),
       ),
+      isThreeLine: true,
       subtitle: Wrap(
         children: [
           Text(
             DateFormat.yMMMMd().format(scheduledTask.pickedDateTime) +
-                "   " +
+                "\n" +
                 DateFormat.jm().format(scheduledTask.pickedDateTime),
             style: TextStyle(
               fontFamily: 'KleeOne',

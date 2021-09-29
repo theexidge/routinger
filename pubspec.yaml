@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -30,8 +30,6 @@ dependencies:
   flutter_native_timezone: ^2.0.0
   sqflite: ^2.0.0+4
   url_launcher: ^6.0.9
-  
-
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -44,17 +42,16 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "dev_assets/routinger-icon.png"
-  adaptive_icon_background: "#D1D1D1"
-  adaptive_icon_foreground: "dev_assets/routinger-adaptive.png"
-  adaptive_icon_foreground_scale_factor: 0.50
+  remove_alpha_ios: true
+  image_path: 'dev_assets/new-splash-icon.png'
+  adaptive_icon_background: '#c7dedf'
+  adaptive_icon_foreground: 'dev_assets/new-splash-icon.png'
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

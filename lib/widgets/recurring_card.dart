@@ -4,6 +4,7 @@ import 'package:mdi/mdi.dart';
 // Third Party Packages Imports
 import 'package:provider/provider.dart';
 import 'package:routinger/constants/enums.dart';
+import 'package:routinger/provider/charts_stats.dart';
 import 'package:routinger/provider/experience_points.dart';
 
 // Helper Imports
@@ -75,6 +76,8 @@ class RecurringCard extends StatelessWidget {
             onPressed: () {
               Provider.of<ExperiencePoints>(context, listen: false)
                   .addPointsWithDifficulty(recurringTask.difficulty);
+              Provider.of<ChartStats>(context, listen: false)
+                  .addTaskCompleted();
             },
           ),
         ],

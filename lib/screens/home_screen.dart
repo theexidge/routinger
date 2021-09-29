@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             padding: EdgeInsets.only(right: 40),
                             height: 130,
-                            child: StatsChart(maxTasks: 10)),
+                            child: StatsChart()),
                       ],
                     ),
                   )

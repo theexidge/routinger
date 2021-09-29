@@ -1,20 +1,24 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:routinger/provider/charts_stats.dart';
 
 class StatsChart extends StatelessWidget {
-  final double maxTasks;
-
-  StatsChart({
-    required this.maxTasks,
-  });
   @override
   Widget build(BuildContext context) {
+    Provider.of<ChartStats>(context, listen: false).initialise(DateTime.now());
+    final List<String> titles =
+        Provider.of<ChartStats>(context, listen: false).getDates();
+    final List<double> tasksCompleted =
+        Provider.of<ChartStats>(context, listen: false).tasksCompleted;
     return LineChart(
       LineChartData(
         minX: 0,
         maxX: 8,
         minY: 0,
-        maxY: maxTasks + 2,
+        maxY: Provider.of<ChartStats>(context, listen: false)
+                .getMaximumTasksDouble() +
+            3,
         titlesData: FlTitlesData(
           show: true,
           bottomTitles: SideTitles(
@@ -23,19 +27,19 @@ class StatsChart extends StatelessWidget {
             getTitles: (val) {
               switch (val.toInt()) {
                 case 1:
-                  return '26/07';
+                  return titles[0];
                 case 2:
-                  return '27/07';
+                  return titles[1];
                 case 3:
-                  return '28/07';
+                  return titles[2];
                 case 4:
-                  return '29/07';
+                  return titles[3];
                 case 5:
-                  return '30/07';
+                  return titles[4];
                 case 6:
-                  return '1/08';
+                  return titles[5];
                 case 7:
-                  return '2/08';
+                  return titles[6];
               }
               return '';
             },
@@ -56,13 +60,13 @@ class StatsChart extends StatelessWidget {
         lineBarsData: [
           LineChartBarData(
             spots: [
-              FlSpot(1, 4),
-              FlSpot(2, 6),
-              FlSpot(3, 8),
-              FlSpot(4, 2),
-              FlSpot(5, 10),
-              FlSpot(6, 4),
-              FlSpot(7, 1),
+              FlSpot(1, tasksCompleted[0]),
+              FlSpot(2, tasksCompleted[1]),
+              FlSpot(3, tasksCompleted[2]),
+              FlSpot(4, tasksCompleted[3]),
+              FlSpot(5, tasksCompleted[4]),
+              FlSpot(6, tasksCompleted[5]),
+              FlSpot(7, tasksCompleted[6]),
             ],
           )
         ],

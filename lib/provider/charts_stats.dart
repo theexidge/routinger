@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ChartStats with ChangeNotifier {
   List<DateTime> chartDates = [];
-  List<int> tasksCompleted = [0, 0, 0, 0, 0, 0, 0];
+  List<double> tasksCompleted = [0, 0, 0, 0, 0, 0, 0];
 
   void initialise(DateTime today) {
     if (chartDates.isEmpty) {
@@ -24,13 +24,14 @@ class ChartStats with ChangeNotifier {
 
   void addTaskCompleted({int points = 1}) {
     tasksCompleted[DateTime.now().weekday] += points;
+    notifyListeners();
   }
 
-  int getMaximumTasksInteger() {
-    int numToReturn = 0;
+  double getMaximumTasksDouble() {
+    double numToReturn = 0;
     for (int i = 0; i < tasksCompleted.length; i++) {
       if (numToReturn < tasksCompleted[i]) {
-        numToReturn = tasksCompleted[i];
+        numToReturn = tasksCompleted[i].toDouble();
       }
     }
     return numToReturn;
@@ -44,7 +45,7 @@ class ChartStats with ChangeNotifier {
     DateTime sundayOfTheWeek =
         DateTime.now().subtract(Duration(days: today.weekday));
     for (int i = 0; i < 7; i++) {
-      chartDates.add(sundayOfTheWeek.add(Duration(days: 1)));
+      chartDates.add(sundayOfTheWeek.add(Duration(days: i)));
     }
   }
 

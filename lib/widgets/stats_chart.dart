@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class StatsChart extends StatelessWidget {
-  double maxTasks;
+  final double maxTasks;
 
   StatsChart({
     required this.maxTasks,

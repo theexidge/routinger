@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:mdi/mdi.dart';
+import 'package:routinger/provider/charts_stats.dart';
 
 // Constant Imports
 import '../constants/enums.dart';
@@ -82,6 +83,8 @@ class ScheduledCard extends StatelessWidget {
             onPressed: () {
               Provider.of<ExperiencePoints>(context, listen: false)
                   .addPointsWithDifficulty(scheduledTask.difficulty);
+              Provider.of<ChartStats>(context, listen: false)
+                  .addTaskCompleted();
               Provider.of<Tasks>(context, listen: false)
                   .removeScheduled(scheduledTask.id);
               DBHelper.deleteScheduled(scheduledTask.id);

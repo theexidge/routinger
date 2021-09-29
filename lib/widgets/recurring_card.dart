@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mdi/mdi.dart';
 
 // Third Party Packages Imports
 import 'package:provider/provider.dart';
@@ -19,18 +20,18 @@ class RecurringCard extends StatelessWidget {
   Widget getIcon(Difficulty difficulty) {
     if (difficulty == Difficulty.Doable) {
       return Icon(
-        Icons.exposure_plus_1,
-        size: 18,
+        Mdi.alphaM,
+        color: Colors.orange,
       );
     } else if (difficulty == Difficulty.Hard) {
       return Icon(
-        Icons.exposure_plus_2,
-        size: 18,
+        Mdi.alphaH,
+        color: Colors.red,
       );
     }
     return Icon(
-      Icons.exposure_zero,
-      size: 18,
+      Mdi.alphaE,
+      color: Colors.green,
     );
   }
 
@@ -44,7 +45,7 @@ class RecurringCard extends StatelessWidget {
           fontFamily: 'KleeOne',
         ),
       ),
-      subtitle: Row(
+      subtitle: Wrap(
         children: [
           Text(
             recurringTask.remindTime,

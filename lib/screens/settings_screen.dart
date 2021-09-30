@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:routinger/widgets/settings_screen_body.dart';
 
 class SettingsScreen extends StatelessWidget {
   static final routeName = '/settings';
@@ -14,6 +15,7 @@ class SettingsScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.grey,
       ),
+      body: SettingsScreenBody(),
     );
   }
 }

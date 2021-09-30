@@ -119,7 +119,10 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Navigator.of(context).pushNamed(SettingsScreen.routeName);
               },
-              icon: Icon(Icons.settings),
+              icon: Icon(
+                Icons.settings,
+                color: Colors.grey,
+              ),
             ),
           ),
         ],

@@ -5,6 +5,7 @@ import 'package:routinger/provider/experience_points.dart';
 
 // Provider Imports
 import 'package:routinger/provider/tasks.dart';
+import 'package:routinger/screens/settings_screen.dart';
 
 // Screen Imports
 import './screens/home_screen.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         home: HomeScreen(),
         routes: {
           AddTask.routeName: (ctx) => AddTask(),
+          SettingsScreen.routeName: (ctx) => SettingsScreen(),
         },
       ),
     );

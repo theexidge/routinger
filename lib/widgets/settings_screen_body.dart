@@ -7,10 +7,12 @@ class SettingsScreenBody extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: const EdgeInsets.all(5.0),
-          padding: const EdgeInsets.all(8.0),
+          margin: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 2.0),
           child: ListTile(
-            leading: Icon(Mdi.google),
+            leading: Icon(
+              Mdi.google,
+              size: 30,
+            ),
             title: Text('Connect With Google Calendar'),
             subtitle: Text(
               'Connect with Google Calendar to' +
@@ -18,6 +20,7 @@ class SettingsScreenBody extends StatelessWidget {
                   'synchronise your tasks with Calendar.',
               textAlign: TextAlign.justify,
             ),
+            isThreeLine: true,
             onTap: () {
               // TODO: Implement connecting with Google Calendar
             },

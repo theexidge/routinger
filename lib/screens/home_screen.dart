@@ -49,9 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
               alignment: Alignment.center,
               child: const Text(
                 'Your Sleep Cycle',
-                style: TextStyle(
-                  fontFamily: 'KleeOne',
-                ),
               ),
             ),
             children: [
@@ -75,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        elevation: 4,
         onPressed: () {
           Navigator.of(context).pushNamed(AddTask.routeName);
         },
@@ -96,13 +94,10 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: _navigatingBottomNavBar,
       ),
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Routinger',
-          style: const TextStyle(
-            color: Colors.black,
-          ),
+          style: Theme.of(context).textTheme.headline5,
         ),
-        backgroundColor: Colors.white,
         actions: [
           Container(
             padding: EdgeInsets.symmetric(vertical: 7, horizontal: 7),
@@ -110,7 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: _launchURL,
               icon: Icon(Icons.coffee),
               label: Text('Buy me a Coffee'),
-              style: ButtonStyle(),
             ),
           ),
           Container(
@@ -175,10 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Text(
                               'Your Tasks',
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context).textTheme.headline4,
                             ),
                             IconButton(
                               onPressed: () {

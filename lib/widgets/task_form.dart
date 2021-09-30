@@ -434,6 +434,7 @@ class _TaskFormState extends State<TaskForm> {
                       SleepCycle().wakeUpTime.hour,
                       SleepCycle().wakeUpTime.minute,
                     );
+                    print('Running');
                     if (remindDropDownValue == 0) {
                       for (int i = 0; i < 48; i++) {
                         dynamicTime = dynamicTime.add(Duration(minutes: 30));
@@ -481,7 +482,6 @@ class _TaskFormState extends State<TaskForm> {
                         }
                       }
                     }
-
                     Provider.of<Tasks>(context, listen: false).addRecurring(
                         _randomInt(),
                         _remindDropDownValues[remindDropDownValue],
@@ -507,9 +507,9 @@ class _TaskFormState extends State<TaskForm> {
                   fontSize: 18,
                 ),
               ),
-              style: ButtonStyle(
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
+              style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
             ),
           ),
         ],

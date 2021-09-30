@@ -1,19 +1,49 @@
 # Routinger
 
-This is a simple app that will allow you to schedule your tasks, create a simple to-do, and also make recurring tasks. The app ends you notifications to remind you of your taks. The app as of now works on storing data on local storage only. It is meant to be a cross platform app.
-
-## Folder Structure
-
-The general structure of the project is as follows-:
-- [Helper Directory](https://github.com/Routinger/routinger/tree/master/lib/helper) :- All the database related functions are located in the helper directory along with a list_of_notif model used by Rountinger.
-- [Provider Directory](https://github.com/Routinger/routinger/tree/master/lib/provider) :- All the provider which app listens to is in the provider directory. This includes the task and tasks provider. The task provider is specific and contains the details for one task. While the tasks provider contains a list of tasks and handles the adding, removing, saving to local storage functions.
-- [Screens Directory](https://github.com/Routinger/routinger/tree/master/lib/screens) :- Currently the app has two screens, which are present in the screens directory. The first one is the home screen and other is a add task screen.
-- [Services Directory](https://github.com/Routinger/routinger/tree/master/lib/services) :- All the code related to notification services are present in notifications file. While the sleep cycle manages the user sleep cycle storing the wake up time and sleep time to not show recurring notifications during the tme user sleeps.
-- [Widgets directory](https://github.com/Routinger/routinger/tree/master/lib/widgets) :- All the presentation logic is present in the widgets directory. Every thing that you see on screen has been made into a different widget file for easier debugging.
-- The main.dart file is kept cluttered free. This should be only changed when absolutely necessary like when providing a new provider.
+This is a simple app that will allow you to schedule your tasks, create a simple to-do, and also make recurring tasks. The app ends you notifications to remind you of your tasks. The app as of now works on storing data on local storage only. It is meant to be a cross platform app.
 
 ## Getting Started
 >If you want to try out the app you can find the link to the app [here](https://github.com/Routinger/routinger/releases). The current app version is very early and there may be errors. **We recommend trying it out and telling us about your opinions in the issues or you can email to us.** We will soon also make a discussions page.
+
+
+## List of Contents
+
+1. [Demo](#demo)
+2. [Dependencies](#dependencies)
+3. [Installation](#installation)
+4. [Folder-Structure](#folder-structure)
+5. [Info](#info)
+
+## Demo
+
+**Screens**
+
+|![image](https://user-images.githubusercontent.com/64467851/135385589-ee4f990b-efaf-43a2-ba26-14dc3ef4985b.png) | ![image](https://user-images.githubusercontent.com/64467851/135386282-eda9e8ff-5e8c-40a5-9fb3-a48f4d7db18d.png) | ![image](https://user-images.githubusercontent.com/64467851/135386464-7d419b86-93f5-4484-a394-4f965aa3aa14.png) | ![image](https://user-images.githubusercontent.com/64467851/135386747-078fc6eb-6f80-4cdd-a745-ce8e4e3300b6.png) | 
+| :-------------: | :-------------:  | :-------------:  | :-------------:  | 
+|     Home Screen     |    Add Tasks    |    Set Timer     |     Sponsor Project      |     
+
+## Dependencies
+
+The following packages are needed for the development of this application.
+
+ - `provider: ^6.0.0`
+ - `card_swiper: ^1.0.4`
+ - `flutter_local_notifications: ^8.1.1+1`
+ - `intl: ^0.17.0`
+ - `flutter_native_timezone: ^2.0.0`
+ - `sqflite: ^2.0.0+4`
+ - `url_launcher: ^6.0.9`
+ - `mdi: ^5.0.0-nullsafety.0`
+ - `fl_chart: ^0.40.0`
+
+More details about these can be found in the [`pubspec.yaml`](https://github.com/Routinger/routinger/tree/master/pubspec.yaml) file.
+
+## Installation
+
+- Clone the repository on your system.
+- Install the dependencies
+- Run ```flutter pub get```
+- Run the application
 
 Make sure flutter and android studio is installed properly in your system. Fork the repo. We use VS Code as our code-editor. But any code-editor is fine. Follow these steps-:
 1. Navigating to the forked repo in your code-editor and terminal
@@ -28,6 +58,17 @@ OR
 `flutter run`
 
 You can run it in an emulator or use your real android device and turn the USB-Debugging on.  Your editor will be able to help you select what platform you want to run from multiple devices.
+
+## Folder-Structure
+
+The general structure of the project is as follows-:
+- [Helper Directory](https://github.com/Routinger/routinger/tree/master/lib/helper) :- All the database related functions are located in the helper directory along with a list_of_notif model used by Rountinger.
+- [Provider Directory](https://github.com/Routinger/routinger/tree/master/lib/provider) :- All the provider which app listens to is in the provider directory. This includes the task and tasks provider. The task provider is specific and contains the details for one task. While the tasks provider contains a list of tasks and handles the adding, removing, saving to local storage functions.
+- [Screens Directory](https://github.com/Routinger/routinger/tree/master/lib/screens) :- Currently the app has two screens, which are present in the screens directory. The first one is the home screen and other is a add task screen.
+- [Services Directory](https://github.com/Routinger/routinger/tree/master/lib/services) :- All the code related to notification services are present in notifications file. While the sleep cycle manages the user sleep cycle storing the wake up time and sleep time to not show recurring notifications during the tme user sleeps.
+- [Widgets directory](https://github.com/Routinger/routinger/tree/master/lib/widgets) :- All the presentation logic is present in the widgets directory. Every thing that you see on screen has been made into a different widget file for easier debugging.
+- The main.dart file is kept cluttered free. This should be only changed when absolutely necessary like when providing a new provider.
+
 
 ## Info
 

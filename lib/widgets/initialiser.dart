@@ -20,7 +20,6 @@ class _InitialiserState extends State<Initialiser> {
     Provider.of<Tasks>(context, listen: false).fetchAndSetScheduled();
     Provider.of<Tasks>(context, listen: false).fetchAndSetRecurring();
     Provider.of<Tasks>(context, listen: false).fetchAndSetSleepCycle();
-    print('Init');
     super.initState();
   }
 

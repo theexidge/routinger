@@ -41,7 +41,6 @@ class _ToDoCardState extends State<ToDoCard> {
       ),
       secondary: IconButton(
         onPressed: () {
-          print(toDo.id);
           Provider.of<Tasks>(context, listen: false).removeTask(toDo.id);
           DBHelper.deleteToDo(toDo.id);
         },

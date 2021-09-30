@@ -82,7 +82,6 @@ class Tasks with ChangeNotifier {
   Future<void> fetchAndSetToDos() async {
     final dataList = await DBHelper.getData('todo', 1);
     if (dataList.isEmpty) {
-      print(dataList);
       return;
     }
     toDosList = dataList
@@ -94,7 +93,6 @@ class Tasks with ChangeNotifier {
   Future<void> fetchAndSetScheduled() async {
     final dataList = await DBHelper.getData('user_scheduled', 2);
     if (dataList.isEmpty) {
-      print(dataList);
       return;
     }
     scheduledList = dataList
@@ -109,7 +107,6 @@ class Tasks with ChangeNotifier {
   Future<void> fetchAndSetRecurring() async {
     final dataList = await DBHelper.getData('user_recurring', 3);
     if (dataList.isEmpty) {
-      print(dataList);
       return;
     }
     recurringList = dataList
@@ -129,7 +126,6 @@ class Tasks with ChangeNotifier {
   Future<void> fetchAndSetSleepCycle() async {
     final dataList = await DBHelper.getDataSleepCycle('sleep_cycle');
     if (dataList.isEmpty) {
-      print(dataList);
       return;
     }
     SleepCycle().setSleepTime(TimeOfDay(

@@ -1,37 +1,44 @@
+// Dart Imports
+
+// Flutter Libraries Imports
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 // Third Party Packages
 import 'package:provider/provider.dart';
-import 'package:routinger/constants/enums.dart';
-import 'package:routinger/provider/experience_points.dart';
+import 'package:intl/intl.dart';
+import 'package:mdi/mdi.dart';
+import 'package:routinger/provider/charts_stats.dart';
+
+// Constant Imports
+import '../constants/enums.dart';
 
 // Helper Imports
 import '../helper/db_helper.dart';
 
-// Services Imports
-import '../services/notifications.dart';
-
 // Provider Imports
+import '../provider/experience_points.dart';
 import '../provider/task.dart';
 import '../provider/tasks.dart';
+
+// Services Imports
+import '../services/notifications.dart';
 
 class ScheduledCard extends StatelessWidget {
   Widget getIcon(Difficulty difficulty) {
     if (difficulty == Difficulty.Doable) {
       return Icon(
-        Icons.exposure_plus_1,
-        size: 18,
+        Mdi.alphaM,
+        color: Colors.orange,
       );
     } else if (difficulty == Difficulty.Hard) {
       return Icon(
-        Icons.exposure_plus_2,
-        size: 18,
+        Mdi.alphaH,
+        color: Colors.red,
       );
     }
     return Icon(
-      Icons.exposure_zero,
-      size: 18,
+      Mdi.alphaE,
+      color: Colors.green,
     );
   }
 
@@ -45,11 +52,12 @@ class ScheduledCard extends StatelessWidget {
           fontFamily: 'KleeOne',
         ),
       ),
-      subtitle: Row(
+      isThreeLine: true,
+      subtitle: Wrap(
         children: [
           Text(
             DateFormat.yMMMMd().format(scheduledTask.pickedDateTime) +
-                "   " +
+                "\n" +
                 DateFormat.jm().format(scheduledTask.pickedDateTime),
             style: TextStyle(
               fontFamily: 'KleeOne',
@@ -76,6 +84,8 @@ class ScheduledCard extends StatelessWidget {
             onPressed: () {
               Provider.of<ExperiencePoints>(context, listen: false)
                   .addPointsWithDifficulty(scheduledTask.difficulty);
+              Provider.of<ChartStats>(context, listen: false)
+                  .addTaskCompleted();
               Provider.of<Tasks>(context, listen: false)
                   .removeScheduled(scheduledTask.id);
               DBHelper.deleteScheduled(scheduledTask.id);

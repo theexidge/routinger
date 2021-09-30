@@ -48,6 +48,8 @@ class _TaskFormState extends State<TaskForm> {
 
   Difficulty difficultyDropDownValue = Difficulty.Easy;
 
+  int notifOnOrOffDropDownValue = 0;
+
   @override
   void initState() {
     _titleController = TextEditingController();
@@ -164,35 +166,63 @@ class _TaskFormState extends State<TaskForm> {
                       height: 0,
                     )
                   : Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 5.0, horizontal: 15.0),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
                       width: double.infinity,
-                      child: DropdownButton(
-                        isExpanded: true,
-                        items: [
-                          DropdownMenuItem(
-                            child: Text('Easy'),
-                            value: Difficulty.Easy,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          DropdownButton(
+                            // isExpanded: true,
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Easy'),
+                                value: Difficulty.Easy,
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Doable'),
+                                value: Difficulty.Doable,
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Hard'),
+                                value: Difficulty.Hard,
+                              ),
+                            ],
+                            value: difficultyDropDownValue,
+                            onChanged: (Difficulty? newVal) {
+                              if (newVal == null ||
+                                  newVal == difficultyDropDownValue) {
+                                return;
+                              }
+                              setState(() {
+                                difficultyDropDownValue = newVal;
+                              });
+                            },
                           ),
-                          DropdownMenuItem(
-                            child: Text('Doable'),
-                            value: Difficulty.Doable,
-                          ),
-                          DropdownMenuItem(
-                            child: Text('Hard'),
-                            value: Difficulty.Hard,
+                          DropdownButton(
+                            // isExpanded: true,
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Notif On'),
+                                value: 0,
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Notif Off'),
+                                value: 1,
+                              ),
+                            ],
+                            value: notifOnOrOffDropDownValue,
+                            onChanged: (int? newVal) {
+                              if (newVal == null ||
+                                  newVal == notifOnOrOffDropDownValue) {
+                                return;
+                              }
+                              setState(() {
+                                notifOnOrOffDropDownValue = newVal;
+                              });
+                            },
                           ),
                         ],
-                        value: difficultyDropDownValue,
-                        onChanged: (Difficulty? newVal) {
-                          if (newVal == null ||
-                              newVal == difficultyDropDownValue) {
-                            return;
-                          }
-                          setState(() {
-                            difficultyDropDownValue = newVal;
-                          });
-                        },
                       ),
                     ),
               dropDownValue != "Scheduled-Task"

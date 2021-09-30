@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:routinger/config/theme.dart';
+import 'package:routinger/provider/charts_stats.dart';
 import 'package:routinger/provider/experience_points.dart';
 
 // Provider Imports
 import 'package:routinger/provider/tasks.dart';
+import 'package:routinger/screens/settings_screen.dart';
 
 // Screen Imports
 import './screens/home_screen.dart';
@@ -30,6 +32,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => ExperiencePoints(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => ChartStats(),
+        ),
       ],
       child: MaterialApp(
         title: 'Routinger',
@@ -37,6 +42,7 @@ class MyApp extends StatelessWidget {
         home: HomeScreen(),
         routes: {
           AddTask.routeName: (ctx) => AddTask(),
+          SettingsScreen.routeName: (ctx) => SettingsScreen(),
         },
       ),
     );

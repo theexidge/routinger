@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:card_swiper/card_swiper.dart';
+import 'package:routinger/screens/settings_screen.dart';
+import 'package:routinger/widgets/stats_chart.dart';
 import 'package:routinger/widgets/your_stats.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -104,7 +106,19 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.coffee),
               label: Text('Buy me a Coffee'),
             ),
-          )
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 7, horizontal: 7),
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(SettingsScreen.routeName);
+              },
+              icon: Icon(
+                Icons.settings,
+                color: Colors.grey,
+              ),
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -128,7 +142,20 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             _selectedIndexOfBottomNavBar == 1
-                ? YourStats()
+                ? SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        YourStats(),
+                        Container(
+                            margin: EdgeInsets.symmetric(
+                              vertical: 20,
+                            ),
+                            padding: EdgeInsets.only(right: 40),
+                            height: 130,
+                            child: StatsChart()),
+                      ],
+                    ),
+                  )
                 : Column(
                     children: [
                       Container(

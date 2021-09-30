@@ -8,7 +8,7 @@ Open Source is driven by contributions. We are very happy seeing you here. We wa
 - Becoming Maintainers
 
 ## How to contribute?
-1. Check out the [issues](https://github.com/Kushalrock/routinger/issues) page.
+1. Check out the [issues](https://github.com/Routinger/routinger/issues) page.
 2. If you want to contribute a new feature or solve a issue it is recommended you make it a issue for others to have a brief look at what's happening.
 3. Fork the repo and create your branch from `master`.
 4. [OPTIONAL] Update the Readme file.
@@ -24,7 +24,7 @@ Open Source is driven by contributions. We are very happy seeing you here. We wa
 ## Any contribution you make will be under GPL 3.0
 Your contributions will be covered under the same license GPL 3.0 as the whole project. You can contact the maintainers for more assistance.
 
-## Report Bugs using Github's [Issues](https://github.com/Kushalrock/routinger/issues)
+## Report Bugs using Github's [Issues](https://github.com/Routinger/routinger/issues)
 Reporting bugs or making feature requests is as easy as filling out a simple form. We have made a bug report and feature request issue template to help you guide and to reduce clutter.
 
 ## Some more tips

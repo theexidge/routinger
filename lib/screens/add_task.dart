@@ -15,17 +15,9 @@ class AddTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
         title: const Text(
           'Add Task',
-          style: const TextStyle(
-            color: Colors.black,
-          ),
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
       ),
       body: MultiProvider(
         providers: [

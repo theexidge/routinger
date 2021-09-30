@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
+import 'package:routinger/widgets/settings_dark_mode_switch.dart';
 
 class SettingsScreenBody extends StatelessWidget {
   @override
@@ -7,6 +8,7 @@ class SettingsScreenBody extends StatelessWidget {
     return Column(
       children: [
         Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
           margin: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 2.0),
           child: ListTile(
             leading: Icon(
@@ -26,6 +28,7 @@ class SettingsScreenBody extends StatelessWidget {
             },
           ),
         ),
+        SettingsDarkModeSwitch(),
       ],
     );
   }

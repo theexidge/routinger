@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mdi/mdi.dart';
 
 // Third Party Packages Imports
 import 'package:provider/provider.dart';
 import 'package:routinger/constants/enums.dart';
+import 'package:routinger/provider/charts_stats.dart';
 import 'package:routinger/provider/experience_points.dart';
 
 // Helper Imports
@@ -19,18 +21,18 @@ class RecurringCard extends StatelessWidget {
   Widget getIcon(Difficulty difficulty) {
     if (difficulty == Difficulty.Doable) {
       return Icon(
-        Icons.exposure_plus_1,
-        size: 18,
+        Mdi.alphaM,
+        color: Colors.orange,
       );
     } else if (difficulty == Difficulty.Hard) {
       return Icon(
-        Icons.exposure_plus_2,
-        size: 18,
+        Mdi.alphaH,
+        color: Colors.red,
       );
     }
     return Icon(
-      Icons.exposure_zero,
-      size: 18,
+      Mdi.alphaE,
+      color: Colors.green,
     );
   }
 
@@ -44,10 +46,14 @@ class RecurringCard extends StatelessWidget {
           fontFamily: 'KleeOne',
         ),
       ),
-      subtitle: Row(
+      isThreeLine: true,
+      subtitle: Wrap(
         children: [
           Text(
-            recurringTask.remindTime,
+            recurringTask.remindTime.split('y ')[0] +
+                'y' +
+                '\n' +
+                recurringTask.remindTime.split('y ')[1],
             style: TextStyle(
               fontFamily: 'KleeOne',
             ),
@@ -74,6 +80,8 @@ class RecurringCard extends StatelessWidget {
             onPressed: () {
               Provider.of<ExperiencePoints>(context, listen: false)
                   .addPointsWithDifficulty(recurringTask.difficulty);
+              Provider.of<ChartStats>(context, listen: false)
+                  .addTaskCompleted();
             },
           ),
         ],

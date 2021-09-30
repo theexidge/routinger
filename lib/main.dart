@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:routinger/provider/charts_stats.dart';
 import 'package:routinger/provider/experience_points.dart';
 
 // Provider Imports
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => ExperiencePoints(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ChartStats(),
         ),
       ],
       child: MaterialApp(

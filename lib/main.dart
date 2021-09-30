@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:routinger/config/theme.dart';
 import 'package:routinger/provider/experience_points.dart';
 
 // Provider Imports
@@ -32,9 +33,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Routinger',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: buildTheme(context),
         home: HomeScreen(),
         routes: {
           AddTask.routeName: (ctx) => AddTask(),

@@ -1,12 +1,13 @@
+//Flutter libraries
 import 'package:flutter/material.dart';
+
+// Provider Imports
 import 'package:provider/provider.dart';
+import 'package:routinger/provider/tasks.dart';
+import 'package:routinger/screens/settings_screen.dart';
 import 'package:routinger/config/theme.dart';
 import 'package:routinger/provider/charts_stats.dart';
 import 'package:routinger/provider/experience_points.dart';
-
-// Provider Imports
-import 'package:routinger/provider/tasks.dart';
-import 'package:routinger/screens/settings_screen.dart';
 
 // Screen Imports
 import './screens/home_screen.dart';

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 // Third Party Packages
 import 'package:provider/provider.dart';
 
-// Widget Imports
-import '../widgets/task_form.dart';
-
 // Provider Imports
 import '../provider/tasks.dart';
+
+// Widget Imports
+import '../widgets/task_form.dart';
 
 class AddTask extends StatelessWidget {
   static final routeName = '/add-task';

@@ -1,8 +1,8 @@
-//Flutter Packages
-import 'package:flutter/material.dart';
-
 //Dart Packages
 import 'package:mdi/mdi.dart';
+
+//Flutter Packages
+import 'package:flutter/material.dart';
 
 //Widget Imports
 import './settings_dark_mode_switch.dart';

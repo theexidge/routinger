@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 // Third Party Packages
 import 'package:provider/provider.dart';
 
+//Config Imports
+import './config/theme.dart';
+
 //Provider Imports
 import './provider/tasks.dart';
 import './provider/charts_stats.dart';
 import './provider/experience_points.dart';
-
-//Config Imports
-import './config/theme.dart';
 
 // Screen Imports
 import './screens/settings_screen.dart';

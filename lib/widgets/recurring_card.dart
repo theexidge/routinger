@@ -11,14 +11,14 @@ import '../constants/enums.dart';
 // Helper Imports
 import '../helper/db_helper.dart';
 
-// Services Imports
-import '../services/notifications.dart';
-
 // Provider Imports
 import '../provider/task.dart';
 import '../provider/tasks.dart';
 import '../provider/charts_stats.dart';
 import '../provider/experience_points.dart';
+
+// Services Imports
+import '../services/notifications.dart';
 
 class RecurringCard extends StatelessWidget {
   Widget getIcon(Difficulty difficulty) {

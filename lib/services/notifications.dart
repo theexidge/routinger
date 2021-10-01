@@ -60,17 +60,6 @@ class NotificationService with ChangeNotifier {
     final localTimeZone = tz.getLocation(dtz);
     tz.setLocalLocation(localTimeZone);
 
-    print(
-      tz.TZDateTime.now(tz.local)
-          .add(
-            Duration(
-              hours: hours,
-              minutes: minutes,
-              days: days,
-            ),
-          )
-          .toString(),
-    );
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       'Routinger',
@@ -89,12 +78,6 @@ class NotificationService with ChangeNotifier {
           UILocalNotificationDateInterpretation.absoluteTime,
       androidAllowWhileIdle: true,
     );
-    // final List<PendingNotificationRequest> pendingNotificationRequests =
-    //     await _flutterLocalNotificationsPlugin.pendingNotificationRequests();
-    // print(pendingNotificationRequests.length.toString() + " Something");
-    // for (int i = 0; i < pendingNotificationRequests.length; i++) {
-    //   print(pendingNotificationRequests[i].title.toString() + " YES");
-    // }
   }
 
   Future<void> recurringNotif(
@@ -112,17 +95,7 @@ class NotificationService with ChangeNotifier {
     }
     final localTimeZone = tz.getLocation(dtz);
     tz.setLocalLocation(localTimeZone);
-    print(
-      tz.TZDateTime.now(tz.local)
-          .add(
-            Duration(
-              hours: hours,
-              minutes: minutes,
-              days: days,
-            ),
-          )
-          .toString(),
-    );
+
     // await _flutterLocalNotificationsPlugin.cancelAll();
     await _flutterLocalNotificationsPlugin.zonedSchedule(
       id,

@@ -1,13 +1,14 @@
+//Flutter Package
 import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:provider/provider.dart';
-import 'package:routinger/widgets/recurring_card.dart';
 
 // Provider Imports
 import '../provider/tasks.dart';
 
 // Widgets Imports
+import './recurring_card.dart';
 import './toDo_card.dart';
 import './scheduled_card.dart';
 

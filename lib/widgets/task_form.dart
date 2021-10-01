@@ -349,14 +349,13 @@ class _TaskFormState extends State<TaskForm> {
           Container(
             width: double.infinity,
             child: ElevatedButton.icon(
-              icon: Icon(Icons.add),
-              onPressed: () async {
-                if (_titleController.text.isEmpty) {
-                  return;
-                }
-                if (dropDownValue == 'Scheduled-Task') {
-                  final intChosen = _randomInt();
-                  if (notifOnOrOffDropDownValue == 0) {
+                icon: Icon(Icons.add),
+                onPressed: () async {
+                  if (_titleController.text.isEmpty) {
+                    return;
+                  }
+                  if (dropDownValue == 'Scheduled-Task') {
+                    final intChosen = _randomInt();
                     final days = currentDate.day - DateTime.now().day;
                     final hours = currentDate.hour - DateTime.now().hour;
                     final minutes = currentDate.minute - DateTime.now().minute;
@@ -370,18 +369,19 @@ class _TaskFormState extends State<TaskForm> {
                     if (days == 0 && hours == 0 && minutes < 0) {
                       return;
                     }
+
+                    // print('$days $hours $minutes');
+                    Provider.of<Tasks>(context, listen: false).addScheduled(
+                        intChosen, _titleController.text, currentDate, '',
+                        difficultyOfTask: difficultyDropDownValue);
+
+                    Navigator.of(context).pop();
                     await NotificationService().scheduledNotification(intChosen,
                         _titleController.text, '', days, hours, minutes);
+                    return;
                   }
-                  Provider.of<Tasks>(context, listen: false).addScheduled(
-                      intChosen, _titleController.text, currentDate, '',
-                      difficultyOfTask: difficultyDropDownValue);
-                  Navigator.of(context).pop();
-                  return;
-                }
-                if (dropDownValue == 'Recurring-Task') {
-                  List<ListOfNotif> listOfNotifTimes = [];
-                  if (notifOnOrOffDropDownValue == 0) {
+                  if (dropDownValue == 'Recurring-Task') {
+                    List<ListOfNotif> listOfNotifTimes = [];
                     DateTime dynamicTime = DateTime(
                       DateTime.now().year,
                       DateTime.now().month,
@@ -389,6 +389,7 @@ class _TaskFormState extends State<TaskForm> {
                       SleepCycle().wakeUpTime.hour,
                       SleepCycle().wakeUpTime.minute,
                     );
+                    print('Running');
                     if (remindDropDownValue == 0) {
                       for (int i = 0; i < 48; i++) {
                         dynamicTime = dynamicTime.add(Duration(minutes: 30));
@@ -440,35 +441,39 @@ class _TaskFormState extends State<TaskForm> {
                         }
                       }
                     }
+                    // print(listOfNotifTimes
+                    //         .map<int>((e) => e.intId)
+                    //         .toList()[0]
+                    //         .toString() +
+                    //     " " +
+                    //     listOfNotifTimes[0].intId.toString());
+                    Provider.of<Tasks>(context, listen: false).addRecurring(
+                        _randomInt(),
+                        _remindDropDownValues[remindDropDownValue],
+                        _titleController.text,
+                        '',
+                        listOfNotifTimes.map<int>((e) => e.intId).toList(),
+                        difficultyOfTask: difficultyDropDownValue);
+                    Navigator.of(context).pop();
+                    return;
                   }
-                  Provider.of<Tasks>(context, listen: false).addRecurring(
-                      _randomInt(),
-                      _remindDropDownValues[remindDropDownValue],
-                      _titleController.text,
-                      '',
-                      listOfNotifTimes.map<int>((e) => e.intId).toList(),
-                      difficultyOfTask: difficultyDropDownValue);
+                  final onFlyId = DateTime.now().toString();
+                  Provider.of<Tasks>(context, listen: false).addToDo(
+                    onFlyId,
+                    _titleController.text,
+                    '',
+                  );
                   Navigator.of(context).pop();
-                  return;
-                }
-                final onFlyId = DateTime.now().toString();
-                Provider.of<Tasks>(context, listen: false).addToDo(
-                  onFlyId,
-                  _titleController.text,
-                  '',
-                );
-                Navigator.of(context).pop();
-              },
-              label: Text(
-                'Add Task',
-                style: TextStyle(
-                  fontSize: 18,
+                },
+                label: Text(
+                  'Add Task',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
-              ),
-              style: ButtonStyle(
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
-            ),
+                style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    )),
           ),
         ],
       ),

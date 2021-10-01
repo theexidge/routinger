@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:provider/provider.dart';
+import 'package:routinger/provider/theme_provider.dart';
 
 //Config Imports
 import './config/theme.dart';
@@ -41,15 +42,22 @@ class MyApp extends StatelessWidget {
           create: (_) => ChartStats(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Routinger',
-        theme: buildTheme(context),
-        home: HomeScreen(),
-        routes: {
-          AddTask.routeName: (ctx) => AddTask(),
-          SettingsScreen.routeName: (ctx) => SettingsScreen(),
-        },
-      ),
+      child: ChangeNotifierProvider(
+          create: (context) => ThemeProvider(),
+          builder: (context, _) {
+            return MaterialApp(
+              title: 'Routinger',
+              themeMode: Provider.of<ThemeProvider>(context).themeMode,
+              // buildTheme(context)
+              theme: MyThemes.lightTheme,
+              darkTheme: MyThemes.darkTheme,
+              home: HomeScreen(),
+              routes: {
+                AddTask.routeName: (ctx) => AddTask(),
+                SettingsScreen.routeName: (ctx) => SettingsScreen(),
+              },
+            );
+          }),
     );
   }
 }

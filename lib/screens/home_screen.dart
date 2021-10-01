@@ -176,7 +176,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () {
                                 showSleepDialog(context);
                               },
-                              icon: Icon(Icons.alarm_add),
+                              icon: Icon(
+                                Icons.alarm_add,
+                                color: Theme.of(context).primaryColorDark,
+                              ),
                             )
                           ],
                         ),

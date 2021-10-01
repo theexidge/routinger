@@ -16,8 +16,11 @@ class AddTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        iconTheme:
+            IconThemeData(color: Theme.of(context).textTheme.headline4!.color),
+        title: Text(
           'Add Task',
+          style: TextStyle(color: Theme.of(context).textTheme.headline4!.color),
         ),
       ),
       body: MultiProvider(

@@ -1,14 +1,19 @@
+//Flutter libraries
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:routinger/config/theme.dart';
-import 'package:routinger/provider/charts_stats.dart';
-import 'package:routinger/provider/experience_points.dart';
 
-// Provider Imports
-import 'package:routinger/provider/tasks.dart';
-import 'package:routinger/screens/settings_screen.dart';
+// Third Party Packages
+import 'package:provider/provider.dart';
+
+//Config Imports
+import './config/theme.dart';
+
+//Provider Imports
+import './provider/tasks.dart';
+import './provider/charts_stats.dart';
+import './provider/experience_points.dart';
 
 // Screen Imports
+import './screens/settings_screen.dart';
 import './screens/home_screen.dart';
 import './screens/add_task.dart';
 

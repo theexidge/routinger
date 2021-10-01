@@ -1,16 +1,19 @@
+//Flutter Packages
 import 'package:flutter/material.dart';
-import 'package:routinger/constants/enums.dart';
-import 'package:routinger/helper/util_functions.dart';
-import 'package:routinger/services/sleep_cycle.dart';
 
-// Services Imports
-import '../services/notifications.dart';
+//Constants Imports
+import '../constants/enums.dart';
+
+//Helper Imports
+import '../helper/util_functions.dart';
+import '../helper/db_helper.dart';
 
 // Provider Imports
 import './task.dart';
 
-// Helper Imports
-import '../helper/db_helper.dart';
+// Services Imports
+import '../services/notifications.dart';
+import '../services/sleep_cycle.dart';
 
 class Tasks with ChangeNotifier {
   static List<Task> toDosList = [];

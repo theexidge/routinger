@@ -1,16 +1,17 @@
+//FLutter Packages
 import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:card_swiper/card_swiper.dart';
-import 'package:routinger/screens/settings_screen.dart';
-import 'package:routinger/widgets/stats_chart.dart';
-import 'package:routinger/widgets/your_stats.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Screen Imports
 import '../screens/add_task.dart';
+import '../screens/settings_screen.dart';
 
 // Widgets Imports
+import '../widgets/stats_chart.dart';
+import '../widgets/your_stats.dart';
 import '../widgets/carousel_card.dart';
 import '../widgets/taskslist.dart';
 import '../widgets/sleep_cycle_column.dart';

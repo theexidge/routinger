@@ -1,5 +1,7 @@
+//Flutter Packages
 import 'package:flutter/material.dart';
 
+//Constant Imports
 import '.././constants/palette.dart';
 
 ThemeData buildTheme(BuildContext context) {

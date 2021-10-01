@@ -1,16 +1,19 @@
+//Flutter Packages
 import 'package:flutter/material.dart';
-import 'package:routinger/constants/enums.dart';
-import 'package:routinger/helper/util_functions.dart';
-import 'package:routinger/services/sleep_cycle.dart';
 
-// Services Imports
-import '../services/notifications.dart';
+//Constants Imports
+import '../constants/enums.dart';
+
+//Helper Imports
+import '../helper/util_functions.dart';
+import '../helper/db_helper.dart';
 
 // Provider Imports
 import './task.dart';
 
-// Helper Imports
-import '../helper/db_helper.dart';
+// Services Imports
+import '../services/notifications.dart';
+import '../services/sleep_cycle.dart';
 
 class Tasks with ChangeNotifier {
   static List<Task> toDosList = [];
@@ -82,7 +85,6 @@ class Tasks with ChangeNotifier {
   Future<void> fetchAndSetToDos() async {
     final dataList = await DBHelper.getData('todo', 1);
     if (dataList.isEmpty) {
-      print(dataList);
       return;
     }
     toDosList = dataList
@@ -94,7 +96,6 @@ class Tasks with ChangeNotifier {
   Future<void> fetchAndSetScheduled() async {
     final dataList = await DBHelper.getData('user_scheduled', 2);
     if (dataList.isEmpty) {
-      print(dataList);
       return;
     }
     scheduledList = dataList
@@ -109,7 +110,6 @@ class Tasks with ChangeNotifier {
   Future<void> fetchAndSetRecurring() async {
     final dataList = await DBHelper.getData('user_recurring', 3);
     if (dataList.isEmpty) {
-      print(dataList);
       return;
     }
     recurringList = dataList
@@ -129,7 +129,6 @@ class Tasks with ChangeNotifier {
   Future<void> fetchAndSetSleepCycle() async {
     final dataList = await DBHelper.getDataSleepCycle('sleep_cycle');
     if (dataList.isEmpty) {
-      print(dataList);
       return;
     }
     SleepCycle().setSleepTime(TimeOfDay(

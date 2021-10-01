@@ -1,3 +1,4 @@
+//Flutter Packages
 import 'package:flutter/material.dart';
 
 // Services Imports
@@ -13,7 +14,7 @@ class _SleepCycleColumnState extends State<SleepCycleColumn> {
   TimeOfDay sleepTime = SleepCycle().sleepTime;
 
   Future<void> _selectTime(BuildContext context, int index) async {
-    final TimeOfDay pickedTime = await showTimePicker(
+    final TimeOfDay? pickedTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
     ) as TimeOfDay;

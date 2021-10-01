@@ -1,7 +1,12 @@
-import 'package:fl_chart/fl_chart.dart';
+//Flutter Package
 import 'package:flutter/material.dart';
+
+//Third Party Imports
+import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
-import 'package:routinger/provider/charts_stats.dart';
+
+//Provider Imports
+import '../provider/charts_stats.dart';
 
 class StatsChart extends StatelessWidget {
   @override

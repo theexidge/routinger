@@ -1,22 +1,25 @@
 //Dart Packages
 import 'dart:math';
 
+//Flutter Packages
 import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-import 'package:routinger/constants/enums.dart';
 
-// Services Imports
-import '../services/notifications.dart';
-import '../services/sleep_cycle.dart';
+//Constant Imports
+import '../constants/enums.dart';
+
+// Helper Imports
+import '../helper/list_of_notif.dart';
 
 // Provider Imports
 import '../provider/tasks.dart';
 
-// Helper Imports
-import '../helper/list_of_notif.dart';
+// Services Imports
+import '../services/notifications.dart';
+import '../services/sleep_cycle.dart';
 
 class TaskForm extends StatefulWidget {
   @override
@@ -24,9 +27,12 @@ class TaskForm extends StatefulWidget {
 }
 
 class _TaskFormState extends State<TaskForm> {
+  final _formKey = GlobalKey<FormState>();
   late TextEditingController _titleController;
+  late TextEditingController _dateController;
+  late TextEditingController _timeController;
   late DateTime currentDate;
-  late TimeOfDay curentTime;
+  late TimeOfDay currentTime;
 
   String dropDownValue = 'To-Do';
   int remindDropDownValue = 0;
@@ -52,15 +58,19 @@ class _TaskFormState extends State<TaskForm> {
 
   @override
   void initState() {
-    _titleController = TextEditingController();
     currentDate = DateTime.now();
-    curentTime = TimeOfDay(hour: currentDate.hour, minute: currentDate.minute);
+    currentTime = TimeOfDay(hour: currentDate.hour, minute: currentDate.minute);
+    _titleController = TextEditingController();
+    _dateController = TextEditingController();
+    _timeController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
     _titleController.dispose();
+    _dateController.dispose();
+    _timeController.dispose();
     super.dispose();
   }
 
@@ -78,37 +88,37 @@ class _TaskFormState extends State<TaskForm> {
   }
 
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime pickedDate = await showDatePicker(
+    final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime(2050),
-    ) as DateTime;
+    );
     if (pickedDate != null && pickedDate != currentDate)
       setState(() {
         currentDate = pickedDate;
-        curentTime =
+        currentTime =
             TimeOfDay(hour: currentDate.hour, minute: currentDate.minute);
-        print(currentDate);
-        print('Called');
+        _dateController.text = DateFormat.yMMMd().format(pickedDate);
       });
   }
 
   Future<void> _selectTime(BuildContext context) async {
-    final TimeOfDay pickedTime = await showTimePicker(
+    final TimeOfDay? pickedTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
-    ) as TimeOfDay;
+    );
+    final tempDate = DateTime.now();
+    currentDate = tempDate
+        .subtract(Duration(hours: tempDate.hour, minutes: tempDate.minute));
     if (pickedTime != null)
       setState(() {
-        print(pickedTime.hour);
         currentDate = currentDate.add(
           Duration(hours: pickedTime.hour, minutes: pickedTime.minute),
         );
-        curentTime =
+        currentTime =
             TimeOfDay(hour: currentDate.hour, minute: currentDate.minute);
-        print(currentDate);
-        print(DateFormat.jm().format(currentDate));
+        _timeController.text = pickedTime.toString().substring(10, 15);
       });
   }
 
@@ -118,266 +128,304 @@ class _TaskFormState extends State<TaskForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
-                child: TextField(
-                  controller: _titleController,
-                  decoration: InputDecoration(
-                    labelText: 'Task Name',
+          Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 5.0, horizontal: 15.0),
+                  child: TextFormField(
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      labelText: 'Task Name',
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please name your task';
+                      }
+                      return null;
+                    },
                   ),
                 ),
-              ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
-                width: double.infinity,
-                child: DropdownButton(
-                  isExpanded: true,
-                  items: [
-                    DropdownMenuItem(
-                      child: Text('To-Do'),
-                      value: 'To-Do',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('Scheduled-Task'),
-                      value: 'Scheduled-Task',
-                    ),
-                    DropdownMenuItem(
-                      child: Text('Recurring-Task'),
-                      value: 'Recurring-Task',
-                    ),
-                  ],
-                  value: dropDownValue,
-                  onChanged: (String? newVal) {
-                    if (newVal == null || newVal == dropDownValue) {
-                      return;
-                    }
-                    setState(() {
-                      dropDownValue = newVal;
-                    });
-                  },
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 5.0, horizontal: 15.0),
+                  width: double.infinity,
+                  child: DropdownButton(
+                    isExpanded: true,
+                    items: [
+                      DropdownMenuItem(
+                        child: Text('To-Do'),
+                        value: 'To-Do',
+                      ),
+                      DropdownMenuItem(
+                        child: Text('Scheduled-Task'),
+                        value: 'Scheduled-Task',
+                      ),
+                      DropdownMenuItem(
+                        child: Text('Recurring-Task'),
+                        value: 'Recurring-Task',
+                      ),
+                    ],
+                    value: dropDownValue,
+                    onChanged: (String? newVal) {
+                      if (newVal == null || newVal == dropDownValue) {
+                        return;
+                      }
+                      setState(() {
+                        dropDownValue = newVal;
+                      });
+                    },
+                  ),
                 ),
-              ),
-              dropDownValue == "To-Do"
-                  ? SizedBox(
-                      height: 0,
-                    )
-                  : Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
-                      width: double.infinity,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                dropDownValue == "To-Do"
+                    ? SizedBox(
+                        height: 0,
+                      )
+                    : Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5.0, horizontal: 15.0),
+                        width: double.infinity,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            DropdownButton(
+                              // isExpanded: true,
+                              items: [
+                                DropdownMenuItem(
+                                  child: Text('Easy'),
+                                  value: Difficulty.Easy,
+                                ),
+                                DropdownMenuItem(
+                                  child: Text('Doable'),
+                                  value: Difficulty.Doable,
+                                ),
+                                DropdownMenuItem(
+                                  child: Text('Hard'),
+                                  value: Difficulty.Hard,
+                                ),
+                              ],
+                              value: difficultyDropDownValue,
+                              onChanged: (Difficulty? newVal) {
+                                if (newVal == null ||
+                                    newVal == difficultyDropDownValue) {
+                                  return;
+                                }
+                                setState(() {
+                                  difficultyDropDownValue = newVal;
+                                });
+                              },
+                            ),
+                            DropdownButton(
+                              // isExpanded: true,
+                              items: [
+                                DropdownMenuItem(
+                                  child: Text('Notif On'),
+                                  value: 0,
+                                ),
+                                DropdownMenuItem(
+                                  child: Text('Notif Off'),
+                                  value: 1,
+                                ),
+                              ],
+                              value: notifOnOrOffDropDownValue,
+                              onChanged: (int? newVal) {
+                                if (newVal == null ||
+                                    newVal == notifOnOrOffDropDownValue) {
+                                  return;
+                                }
+                                setState(() {
+                                  notifOnOrOffDropDownValue = newVal;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                dropDownValue != "Scheduled-Task"
+                    ? SizedBox(
+                        height: 0,
+                      )
+                    : Column(
                         children: [
-                          DropdownButton(
-                            // isExpanded: true,
-                            items: [
-                              DropdownMenuItem(
-                                child: Text('Easy'),
-                                value: Difficulty.Easy,
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 5.0, horizontal: 15.0),
+                                child: GestureDetector(
+                                  onTap: () => _selectDate(context),
+                                  child: AbsorbPointer(
+                                    child: TextFormField(
+                                      controller: _dateController,
+                                      keyboardType: TextInputType.datetime,
+                                      decoration: InputDecoration(
+                                        labelText: 'Task Date',
+                                      ),
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return 'Please enter a date for your task';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                  ),
+                                ),
                               ),
-                              DropdownMenuItem(
-                                child: Text('Doable'),
-                                value: Difficulty.Doable,
-                              ),
-                              DropdownMenuItem(
-                                child: Text('Hard'),
-                                value: Difficulty.Hard,
-                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 5.0, horizontal: 15.0),
+                                child: ElevatedButton.icon(
+                                  onPressed: () {
+                                    _selectDate(context);
+                                  },
+                                  icon: Icon(Icons.date_range),
+                                  label: Text('Set Date'),
+                                ),
+                              )
                             ],
-                            value: difficultyDropDownValue,
-                            onChanged: (Difficulty? newVal) {
-                              if (newVal == null ||
-                                  newVal == difficultyDropDownValue) {
-                                return;
-                              }
-                              setState(() {
-                                difficultyDropDownValue = newVal;
-                              });
-                            },
                           ),
-                          DropdownButton(
-                            // isExpanded: true,
-                            items: [
-                              DropdownMenuItem(
-                                child: Text('Notif On'),
-                                value: 0,
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 5.0, horizontal: 15.0),
+                                child: GestureDetector(
+                                  onTap: () => _selectTime(context),
+                                  child: AbsorbPointer(
+                                    child: TextFormField(
+                                      controller: _timeController,
+                                      keyboardType: TextInputType.datetime,
+                                      decoration: InputDecoration(
+                                        labelText: 'Task Time',
+                                      ),
+                                      validator: (value) {
+                                        final days = currentDate.day -
+                                            DateTime.now().day;
+                                        final hours = currentDate.hour -
+                                            DateTime.now().hour;
+                                        final minutes = currentDate.minute -
+                                            DateTime.now().minute;
+                                        final DateFormat formatter =
+                                            DateFormat('yyyy-MM-dd');
+                                        final DateTime now = DateTime.now();
+                                        final String nowFormatted =
+                                            formatter.format(now);
+                                        final currentDateFormatted =
+                                            formatter.format(currentDate);
+                                        if (value!.isEmpty) {
+                                          return 'Please enter a time for your task';
+                                        } else if (value ==
+                                                TimeOfDay.now()
+                                                    .toString()
+                                                    .substring(10, 15) &&
+                                            currentDateFormatted ==
+                                                nowFormatted) {
+                                          return 'You cannot select the current time';
+                                        }
+                                        if (days < 0) {
+                                          return 'Please provide a valid time';
+                                        }
+                                        if (days == 0 && hours < 0) {
+                                          return 'Please provide a valid time';
+                                        }
+                                        if (days == 0 &&
+                                            hours == 0 &&
+                                            minutes < 0) {
+                                          return 'Please provide a valid time';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                  ),
+                                ),
                               ),
-                              DropdownMenuItem(
-                                child: Text('Notif Off'),
-                                value: 1,
-                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 5.0, horizontal: 15.0),
+                                child: ElevatedButton.icon(
+                                  onPressed: () {
+                                    _selectTime(context);
+                                  },
+                                  icon: Icon(Icons.alarm),
+                                  label: Text(
+                                    'Set Time',
+                                  ),
+                                ),
+                              )
                             ],
-                            value: notifOnOrOffDropDownValue,
-                            onChanged: (int? newVal) {
-                              if (newVal == null ||
-                                  newVal == notifOnOrOffDropDownValue) {
-                                return;
-                              }
-                              setState(() {
-                                notifOnOrOffDropDownValue = newVal;
-                              });
-                            },
                           ),
                         ],
                       ),
-                    ),
-              dropDownValue != "Scheduled-Task"
-                  ? SizedBox(
-                      height: 0,
-                    )
-                  : Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5.0, horizontal: 15.0),
-                              child: Text(
-                                DateFormat.yMMMd().format(currentDate),
-                                style: TextStyle(
-                                  fontFamily: 'KleeOne',
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5.0, horizontal: 15.0),
-                              child: ElevatedButton.icon(
-                                onPressed: () {
-                                  _selectDate(context);
-                                },
-                                icon: Icon(Icons.date_range),
-                                label: Text('Set Date'),
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5.0, horizontal: 15.0),
-                              child: curentTime.minute < 10
-                                  ? Text(
-                                      '${curentTime.hour}:0${curentTime.minute}',
-                                      style: TextStyle(
-                                        fontFamily: 'KleeOne',
-                                        fontSize: 16,
-                                      ),
-                                    )
-                                  : Text(
-                                      '${curentTime.hour}:${curentTime.minute}',
-                                      style: TextStyle(
-                                        fontFamily: 'KleeOne',
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5.0, horizontal: 15.0),
-                              child: ElevatedButton.icon(
-                                onPressed: () {
-                                  _selectTime(context);
-                                },
-                                icon: Icon(Icons.alarm),
-                                label: Text(
-                                  'Set Time',
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-              dropDownValue != "Recurring-Task"
-                  ? SizedBox(
-                      height: 0,
-                    )
-                  : Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 5.0, horizontal: 15.0),
-                          width: double.infinity,
-                          child: DropdownButton(
-                            isExpanded: true,
-                            value: remindDropDownValue,
-                            items: _remindDropDownValues
-                                .map<DropdownMenuItem>(
-                                    (item) => DropdownMenuItem(
-                                          child: Text(item),
-                                          value: _remindDropDownValues
-                                              .indexOf(item),
-                                        ))
-                                .toList(),
-                            onChanged: (dynamic newVal) {
-                              if (newVal == null) {
-                                return;
-                              } else {
-                                setState(() {
-                                  remindDropDownValue = newVal as int;
-                                  // print(remindDropDownValue);
-                                });
-                              }
-                            },
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 5.0, horizontal: 15.0),
-                          width: double.infinity,
-                          child: Text(
-                            'You will receive notifications between your Wake Up time and Sleep time only. Set them accordingly.',
-                            softWrap: true,
-                            style: TextStyle(
-                              color: Colors.grey,
+                dropDownValue != "Recurring-Task"
+                    ? SizedBox(
+                        height: 0,
+                      )
+                    : Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5.0, horizontal: 15.0),
+                            width: double.infinity,
+                            child: DropdownButton(
+                              isExpanded: true,
+                              value: remindDropDownValue,
+                              items: _remindDropDownValues
+                                  .map<DropdownMenuItem>(
+                                      (item) => DropdownMenuItem(
+                                            child: Text(item),
+                                            value: _remindDropDownValues
+                                                .indexOf(item),
+                                          ))
+                                  .toList(),
+                              onChanged: (dynamic newVal) {
+                                if (newVal == null) {
+                                  return;
+                                } else {
+                                  setState(() {
+                                    remindDropDownValue = newVal as int;
+                                  });
+                                }
+                              },
                             ),
                           ),
-                        ),
-                      ],
-                    )
-            ],
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5.0, horizontal: 15.0),
+                            width: double.infinity,
+                            child: Text(
+                              'You will receive notifications between your Wake Up time and Sleep time only. Set them accordingly.',
+                              softWrap: true,
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+              ],
+            ),
           ),
           Container(
             width: double.infinity,
             child: ElevatedButton.icon(
-                icon: Icon(Icons.add),
-                onPressed: () async {
-                  if (_titleController.text.isEmpty) {
-                    return;
-                  }
+              icon: Icon(Icons.add),
+              onPressed: () async {
+                if (_formKey.currentState!.validate()) {
                   if (dropDownValue == 'Scheduled-Task') {
                     final intChosen = _randomInt();
                     final days = currentDate.day - DateTime.now().day;
                     final hours = currentDate.hour - DateTime.now().hour;
                     final minutes = currentDate.minute - DateTime.now().minute;
-
-                    if (days < 0) {
-                      return;
-                    }
-                    if (days == 0 && hours < 0) {
-                      return;
-                    }
-                    if (days == 0 && hours == 0 && minutes < 0) {
-                      return;
-                    }
-
-                    // print('$days $hours $minutes');
                     Provider.of<Tasks>(context, listen: false).addScheduled(
                         intChosen, _titleController.text, currentDate, '',
                         difficultyOfTask: difficultyDropDownValue);
 
-                    Navigator.of(context).pop();
                     await NotificationService().scheduledNotification(intChosen,
                         _titleController.text, '', days, hours, minutes);
+
+                    Navigator.of(context).pop();
                     return;
                   }
                   if (dropDownValue == 'Recurring-Task') {
@@ -399,9 +447,7 @@ class _TaskFormState extends State<TaskForm> {
                             dynamicTime.hour >
                                 min(SleepCycle().wakeUpTime.hour,
                                     SleepCycle().sleepTime.hour)) {
-                          print('Nope');
                         } else {
-                          print(dynamicTime.toString() + " Your Time");
                           int _intChosen = _randomInt();
                           if (dynamicTime.hour < DateTime.now().hour ||
                               dynamicTime.minute < DateTime.now().minute) {
@@ -432,21 +478,13 @@ class _TaskFormState extends State<TaskForm> {
                             dynamicTime.hour >
                                 min(SleepCycle().wakeUpTime.hour,
                                     SleepCycle().sleepTime.hour)) {
-                          print('Nope');
                         } else {
-                          print(dynamicTime.toString() + " Your Time");
                           int _intChosen = _randomInt();
                           listOfNotifTimes
                               .add(ListOfNotif(_intChosen, dynamicTime));
                         }
                       }
                     }
-                    // print(listOfNotifTimes
-                    //         .map<int>((e) => e.intId)
-                    //         .toList()[0]
-                    //         .toString() +
-                    //     " " +
-                    //     listOfNotifTimes[0].intId.toString());
                     Provider.of<Tasks>(context, listen: false).addRecurring(
                         _randomInt(),
                         _remindDropDownValues[remindDropDownValue],
@@ -464,16 +502,18 @@ class _TaskFormState extends State<TaskForm> {
                     '',
                   );
                   Navigator.of(context).pop();
-                },
-                label: Text(
-                  'Add Task',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
+                }
+              },
+              label: Text(
+                'Add Task',
+                style: TextStyle(
+                  fontSize: 18,
                 ),
-                style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    )),
+              ),
+              style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+            ),
           ),
         ],
       ),

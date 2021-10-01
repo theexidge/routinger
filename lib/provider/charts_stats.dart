@@ -1,3 +1,4 @@
+//Flutter Package
 import 'package:flutter/material.dart';
 
 class ChartStats with ChangeNotifier {
@@ -12,7 +13,6 @@ class ChartStats with ChangeNotifier {
       if (chartDates[i].year == today.year &&
           chartDates[i].month == today.month &&
           chartDates[i].day == today.day) {
-        print('Okay');
         return;
       }
     }

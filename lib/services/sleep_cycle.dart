@@ -1,5 +1,8 @@
+//Flutter Packages
 import 'package:flutter/material.dart';
-import 'package:routinger/helper/db_helper.dart';
+
+//Helper Imports
+import '../helper/db_helper.dart';
 
 class SleepCycle {
   static TimeOfDay _sleepTime = TimeOfDay(hour: 2, minute: 16);

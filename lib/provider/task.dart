@@ -1,5 +1,8 @@
+//Flutter Packages
 import 'package:flutter/material.dart';
-import 'package:routinger/constants/enums.dart';
+
+//Constant Imports
+import '../constants/enums.dart';
 
 class Task with ChangeNotifier {
   final String id;

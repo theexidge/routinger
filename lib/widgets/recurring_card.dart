@@ -1,11 +1,12 @@
+//Flutter Packages
 import 'package:flutter/material.dart';
-import 'package:mdi/mdi.dart';
 
-// Third Party Packages Imports
+// Third Party Packages
+import 'package:mdi/mdi.dart';
 import 'package:provider/provider.dart';
-import 'package:routinger/constants/enums.dart';
-import 'package:routinger/provider/charts_stats.dart';
-import 'package:routinger/provider/experience_points.dart';
+
+//Constants Imports
+import '../constants/enums.dart';
 
 // Helper Imports
 import '../helper/db_helper.dart';
@@ -16,6 +17,8 @@ import '../services/notifications.dart';
 // Provider Imports
 import '../provider/task.dart';
 import '../provider/tasks.dart';
+import '../provider/charts_stats.dart';
+import '../provider/experience_points.dart';
 
 class RecurringCard extends StatelessWidget {
   Widget getIcon(Difficulty difficulty) {

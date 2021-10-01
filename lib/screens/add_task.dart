@@ -1,6 +1,7 @@
+//Flutter Packages
 import 'package:flutter/material.dart';
 
-// Third Psrty Packages
+// Third Party Packages
 import 'package:provider/provider.dart';
 
 // Widget Imports

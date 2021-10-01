@@ -1,12 +1,15 @@
+//Flutter Packages
 import 'package:flutter/material.dart';
 
-//Third Party Packages
-import 'package:routinger/constants/enums.dart';
-import 'package:routinger/helper/util_functions.dart';
-import 'package:routinger/services/sleep_cycle.dart';
+//Constants Imports
+import '../constants/enums.dart';
+
+//Helper Imports
+import '../helper/util_functions.dart';
 
 // Services Imports
 import '../services/notifications.dart';
+import '../services/sleep_cycle.dart';
 
 // Provider Imports
 import './task.dart';

@@ -1,6 +1,11 @@
-import 'package:flutter/material.dart';
+//Dart Packages
 import 'package:mdi/mdi.dart';
-import 'package:routinger/widgets/settings_dark_mode_switch.dart';
+
+//Flutter Packages
+import 'package:flutter/material.dart';
+
+//Widget Imports
+import './settings_dark_mode_switch.dart';
 
 class SettingsScreenBody extends StatelessWidget {
   @override

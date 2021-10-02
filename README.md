@@ -11,8 +11,8 @@ We are constantly updating our application with the help of our contributors and
 <p align="center">
 <b>Old Look &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; New Look </b>
 <p align="center"> 
-<img width="25%" src="https://user-images.githubusercontent.com/64467851/135385589-ee4f990b-efaf-43a2-ba26-14dc3ef4985b.png">  
-<img width="25%" src="https://user-images.githubusercontent.com/64467851/135386282-eda9e8ff-5e8c-40a5-9fb3-a48f4d7db18d.png">
+<img src="https://user-images.githubusercontent.com/64467851/135705606-47baea3a-bcde-44ca-9a9f-016316ad06eb.jpg" width="300" height="500">  
+<img src="https://user-images.githubusercontent.com/64467851/135705368-9006d4be-8a7b-445c-b894-9c5a0bcb79aa.jpg" width="300" height="500">
 </p> 
 </p>
 
@@ -28,11 +28,15 @@ We are constantly updating our application with the help of our contributors and
 
 ## Preview
 
-**Screens**
+**Screens**!!
 
-|![image](https://user-images.githubusercontent.com/64467851/135385589-ee4f990b-efaf-43a2-ba26-14dc3ef4985b.png) | ![image](https://user-images.githubusercontent.com/64467851/135386282-eda9e8ff-5e8c-40a5-9fb3-a48f4d7db18d.png) | ![image](https://user-images.githubusercontent.com/64467851/135386464-7d419b86-93f5-4484-a394-4f965aa3aa14.png) | ![image](https://user-images.githubusercontent.com/64467851/135386747-078fc6eb-6f80-4cdd-a745-ce8e4e3300b6.png) | 
-| :-------------: | :-------------:  | :-------------:  | :-------------:  | 
-|     Home Screen     |    Add Tasks    |    Set Timer     |     Dark Mode      |     
+| ![image](https://user-images.githubusercontent.com/64467851/135705368-9006d4be-8a7b-445c-b894-9c5a0bcb79aa.jpg) | ![image](https://user-images.githubusercontent.com/64467851/135705406-06716452-f7f9-487f-b323-2464c7ed6b40.jpg) | ![image](https://user-images.githubusercontent.com/64467851/135705888-2d7843b8-e6c2-4af5-beb2-d6746d4b9b27.jpg) |  
+| :-------------: | :-------------:  | :-------------:  | 
+|     Home Screen     |    Your Stats    |    Splash Screen    |       
+
+| ![image](https://user-images.githubusercontent.com/64467851/135705501-65013a03-97d5-4549-8598-a82381d3fb95.jpg)| ![image](https://user-images.githubusercontent.com/64467851/135705481-98f7181b-5815-459e-a6a0-305afc1935bd.jpg) | ![image](https://user-images.githubusercontent.com/64467851/135705462-3bd9526d-05d4-4907-ad34-36d1b582a7cd.jpg) | 
+| :-------------:  | :-------------:  | :-------------:  | 
+|    Add Tasks     |    Set Timer     |    Toggle Dark Mode      |
 
 ## Dependencies
 

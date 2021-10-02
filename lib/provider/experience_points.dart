@@ -1,5 +1,6 @@
 //Flutter Packages
 import 'package:flutter/cupertino.dart';
+import 'package:routinger/helper/db_helper.dart';
 
 //Constant Imports
 import '../constants/enums.dart';
@@ -99,7 +100,44 @@ class ExperiencePoints with ChangeNotifier {
     hired = false;
     currentPoints = 0;
     hiredIndex = 0;
+    _insertExperiencePoints();
     notifyListeners();
+  }
+
+  void _insertExperiencePoints() {
+    DBHelper.insert(
+      'experience_points',
+      {
+        'id': 1,
+        'hired': hired == true ? 1 : 0,
+        'hiredIndex': hiredIndex,
+        'currentPoints': currentPoints,
+      },
+      3,
+    );
+  }
+
+  Future<void> setExperiencePoints() async {
+    final dataList = await DBHelper.getData('experience_points', 3);
+    if (dataList.isEmpty) {
+      return;
+    }
+    dataList.forEach(
+      (element) {
+        _setValuesOfExperiencePoints(
+          element['hired'],
+          element['hiredIndex'],
+          element['currentPoints'],
+        );
+      },
+    );
+  }
+
+  void _setValuesOfExperiencePoints(
+      int hiredStats, int hiredIndexStats, int currentPointsStats) {
+    hired = hiredStats == 0 ? false : true;
+    hiredIndex = hiredIndexStats;
+    currentPoints = currentPointsStats;
   }
 
   void addPoints(int pointsToBeAdded) {
@@ -108,6 +146,7 @@ class ExperiencePoints with ChangeNotifier {
       currentPoints -= points[hiredIndex];
       hiredIndex += 1;
     }
+    _insertExperiencePoints();
     notifyListeners();
   }
 
@@ -123,6 +162,7 @@ class ExperiencePoints with ChangeNotifier {
       currentPoints -= points[hiredIndex];
       hiredIndex += 1;
     }
+    _insertExperiencePoints();
     notifyListeners();
   }
 
@@ -137,5 +177,7 @@ class ExperiencePoints with ChangeNotifier {
       currentPoints =
           points[hiredIndex] + currentPoints; // currentPoints is negative
     }
+    _insertExperiencePoints();
+    notifyListeners();
   }
 }

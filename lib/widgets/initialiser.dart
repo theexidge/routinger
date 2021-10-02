@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:provider/provider.dart';
+import 'package:routinger/provider/experience_points.dart';
 
 // Provider Imports
 import '../provider/tasks.dart';
@@ -21,6 +22,7 @@ class _InitialiserState extends State<Initialiser> {
     Provider.of<Tasks>(context, listen: false).fetchAndSetScheduled();
     Provider.of<Tasks>(context, listen: false).fetchAndSetRecurring();
     Provider.of<Tasks>(context, listen: false).fetchAndSetSleepCycle();
+    Provider.of<ExperiencePoints>(context, listen: false).setExperiencePoints();
     super.initState();
   }
 

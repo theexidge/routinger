@@ -8,18 +8,18 @@ import 'package:mdi/mdi.dart';
 import 'package:routinger/provider/charts_stats.dart';
 
 // Constant Imports
-import '../constants/enums.dart';
+import '../../../constants/enums.dart';
 
 // Helper Imports
-import '../helper/db_helper.dart';
+import '../../../helper/db_helper.dart';
 
 // Provider Imports
-import '../provider/experience_points.dart';
-import '../provider/task.dart';
-import '../provider/tasks.dart';
+import '../../../provider/experience_points.dart';
+import '../../../provider/task.dart';
+import '../../../provider/tasks.dart';
 
 // Services Imports
-import '../services/notifications.dart';
+import '../../../services/notifications.dart';
 
 class ScheduledCard extends StatelessWidget {
   Widget getIcon(Difficulty difficulty) {

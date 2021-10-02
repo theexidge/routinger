@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 //Provider Imports
-import '../provider/experience_points.dart';
+import '../../provider/experience_points.dart';
 
 class YourStats extends StatelessWidget {
   @override

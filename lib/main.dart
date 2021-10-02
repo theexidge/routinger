@@ -15,7 +15,7 @@ import './provider/experience_points.dart';
 // Screen Imports
 import './screens/settings_screen.dart';
 import './screens/home_screen.dart';
-import './screens/add_task.dart';
+import 'screens/add_task_screen.dart';
 
 // Services Imports
 import './services/notifications.dart';

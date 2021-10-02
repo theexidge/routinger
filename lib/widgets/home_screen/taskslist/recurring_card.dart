@@ -6,19 +6,19 @@ import 'package:mdi/mdi.dart';
 import 'package:provider/provider.dart';
 
 //Constants Imports
-import '../constants/enums.dart';
+import '../../../constants/enums.dart';
 
 // Helper Imports
-import '../helper/db_helper.dart';
+import '../../../helper/db_helper.dart';
 
 // Provider Imports
-import '../provider/task.dart';
-import '../provider/tasks.dart';
-import '../provider/charts_stats.dart';
-import '../provider/experience_points.dart';
+import '../../../provider/task.dart';
+import '../../../provider/tasks.dart';
+import '../../../provider/charts_stats.dart';
+import '../../../provider/experience_points.dart';
 
 // Services Imports
-import '../services/notifications.dart';
+import '../../../services/notifications.dart';
 
 class RecurringCard extends StatelessWidget {
   Widget getIcon(Difficulty difficulty) {

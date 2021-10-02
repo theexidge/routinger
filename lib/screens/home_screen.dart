@@ -6,16 +6,16 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Screen Imports
-import '../screens/add_task.dart';
+import 'add_task_screen.dart';
 import '../screens/settings_screen.dart';
 
 // Widgets Imports
-import '../widgets/stats_chart.dart';
-import '../widgets/your_stats.dart';
-import '../widgets/carousel_card.dart';
-import '../widgets/taskslist.dart';
-import '../widgets/sleep_cycle_column.dart';
-import '../widgets/initialiser.dart';
+import '../widgets/home_screen/stats_chart.dart';
+import '../widgets/home_screen/your_stats.dart';
+import '../widgets/home_screen/carousel_card.dart';
+import '../widgets/home_screen/taskslist/taskslist.dart';
+import '../widgets/home_screen/sleep_cycle_column.dart';
+import '../widgets/home_screen/initialiser.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

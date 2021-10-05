@@ -71,7 +71,6 @@ class ChartStats with ChangeNotifier {
             chartDatesStringCompare + "," + chartDates[i].toString();
       }
     }
-    print(chartDatesStringCompare);
     chartDatesStringCompare!.trim();
     return chartDatesStringCompare;
   }

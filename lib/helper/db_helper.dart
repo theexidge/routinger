@@ -27,6 +27,8 @@ class DBHelper {
           'CREATE TABLE sleep_cycle(id INTEGER PRIMARY KEY, sleepTimeHour TEXT, sleepTimeMinute TEXT, wakeTimeHour TEXT, wakeTimeMinute Text)');
       await db.execute(
           'CREATE TABLE experience_points(id INTEGER PRIMARY KEY, hired INTEGER, hiredIndex INTEGER, currentPoints INTEGER)');
+      await db.execute(
+          'CREATE TABLE chart_stats(id INTEGER PRIMARY KEY, chartDates TEXT, tasksCompleted TEXT)');
     }, version: 1);
   }
 

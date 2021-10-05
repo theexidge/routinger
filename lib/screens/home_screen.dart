@@ -12,7 +12,7 @@ import '../screens/settings_screen.dart';
 // Widgets Imports
 import '../widgets/stats_chart.dart';
 import '../widgets/your_stats.dart';
-import '../widgets/carousel_card.dart';
+import '../widgets/cards/carousel_card.dart';
 import '../widgets/taskslist.dart';
 import '../widgets/sleep_cycle_column.dart';
 import '../widgets/initialiser.dart';

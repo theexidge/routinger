@@ -5,7 +5,7 @@ import 'package:mdi/mdi.dart';
 import 'package:flutter/material.dart';
 
 //Widget Imports
-import './settings_dark_mode_switch.dart';
+import 'settings_dark_mode_switch.dart';
 
 class SettingsScreenBody extends StatelessWidget {
   @override

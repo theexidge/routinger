@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 //Widget Imports
-import '../widgets/settings_screen_body.dart';
+import '../widgets/settings/settings_screen_body.dart';
 
 class SettingsScreen extends StatelessWidget {
   static final routeName = '/settings';

@@ -9,7 +9,7 @@ import '../provider/tasks.dart';
 
 // Widgets Imports
 import './recurring_card.dart';
-import './toDo_card.dart';
+import './todo_card.dart';
 import './scheduled_card.dart';
 
 class ListOfTasks extends StatefulWidget {

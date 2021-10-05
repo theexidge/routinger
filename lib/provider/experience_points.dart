@@ -1,9 +1,11 @@
 //Flutter Packages
 import 'package:flutter/cupertino.dart';
-import 'package:routinger/helper/db_helper.dart';
 
 //Constant Imports
 import '../constants/enums.dart';
+
+// Helper Imports
+import '../helper/db_helper.dart';
 
 class ExperiencePoints with ChangeNotifier {
   List<String> posts = const [

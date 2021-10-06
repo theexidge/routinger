@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 //Provider Package
 import 'package:provider/provider.dart';
+import 'package:routinger/constants/layout.dart';
 
 //Provider Imports
 import '../../provider/experience_points.dart';
@@ -16,7 +17,7 @@ class YourStats extends StatelessWidget {
       ),
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
         elevation: 10.0,
         child: Consumer<ExperiencePoints>(

@@ -1,6 +1,9 @@
 //Flutter Packages
 import 'package:flutter/material.dart';
 
+//Constants
+import 'package:routinger/constants/layout.dart';
+
 class CarouselCard extends StatelessWidget {
   final double height;
   final String number;
@@ -13,7 +16,7 @@ class CarouselCard extends StatelessWidget {
       height: height,
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(7.0),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
         elevation: 10.0,
         child: Column(

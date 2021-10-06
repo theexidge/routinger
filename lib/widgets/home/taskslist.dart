@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Provider Imports
-import '../provider/tasks.dart';
+import '../../provider/tasks.dart';
 
 // Widgets Imports
-import 'cards/recurring_card.dart';
-import 'cards/todo_card.dart';
-import 'cards/scheduled_card.dart';
+import '../cards/recurring_card.dart';
+import '../cards/todo_card.dart';
+import '../cards/scheduled_card.dart';
 
 class ListOfTasks extends StatefulWidget {
   const ListOfTasks({Key? key}) : super(key: key);

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "747741356620",
+    "project_id": "routinger",
+    "storage_bucket": "routinger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747741356620:android:8ce4606661f5a2757d0ae9",
+        "android_client_info": {
+          "package_name": "com.example.routinger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747741356620-enmcp6fasbhip5p6c07qmrv36ikcnd0p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.routinger",
+            "certificate_hash": "0b5e8382308cc043f69f99e0f98cde47e239889b"
+          }
+        },
+        {
+          "client_id": "747741356620-5t230720igjek7v6h36iris0vj4204h0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATM2XoX7iTckZQfjMrEoNgYVCyK7j9olU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747741356620-5t230720igjek7v6h36iris0vj4204h0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

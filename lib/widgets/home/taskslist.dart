@@ -8,9 +8,9 @@ import 'package:provider/provider.dart';
 import '../../provider/tasks.dart';
 
 // Widgets Imports
-import '../taskslist/recurring_card.dart';
-import '../taskslist/todo_card.dart';
-import '../taskslist/scheduled_card.dart';
+import 'taskslist/recurring_card.dart';
+import 'taskslist/todo_card.dart';
+import 'taskslist/scheduled_card.dart';
 
 class ListOfTasks extends StatefulWidget {
   const ListOfTasks({Key? key}) : super(key: key);

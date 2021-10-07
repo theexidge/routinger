@@ -10,8 +10,8 @@ import '../screens/add_task.dart';
 import '../screens/settings_screen.dart';
 
 // Widgets Imports
-import '../widgets/home/stats_chart.dart';
-import '../widgets/home/your_stats.dart';
+import '../widgets/home/stats/stats_chart.dart';
+import '../widgets/home/stats/your_stats.dart';
 import '../widgets/home/carousel_card.dart';
 import '../widgets/home/taskslist.dart';
 import '../widgets/home/sleep_cycle_column.dart';

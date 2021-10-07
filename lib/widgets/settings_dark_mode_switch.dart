@@ -1,7 +1,7 @@
 //Flutter Packages
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:routinger/provider/theme_provider.dart';
+import 'package:routinger/config/theme_provider.dart';
 
 class SettingsDarkModeSwitch extends StatefulWidget {
   @override

@@ -138,6 +138,8 @@ class _TaskFormState extends State<TaskForm> {
                   child: TextFormField(
                     controller: _titleController,
                     decoration: InputDecoration(
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).textTheme.subtitle2!.color),
                       labelText: 'Task Name',
                     ),
                     validator: (value) {
@@ -153,10 +155,16 @@ class _TaskFormState extends State<TaskForm> {
                       vertical: 5.0, horizontal: 15.0),
                   width: double.infinity,
                   child: DropdownButton(
+                    dropdownColor: Theme.of(context).cardColor,
                     isExpanded: true,
                     items: [
                       DropdownMenuItem(
-                        child: Text('To-Do'),
+                        child: Text(
+                          'To-Do',
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).textTheme.bodyText1!.color),
+                        ),
                         value: 'To-Do',
                       ),
                       DropdownMenuItem(
@@ -262,6 +270,11 @@ class _TaskFormState extends State<TaskForm> {
                                       keyboardType: TextInputType.datetime,
                                       decoration: InputDecoration(
                                         labelText: 'Task Date',
+                                        labelStyle: TextStyle(
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .subtitle2!
+                                                .color),
                                       ),
                                       validator: (value) {
                                         if (value!.isEmpty) {
@@ -281,7 +294,9 @@ class _TaskFormState extends State<TaskForm> {
                                     _selectDate(context);
                                   },
                                   icon: Icon(Icons.date_range),
-                                  label: Text('Set Date'),
+                                  label: Text(
+                                    'Set Date',
+                                  ),
                                 ),
                               )
                             ],
@@ -299,6 +314,11 @@ class _TaskFormState extends State<TaskForm> {
                                       keyboardType: TextInputType.datetime,
                                       decoration: InputDecoration(
                                         labelText: 'Task Time',
+                                        labelStyle: TextStyle(
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .subtitle2!
+                                                .color),
                                       ),
                                       validator: (value) {
                                         final days = currentDate.day -

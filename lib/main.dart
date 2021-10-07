@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:provider/provider.dart';
-import 'package:routinger/provider/theme_provider.dart';
-
-//Config Imports
-import './config/theme.dart';
+import 'package:routinger/config/theme_provider.dart';
 
 //Provider Imports
 import './provider/tasks.dart';

@@ -10,13 +10,13 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        iconTheme: Theme.of(context).iconTheme,
+        title: Text(
           'Routinger',
-          style: const TextStyle(
-            color: Colors.black,
+          style: TextStyle(
+            color: Theme.of(context).textTheme.headline4!.color,
           ),
         ),
-        backgroundColor: Colors.grey,
       ),
       body: SettingsScreenBody(),
     );

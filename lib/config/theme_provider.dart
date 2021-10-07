@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../constants/palette.dart';
 
@@ -16,10 +15,10 @@ class ThemeProvider extends ChangeNotifier {
 
 class MyThemes {
   static final darkTheme = ThemeData(
+    cardColor: darkThemeCardColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: darkThemeNavBarColor,
+      backgroundColor: darkThemeCardColor,
     ),
-    primaryColor: kIndigoDye,
     scaffoldBackgroundColor: darkThemeBgColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     backgroundColor: kPowderBlue,
@@ -36,7 +35,9 @@ class MyThemes {
       ),
       elevation: 0,
       backgroundColor: darkThemeBgColor,
-      iconTheme: const IconThemeData(color: kRoyalBlueDark),
+      iconTheme: const IconThemeData(
+        color: darkThemeTextColor,
+      ),
     ),
     iconTheme: const IconThemeData(color: kRoyalBlueDark),
     textTheme: TextTheme(
@@ -44,14 +45,14 @@ class MyThemes {
         fontSize: 32,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.25,
-        color: darkThemeTextColor,
+        color: darkThemeHeadline4,
       ),
       headline5: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w700,
         letterSpacing: 0.15,
         height: 2,
-        color: darkThemeTextColor,
+        color: darkThemeHeadline5,
       ),
       headline6: TextStyle(
         fontSize: 16,
@@ -64,25 +65,25 @@ class MyThemes {
         fontSize: 16,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.15,
-        color: kRoyalBlueDark,
+        color: darkThemeSubTextColor,
       ),
       subtitle2: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
         letterSpacing: 0.1,
-        color: kRoyalBlueDark,
+        color: darkThemeSubTextColor,
       ),
       bodyText1: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.5,
-        color: kRoyalBlueDark,
+        color: darkThemeSubTextColor,
       ),
       bodyText2: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.25,
-        color: kRoyalBlueDark,
+        color: darkThemeSubTextColor,
       ),
       button: TextStyle(
         fontSize: 14,
@@ -114,9 +115,6 @@ class MyThemes {
   );
 
   static final lightTheme = ThemeData(
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: Colors.white,
-    ),
     primaryColor: kIndigoDye,
     scaffoldBackgroundColor: kPowderBlue,
     visualDensity: VisualDensity.adaptivePlatformDensity,

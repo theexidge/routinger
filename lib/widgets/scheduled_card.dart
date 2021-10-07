@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:mdi/mdi.dart';
-import 'package:routinger/provider/charts_stats.dart';
 
 // Constant Imports
 import '../constants/enums.dart';
@@ -17,6 +16,7 @@ import '../helper/db_helper.dart';
 import '../provider/experience_points.dart';
 import '../provider/task.dart';
 import '../provider/tasks.dart';
+import '../provider/charts_stats.dart';
 
 // Services Imports
 import '../services/notifications.dart';

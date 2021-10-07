@@ -11,7 +11,6 @@ import '../provider/charts_stats.dart';
 class StatsChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Provider.of<ChartStats>(context, listen: false).initialise(DateTime.now());
     final List<String> titles =
         Provider.of<ChartStats>(context, listen: false).getDates();
     final List<double> tasksCompleted =

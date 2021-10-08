@@ -24,6 +24,7 @@ dependencies:
   card_swiper: ^1.0.4
   cupertino_icons: ^1.0.2
   firebase_core: ^1.7.0
+  firebase_core_web: ^1.1.0
   fl_chart: ^0.40.0
   flutter:
     sdk: flutter

@@ -6,7 +6,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
 
 //Provider Imports
-import '../provider/charts_stats.dart';
+import '../../../provider/charts_stats.dart';
 
 class StatsChart extends StatelessWidget {
   @override

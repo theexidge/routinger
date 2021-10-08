@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 //Helper Imports
-import '../helper/db_helper.dart';
+import '../../../helper/db_helper.dart';
 
 // Provider Imports
-import '../provider/task.dart';
-import '../provider/tasks.dart';
+import '../../../provider/task.dart';
+import '../../../provider/tasks.dart';
 
 class ToDoCard extends StatefulWidget {
   @override

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 //Constants
-import 'package:routinger/constants/layout.dart';
+import '../../constants/layout.dart';
 
 class CarouselCard extends StatelessWidget {
   final double height;

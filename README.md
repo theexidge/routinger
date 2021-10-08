@@ -103,11 +103,11 @@ The general structure of the project is as follows-:
 - [Screens Directory](https://github.com/Routinger/routinger/tree/master/lib/screens) :- Currently the app has two screens, which are present in the screens directory. The first one is the home screen and other is a add task screen.
 - [Services Directory](https://github.com/Routinger/routinger/tree/master/lib/services) :- All the code related to notification services are present in notifications file. While the sleep cycle manages the user sleep cycle storing the wake up time and sleep time to not show recurring notifications during the tme user sleeps.
 - [Widgets Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets) :- All the presentation logic is present in the widgets directory. Every thing that you see on screen has been made into a different widget file for easier debugging. The widget directory is re-classified into three other directories according to the screens. They are-:
-1. [Add_task Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/add_task) -: All the widgets which go into the add_task screen is kept here. If you are contributing something to the add_task screen most of yur work will be in this directory.
-2. [Home Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home) - All the widgets which are in the home screen comes here. Home screen is where most of the action takles place. Thus it has been subdivided into stats and taskslist.
-- [Stats Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home/stats) - All the stats related widgets such as the stats chart and the stats card are here.
-- [Taskslist Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home/taskslist) - All the widgets of taskslist including the individual cards are kept in here. Also, the taskslist parent itself.
-3. [Settings Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/settings) - Settings Directory contains all the widgets which are used in the settings screen.
+  1. [Add_task Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/add_task) -: All the widgets which go into the add_task screen is kept here. If you are contributing something to the add_task screen most of yur work will be in this directory.
+  2. [Home Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home) - All the widgets which are in the home screen comes here. Home screen is where most of the action takles place. Thus it has been subdivided into stats and taskslist.
+     - [Stats Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home/stats) - All the stats related widgets such as the stats chart and the stats card are here.
+     - [Taskslist Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home/taskslist) - All the widgets of taskslist including the individual cards are kept in here. Also, the taskslist parent itself.
+  3. [Settings Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/settings) - Settings Directory contains all the widgets which are used in the settings screen.
 - The `main.dart` file is kept cluttered free. This should be only changed when absolutely necessary like when providing a new provider.
 
 

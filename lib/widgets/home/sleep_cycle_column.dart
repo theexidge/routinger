@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Services Imports
-import '../services/sleep_cycle.dart';
+import '../../services/sleep_cycle.dart';
 
 class SleepCycleColumn extends StatefulWidget {
   @override

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // Provider Imports
-import '../provider/tasks.dart';
-import '../provider/charts_stats.dart';
-import '../provider/experience_points.dart';
+import '../../provider/tasks.dart';
+import '../../provider/charts_stats.dart';
+import '../../provider/experience_points.dart';
 
 class Initialiser extends StatefulWidget {
   const Initialiser({Key? key}) : super(key: key);

@@ -1,27 +1,26 @@
-// Flutter Libraries Imports
+//Flutter Packages
 import 'package:flutter/material.dart';
 
 // Third Party Packages
-import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 import 'package:mdi/mdi.dart';
+import 'package:provider/provider.dart';
 
-// Constant Imports
-import '../constants/enums.dart';
+//Constants Imports
+import '../../../constants/enums.dart';
 
 // Helper Imports
-import '../helper/db_helper.dart';
+import '../../../helper/db_helper.dart';
 
 // Provider Imports
-import '../provider/experience_points.dart';
-import '../provider/task.dart';
-import '../provider/tasks.dart';
-import '../provider/charts_stats.dart';
+import '../../../provider/task.dart';
+import '../../../provider/tasks.dart';
+import '../../../provider/charts_stats.dart';
+import '../../../provider/experience_points.dart';
 
 // Services Imports
-import '../services/notifications.dart';
+import '../../../services/notifications.dart';
 
-class ScheduledCard extends StatelessWidget {
+class RecurringCard extends StatelessWidget {
   Widget getIcon(Difficulty difficulty) {
     if (difficulty == Difficulty.Doable) {
       return Icon(
@@ -42,10 +41,10 @@ class ScheduledCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scheduledTask = Provider.of<ScheduledTask>(context);
+    final recurringTask = Provider.of<RecurringTask>(context);
     return ListTile(
       title: Text(
-        scheduledTask.taskName,
+        recurringTask.taskName,
         style: TextStyle(
           fontFamily: 'KleeOne',
         ),
@@ -54,40 +53,38 @@ class ScheduledCard extends StatelessWidget {
       subtitle: Wrap(
         children: [
           Text(
-            DateFormat.yMMMMd().format(scheduledTask.pickedDateTime) +
-                "\n" +
-                DateFormat.jm().format(scheduledTask.pickedDateTime),
+            recurringTask.remindTime.split('y ')[0] +
+                'y' +
+                '\n' +
+                recurringTask.remindTime.split('y ')[1],
             style: TextStyle(
               fontFamily: 'KleeOne',
             ),
           ),
-          getIcon(scheduledTask.difficulty),
+          getIcon(recurringTask.difficulty),
         ],
       ),
       trailing: Wrap(
         children: [
           IconButton(
-            icon: Icon(Icons.delete),
             onPressed: () {
-              Provider.of<ExperiencePoints>(context, listen: false)
-                  .subtractPoints(3);
               Provider.of<Tasks>(context, listen: false)
-                  .removeScheduled(scheduledTask.id);
-              DBHelper.deleteScheduled(scheduledTask.id);
-              NotificationService().cancelNotification(scheduledTask.id);
+                  .removeRecurring(recurringTask.id);
+              DBHelper.deleteRecurring(recurringTask.id);
+              var tempList = recurringTask.getRecurringTaskId();
+              for (int i = 0; i < tempList.length; i++) {
+                NotificationService().cancelNotification(tempList[i]);
+              }
             },
+            icon: Icon(Icons.delete),
           ),
           IconButton(
             icon: Icon(Icons.check),
             onPressed: () {
               Provider.of<ExperiencePoints>(context, listen: false)
-                  .addPointsWithDifficulty(scheduledTask.difficulty);
+                  .addPointsWithDifficulty(recurringTask.difficulty);
               Provider.of<ChartStats>(context, listen: false)
                   .addTaskCompleted();
-              Provider.of<Tasks>(context, listen: false)
-                  .removeScheduled(scheduledTask.id);
-              DBHelper.deleteScheduled(scheduledTask.id);
-              NotificationService().cancelNotification(scheduledTask.id);
             },
           ),
         ],

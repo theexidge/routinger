@@ -103,9 +103,13 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             padding: EdgeInsets.symmetric(vertical: 7, horizontal: 7),
             child: ElevatedButton.icon(
+              // style: ElevatedButton.styleFrom(
+              //     primary: Theme.of(context).primaryColor),
               onPressed: _launchURL,
               icon: Icon(Icons.coffee),
-              label: Text('Buy me a Coffee'),
+              label: Text(
+                'Buy me a Coffee',
+              ),
             ),
           ),
           Container(
@@ -176,7 +180,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () {
                                 showSleepDialog(context);
                               },
-                              icon: Icon(Icons.alarm_add),
+                              icon: Icon(
+                                Icons.alarm_add,
+                                color: Theme.of(context).primaryColorDark,
+                              ),
                             )
                           ],
                         ),

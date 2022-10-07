@@ -67,15 +67,37 @@ class ScheduledCard extends StatelessWidget {
       trailing: Wrap(
         children: [
           IconButton(
+            onPressed: () => showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                title: Center(child: Text('Delete Task ?')),
+                content: Text('Are you sure, you want delete this task?'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      print('can');
+                      Navigator.pop(context);
+                    },
+                    child: Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      print('del');
+                      Provider.of<ExperiencePoints>(context, listen: false)
+                          .subtractPoints(3);
+                      Provider.of<Tasks>(context, listen: false)
+                          .removeScheduled(scheduledTask.id);
+                      DBHelper.deleteScheduled(scheduledTask.id);
+                      NotificationService()
+                          .cancelNotification(scheduledTask.id);
+                      Navigator.pop(context);
+                    },
+                    child: Text('Delete'),
+                  ),
+                ],
+              ),
+            ),
             icon: Icon(Icons.delete),
-            onPressed: () {
-              Provider.of<ExperiencePoints>(context, listen: false)
-                  .subtractPoints(3);
-              Provider.of<Tasks>(context, listen: false)
-                  .removeScheduled(scheduledTask.id);
-              DBHelper.deleteScheduled(scheduledTask.id);
-              NotificationService().cancelNotification(scheduledTask.id);
-            },
           ),
           IconButton(
             icon: Icon(Icons.check),

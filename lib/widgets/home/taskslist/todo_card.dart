@@ -1,4 +1,5 @@
 //Flutter Import
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // Third Party Packages
@@ -43,10 +44,31 @@ class _ToDoCardState extends State<ToDoCard> {
               ),
       ),
       secondary: IconButton(
-        onPressed: () {
-          Provider.of<Tasks>(context, listen: false).removeTask(toDo.id);
-          DBHelper.deleteToDo(toDo.id);
-        },
+        onPressed: () => showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: Center(child: Text('Delete Task ?')),
+            content: Text('Are you sure, you want delete this task?'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  print('can');
+                  Navigator.pop(context);
+                },
+                child: Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () {
+                  print('del');
+                  Provider.of<Tasks>(context, listen: false).removeTask(toDo.id);
+                  DBHelper.deleteToDo(toDo.id);
+                  Navigator.pop(context);
+                },
+                child: Text('Delete'),
+              ),
+            ],
+          ),
+        ),
         icon: Icon(Icons.delete),
       ),
     );

@@ -67,15 +67,36 @@ class RecurringCard extends StatelessWidget {
       trailing: Wrap(
         children: [
           IconButton(
-            onPressed: () {
-              Provider.of<Tasks>(context, listen: false)
-                  .removeRecurring(recurringTask.id);
-              DBHelper.deleteRecurring(recurringTask.id);
-              var tempList = recurringTask.getRecurringTaskId();
-              for (int i = 0; i < tempList.length; i++) {
-                NotificationService().cancelNotification(tempList[i]);
-              }
-            },
+            onPressed: () => showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                title: Center(child: Text('Delete Task ?')),
+                content: Text('Are you sure, you want delete this task?'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      print('can');
+                      Navigator.pop(context);
+                    },
+                    child: Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      print('del');
+                      Provider.of<Tasks>(context, listen: false)
+                          .removeRecurring(recurringTask.id);
+                      DBHelper.deleteRecurring(recurringTask.id);
+                      var tempList = recurringTask.getRecurringTaskId();
+                      for (int i = 0; i < tempList.length; i++) {
+                        NotificationService().cancelNotification(tempList[i]);
+                      }
+                      Navigator.pop(context);
+                    },
+                    child: Text('Delete'),
+                  ),
+                ],
+              ),
+            ),
             icon: Icon(Icons.delete),
           ),
           IconButton(

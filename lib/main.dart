@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ThemeProvider(),
           builder: (context, _) {
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
               title: 'Routinger',
               themeMode: Provider.of<ThemeProvider>(context).themeMode,
               // buildTheme(context)

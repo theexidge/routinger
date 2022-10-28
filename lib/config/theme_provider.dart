@@ -92,6 +92,9 @@ class MyThemes {
         color: kRoyalBlueDark,
       ),
     ),
+    // drawerTheme: DrawerThemeData(
+    //   backgroundColor: darkThemeNavBarColor,
+    // ),
     inputDecorationTheme: const InputDecorationTheme(
       labelStyle: TextStyle(
         fontSize: 14,

@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
               routes: {
                 AddTask.routeName: (ctx) => AddTask(),
                 SettingsScreen.routeName: (ctx) => SettingsScreen(),
+                HomeScreen.routeName: (ctx)=>HomeScreen(),
               },
             );
           }),

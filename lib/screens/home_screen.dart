@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:card_swiper/card_swiper.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:routinger/widgets/app_drawer/app_drawer.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // Screen Imports
 import '../screens/add_task.dart';
-import '../screens/settings_screen.dart';
 
 // Widgets Imports
 import '../widgets/home/stats/stats_chart.dart';
@@ -18,9 +17,12 @@ import '../widgets/home/taskslist/taskslist.dart';
 import '../widgets/home/sleep_cycle_column.dart';
 import '../widgets/home/initialiser.dart';
 
+import '.././constants/palette.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+  static final routeName = '/homeScreen';
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -31,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     "Tie your Habit to a sweet reward and make your habit more attractive",
     "Don't spend time in an environment where you have to practice self restraint.",
   ];
+  
 
   // Handling the bottom navigation bar
   int _selectedIndexOfBottomNavBar = 0;
@@ -79,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.of(context).pushNamed(AddTask.routeName);
         },
         child: Icon(Icons.add),
+        backgroundColor: kBlueGreen,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
@@ -94,6 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         currentIndex: _selectedIndexOfBottomNavBar,
         onTap: _navigatingBottomNavBar,
+        selectedItemColor: kBlueGreen,
       ),
       appBar: AppBar(
         title: Text(
@@ -127,6 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // ),
         ],
       ),
+      drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [

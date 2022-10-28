@@ -1,5 +1,6 @@
 //Flutter Packages
 import 'package:flutter/material.dart';
+import 'package:routinger/widgets/app_drawer/app_drawer.dart';
 
 //Widget Imports
 import '../widgets/settings/settings_screen_body.dart';
@@ -18,6 +19,7 @@ class SettingsScreen extends StatelessWidget {
           ),
         ),
       ),
+      drawer: AppDrawer(),
       body: SettingsScreenBody(),
     );
   }

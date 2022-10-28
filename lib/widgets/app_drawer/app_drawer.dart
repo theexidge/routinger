@@ -20,7 +20,7 @@ class AppDrawer extends StatelessWidget {
           //const Divider(),
           ListTile(
             leading: const Icon(Icons.home),
-            title: Text('Home',style: TextStyle(color: Theme.of(context).textTheme.headline5!.color),),
+            title: Text('Home',style: TextStyle(color: kRoyalBlueDark),),
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed(HomeScreen.routeName);
@@ -29,7 +29,7 @@ class AppDrawer extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.settings),
-            title:  Text('Settings',style: TextStyle(color: Theme.of(context).textTheme.headline5!.color),),
+            title:  Text('Settings',style: TextStyle(color: kRoyalBlueDark),),
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed(SettingsScreen.routeName);

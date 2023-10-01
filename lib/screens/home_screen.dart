@@ -8,7 +8,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 // Screen Imports
 import '../screens/add_task.dart';
-import '../screens/settings_screen.dart';
 
 // Widgets Imports
 import '../widgets/home/stats/stats_chart.dart';

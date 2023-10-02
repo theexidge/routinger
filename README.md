@@ -1,12 +1,12 @@
 # <img src="https://github.com/arnav1776/Code-Warriors/blob/master/android/app/src/main/res/mipmap-hdpi/ic_launcher.png?raw=true" alt="icon" width=30> Routinger
 
-This is a simple app that will allow you to schedule your tasks, create a simple to-do, and also make recurring tasks. The app ends you notifications to remind you of your tasks. The app as of now works on storing data on local storage only. It is meant to be a cross platform app.
+This is a simple app that will allow you to schedule your tasks, create a simple to-do list, and make recurring tasks. The app can also send you notifications to remind you of your tasks. The app as of now works on stored data in local storage only. It is meant to be a cross platform app.
 
 <p align="center">
 <img width="28%" src="https://raw.githubusercontent.com/arnav1776/routinger/master/dev_assets/new-splash-icon.png">
 </p>
 
-We are constantly updating our application with the help of our contributors and feel free to open an `issue` if you face any problem or would like to add any new feature.
+We are constantly updating our application with the help of our contributors. Feel free to open an `issue` if you face any problem or would like to add any new feature.
 
 <p align="center">
 <b>Old Look &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; New Look </b>
@@ -16,21 +16,19 @@ We are constantly updating our application with the help of our contributors and
 </p> 
 </p>
 
->If you want to try out the app you can find the link to the app [here](https://github.com/Routinger/routinger/releases). The current app version is very early and there may be errors. **We recommend trying it out and telling us about your opinions in the issues or you can email to us.** We will soon also make a discussions page.
+>If you want to try out the app you can find the link to the app [here](https://github.com/Routinger/routinger/releases). The current app version is in early development and there may be errors. **We recommend trying it out and telling us about your opinions in the 'issues', or you can email to us.** We will soon also make a discussions page.
 
 ## List of Contents
 
-- [<img src="https://github.com/arnav1776/Code-Warriors/blob/master/android/app/src/main/res/mipmap-hdpi/ic_launcher.png?raw=true" alt="icon" width=30> Routinger](#-routinger)
+[<img src="https://github.com/arnav1776/Code-Warriors/blob/master/android/app/src/main/res/mipmap-hdpi/ic_launcher.png?raw=true" alt="icon" width=30> Routinger](#-routinger)
   - [List of Contents](#list-of-contents)
   - [Preview](#preview)
   - [Dependencies](#dependencies)
   - [Installation](#installation)
-  - [Getting Started with the project](#getting-started-with-the-project)
+  - [Getting Started with the Project](#getting-started-with-the-project)
   - [Info](#info)
 
-## Preview
-
-**Screens**!!
+## App Preview
 
 | ![image](https://user-images.githubusercontent.com/64467851/135705368-9006d4be-8a7b-445c-b894-9c5a0bcb79aa.jpg) | ![image](https://user-images.githubusercontent.com/64467851/135705406-06716452-f7f9-487f-b323-2464c7ed6b40.jpg) | ![image](https://user-images.githubusercontent.com/64467851/135705888-2d7843b8-e6c2-4af5-beb2-d6746d4b9b27.jpg) |  
 | :-------------: | :-------------:  | :-------------:  | 
@@ -60,61 +58,60 @@ More details about these can be found in the [`pubspec.yaml`](https://github.com
 
 ## Installation
 
-- Clone the repository on your system.
-- Install the dependencies
-- Run ```flutter pub get```
-- Run the application
+- Fork and clone the repository onto your system.
+- Install the dependencies.
+- Install the latest versions of "Flutter" and "Android Studio".
+- Run ```flutter pub get```.
+- Run the application.
 
-Make sure flutter and android studio is installed properly in your system. Fork the repo. We use VS Code as our code-editor. But any code-editor is fine. Follow these steps-:
-1. Navigating to the forked repo in your code-editor and terminal
+Make sure `Flutter` and `Android Studio` are installed properly before running the app. Any code editor is valid for running and developing the app. Follow these steps:
+1. Navigate to the forked repo in your code editor and terminal
 
 
-2. Using either the debug and run command or continue without debugging
+2. Use either the "debug and run" command or "continue without debugging"
 
 OR
 
-2. In terminal after navigating to the root of folder
+2. Run the program in the terminal after navigating to the root of folder with
 
 `flutter run`
 
-You can run it in an emulator or use your real android device and turn the USB-Debugging on.  Your editor will be able to help you select what platform you want to run from multiple devices.
+You can run it in an emulator, or with a real android device after turning on USB-Debugging. Your editor will be able to help you select what platform you want to run from multiple devices.
 
-## Getting Started with the project
+## Getting Started with the Project
 
-
-After completing the installation locate the `lib` folder in the project which contains all the code files where you can make your contributions.<br>
-> In the lib folder
-- The `main.dart` file is the entry point of the application which is responsible for executing all library functions, user-defined statements etc.
+After completing the installation, locate the `lib` folder in the project. This contains all the code files where you can make your contributions.<br>
+> Lib Folder
+- The `main.dart` file is the entry point of the application, which is responsible for executing all library functions, user-defined statements, etc.
 - The `screens` folder contains all the screens which will be displayed in the application.
 - You can find the widgets in the `widgets` folder which are used to make the app interactive.
 
 > Assets Folder
 - Add your images & fonts here after adding it in `pubspec.yaml` file.
 
-> For Android, Ios & web
-- Make changes in `Android`, `ios` & `web` folder based on where you want to launch it.
+> For Android, iOS, & Web
+- Make changes in the `Android`, `ios`, & `web` folder based on where you want to launch it.
 
+> General Folder Structure
 
-> Folder-Structure
-
-The general structure of the project is as follows-:
-- [Helper Directory](https://github.com/Routinger/routinger/tree/master/lib/helper) :- All the database related functions are located in the helper directory along with a list_of_notif model used by Rountinger.
-- [Provider Directory](https://github.com/Routinger/routinger/tree/master/lib/provider) :- All the provider which app listens to is in the provider directory. This includes the task and tasks provider. The task provider is specific and contains the details for one task. While the tasks provider contains a list of tasks and handles the adding, removing, saving to local storage functions.
-- [Screens Directory](https://github.com/Routinger/routinger/tree/master/lib/screens) :- Currently the app has two screens, which are present in the screens directory. The first one is the home screen and other is a add task screen.
-- [Services Directory](https://github.com/Routinger/routinger/tree/master/lib/services) :- All the code related to notification services are present in notifications file. While the sleep cycle manages the user sleep cycle storing the wake up time and sleep time to not show recurring notifications during the tme user sleeps.
-- [Widgets Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets) :- All the presentation logic is present in the widgets directory. Every thing that you see on screen has been made into a different widget file for easier debugging. The widget directory is re-classified into three other directories according to the screens. They are-:
-  1. [Add_task Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/add_task) -: All the widgets which go into the add_task screen is kept here. If you are contributing something to the add_task screen most of yur work will be in this directory.
-  2. [Home Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home) - All the widgets which are in the home screen comes here. Home screen is where most of the action takles place. Thus it has been subdivided into stats and taskslist.
-     - [Stats Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home/stats) - All the stats related widgets such as the stats chart and the stats card are here.
-     - [Taskslist Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home/taskslist) - All the widgets of taskslist including the individual cards are kept in here. Also, the taskslist parent itself.
-  3. [Settings Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/settings) - Settings Directory contains all the widgets which are used in the settings screen.
-- The `main.dart` file is kept cluttered free. This should be only changed when absolutely necessary like when providing a new provider.
-
+The general structure of the project is as follows:
+- [Helper Directory](https://github.com/Routinger/routinger/tree/master/lib/helper): Where database-related functions are located, along with a `list_of_notif model` used by the app.
+- [Provider Directory](https://github.com/Routinger/routinger/tree/master/lib/provider): All providers listened to by the app are in the provider directory. This includes the "task provider" and "tasks provider":
+  1. Task Provider: Contains specific details for one task.
+  2. Tasks Provider: Contains a list of tasks and handles the functions for adding, removing, and saving to local storage.
+- [Screens Directory](https://github.com/Routinger/routinger/tree/master/lib/screens): Currently the app has two screens, which are present in the screens directory. The first one is the home screen, and the second is the "add task" screen.
+- [Services Directory](https://github.com/Routinger/routinger/tree/master/lib/services): Logic for the notification services are present in the notifications file.  The sleep cycle manages user data relating to wake-up time and sleep time to allow for nonredundant notifications and timely delivery based on a user's time while awake.
+- [Widgets Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets): Where all of the presentation logic for the app is located. Everything visible on-screen has been made into different widget files with respective directories for easier debugging. The individual directories are as follows:
+  1. [Add_task Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/add_task): Where the widgets for the add_task screen are located. Most contributions to this screen will be in this directory.
+  2. [Home Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home): Where the widgets for the home screen are. Due to the home directory being where most of the app's actions are, it has been subdivided into `stats` and `taskslist`:
+     - [Stats Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home/stats): Where stats-related widgets are located. These include the stats chart and the stats card.
+     - [Taskslist Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/home/taskslist): Where the widgets for tasklist are located. These include the tasklist's individual cards and the tasklist parent.
+  3. [Settings Directory](https://github.com/Routinger/routinger/tree/master/lib/widgets/settings): Where all of the widgets for the settings screens are located.
+- The `main.dart` file is kept cluttered free. This should be only changed when absolutely necessary, such as when adding a new provider.
 
 ## Info
 
-**We haven't yet tested the app in iOS platform and it mayn't work completely in iOS emulators and/or iOS devices. If you want to contribute the iOS side of the app. You are more than welcome to do so.** 
-
+**We have not yet tested the app in the iOS platform, and it may not work completely in iOS emulators and/or iOS devices. If you want to contribute the iOS side of the app, you are more than welcome to do so.** 
 
 Check the [Contributions](https://github.com/Kushalrock/routinger/blob/master/CONTRIBUTING.md) guideline before contributing to make sure you are contributing the rightway.
 

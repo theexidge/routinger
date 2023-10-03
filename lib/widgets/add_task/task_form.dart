@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 // Third Party Packages
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-import 'package:routinger/screens/settings_screen.dart';
 
 //Constant Imports
 import '../../constants/enums.dart';
@@ -143,7 +142,7 @@ class _TaskFormState extends State<TaskForm> {
                       decoration: InputDecoration(
                         labelStyle: TextStyle(
                             color:
-                                Theme.of(context).textTheme.subtitle2!.color),
+                                Theme.of(context).textTheme.titleSmall!.color),
                         labelText: 'Task Name',
                       ),
                       validator: (value) {
@@ -168,7 +167,7 @@ class _TaskFormState extends State<TaskForm> {
                             style: TextStyle(
                                 color: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .color),
                           ),
                           value: 'To-Do',
@@ -285,7 +284,7 @@ class _TaskFormState extends State<TaskForm> {
                                                 labelStyle: TextStyle(
                                                     color: Theme.of(context)
                                                         .textTheme
-                                                        .subtitle2!
+                                                        .titleSmall!
                                                         .color),
                                               ),
                                               validator: (value) {
@@ -339,7 +338,7 @@ class _TaskFormState extends State<TaskForm> {
                                                 labelStyle: TextStyle(
                                                     color: Theme.of(context)
                                                         .textTheme
-                                                        .subtitle2!
+                                                        .titleSmall!
                                                         .color),
                                               ),
                                               validator: (value) {

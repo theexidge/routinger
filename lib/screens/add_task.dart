@@ -17,10 +17,10 @@ class AddTask extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme:
-            IconThemeData(color: Theme.of(context).textTheme.headline4!.color),
+            IconThemeData(color: Theme.of(context).textTheme.headlineMedium!.color),
         title: Text(
           'Add Task',
-          style: TextStyle(color: Theme.of(context).textTheme.headline4!.color),
+          style: TextStyle(color: Theme.of(context).textTheme.headlineMedium!.color),
         ),
       ),
       body: MultiProvider(

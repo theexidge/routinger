@@ -9,7 +9,18 @@ ThemeData buildTheme(BuildContext context) {
     primaryColor: kIndigoDye,
     scaffoldBackgroundColor: kPowderBlue,
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    backgroundColor: kPowderBlue,
+    colorScheme: ColorScheme(
+        background: kPowderBlue,
+        brightness: Brightness.dark,
+        primary: kPowderBlue,
+        onPrimary: Colors.black,
+        secondary: kBlueGreen,
+        onSecondary: Colors.black,
+        error: Colors.red,
+        onError: Colors.black,
+        onBackground: kRoyalBlueDark,
+        surface: kMaximumBlueGreen,
+        onSurface: Colors.black),
     appBarTheme: AppBarTheme(
       toolbarTextStyle: TextStyle(
         fontSize: 18,
@@ -27,51 +38,51 @@ ThemeData buildTheme(BuildContext context) {
     ),
     iconTheme: const IconThemeData(color: kRoyalBlueDark),
     textTheme: TextTheme(
-      headline4: TextStyle(
+      headlineMedium: TextStyle(
         fontSize: 32,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.25,
         color: kRoyalBlueDark,
       ),
-      headline5: TextStyle(
+      headlineSmall: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w700,
         letterSpacing: 0.15,
         height: 2,
         color: kRoyalBlueDark,
       ),
-      headline6: TextStyle(
+      titleLarge: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.15,
         height: 2,
         color: kRoyalBlueDark,
       ),
-      subtitle1: TextStyle(
+      titleMedium: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w600,
         letterSpacing: 0.15,
         color: kRoyalBlueDark,
       ),
-      subtitle2: TextStyle(
+      titleSmall: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
         letterSpacing: 0.1,
         color: kRoyalBlueDark,
       ),
-      bodyText1: TextStyle(
+      bodyLarge: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.5,
         color: kRoyalBlueDark,
       ),
-      bodyText2: TextStyle(
+      bodyMedium: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w400,
         letterSpacing: 0.25,
         color: kRoyalBlueDark,
       ),
-      button: TextStyle(
+      labelLarge: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w600,
         letterSpacing: 1.25,

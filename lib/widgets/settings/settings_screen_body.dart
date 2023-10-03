@@ -28,13 +28,11 @@ class SettingsScreenBody extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              'Connect with Google Calendar to' +
-                  '\n' +
-                  'synchronise your tasks with Calendar.',
+              'Connect with Google Calendar to synchronise your tasks with Calendar.',
               style: TextStyle(
                 color: Theme.of(context).textTheme.headlineMedium!.color,
               ),
-              textAlign: TextAlign.justify,
+              textAlign: TextAlign.left,
             ),
             isThreeLine: true,
             onTap: () {

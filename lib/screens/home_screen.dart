@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Third Party Packages
 import 'package:card_swiper/card_swiper.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:routinger/screens/settings_screen.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // Screen Imports
@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(
           'Routinger',
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         actions: [
           Container(
@@ -106,24 +106,27 @@ class _HomeScreenState extends State<HomeScreen> {
               // style: ElevatedButton.styleFrom(
               //     primary: Theme.of(context).primaryColor),
               onPressed: _launchURL,
-              icon: Icon(Icons.coffee),
+              icon: Icon(
+                Icons.coffee,
+                size: mediaQuery.size.width / 25,
+              ),
               label: Text(
                 'Buy me a Coffee',
               ),
             ),
           ),
-          // Container(
-          //   padding: EdgeInsets.symmetric(vertical: 7, horizontal: 7),
-          //   child: IconButton(
-          //     onPressed: () {
-          //       Navigator.of(context).pushNamed(SettingsScreen.routeName);
-          //     },
-          //     icon: Icon(
-          //       Icons.settings,
-          //       color: Colors.grey,
-          //     ),
-          //   ),
-          // ),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 7, horizontal: 7),
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(SettingsScreen.routeName);
+              },
+              icon: Icon(
+                Icons.settings,
+                color: Colors.grey,
+              ),
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -174,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Text(
                               'Your Tasks',
-                              style: Theme.of(context).textTheme.headline4,
+                              style: Theme.of(context).textTheme.headlineMedium,
                             ),
                             IconButton(
                               onPressed: () {

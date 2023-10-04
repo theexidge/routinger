@@ -14,7 +14,7 @@ class SettingsScreen extends StatelessWidget {
         title: Text(
           'Routinger',
           style: TextStyle(
-            color: Theme.of(context).textTheme.headline4!.color,
+            color: Theme.of(context).textTheme.headlineMedium!.color,
           ),
         ),
       ),

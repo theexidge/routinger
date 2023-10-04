@@ -19,22 +19,20 @@ class SettingsScreenBody extends StatelessWidget {
             leading: Icon(
               Mdi.google,
               size: 30,
-              color: Theme.of(context).textTheme.headline4!.color,
+              color: Theme.of(context).textTheme.headlineMedium!.color,
             ),
             title: Text(
               'Connect With Google Calendar',
               style: TextStyle(
-                color: Theme.of(context).textTheme.headline4!.color,
+                color: Theme.of(context).textTheme.headlineMedium!.color,
               ),
             ),
             subtitle: Text(
-              'Connect with Google Calendar to' +
-                  '\n' +
-                  'synchronise your tasks with Calendar.',
+              'Connect with Google Calendar to synchronise your tasks with Calendar.',
               style: TextStyle(
-                color: Theme.of(context).textTheme.headline4!.color,
+                color: Theme.of(context).textTheme.headlineMedium!.color,
               ),
-              textAlign: TextAlign.justify,
+              textAlign: TextAlign.left,
             ),
             isThreeLine: true,
             onTap: () {

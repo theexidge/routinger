@@ -18,13 +18,13 @@ class _SettingsDarkModeSwitchState extends State<SettingsDarkModeSwitch> {
         title: Text(
           'Dark Mode',
           style: TextStyle(
-            color: Theme.of(context).textTheme.headline4!.color,
+            color: Theme.of(context).textTheme.headlineMedium!.color,
           ),
         ),
         subtitle: Text(
           'Toggle Dark Mode for better \n readability',
           style: TextStyle(
-            color: Theme.of(context).textTheme.headline4!.color,
+            color: Theme.of(context).textTheme.headlineMedium!.color,
           ),
         ),
         isThreeLine: true,

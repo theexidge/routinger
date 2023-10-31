@@ -59,24 +59,47 @@ More details about these can be found in the [`pubspec.yaml`](https://github.com
 ## Installation
 
 - Fork and clone the repository onto your system.
+
+  `git clone https://github.com/theexidge/routinger.git`
 - Install the dependencies.
+
+  `cd routinger`
+  `flutter pub get`
 - Install the latest versions of "Flutter" and "Android Studio".
-- Run ```flutter pub get```.
+
+  - Flutter: Download Flutter: https://flutter.dev/docs/get-started/install
+  - Android Studio: Download Android Studio: https://developer.android.com/studio
 - Run the application.
 
-Make sure `Flutter` and `Android Studio` are installed properly before running the app. Any code editor is valid for running and developing the app. Follow these steps:
-1. Navigate to the forked repo in your code editor and terminal
+  In code editor:
+  Use either the "debug and run" command or "continue without debugging".
+  In terminal:
+  Navigate to the root of the folder with the routinger project.
+  Run `flutter run`.
+  Note: Make sure Flutter and Android Studio are installed properly before running the app. Any code editor is valid for running and developing the app.
 
+  Vysor
+  
+  Vysor is a third-party app that allows you to mirror your Android device's screen on your computer. This can be useful for debugging or demonstrating your Flutter app.
+  
+  To install Vysor:
+  
+  Go to the Vysor website: https://www.vysor.io/ and download the app for your computer.
+  Install the Vysor app on your Android device.
+  Connect your Android device to your computer using a USB cable.
+  Open the Vysor app on your computer and select your Android device from the list of devices.
+  Your Android device's screen will be mirrored on your computer.
+  To run your Flutter app in Vysor:
+  
+  Follow the steps above to install and start Vysor.
+  Run your Flutter app as usual.
+  In Vysor, select your Flutter app from the list of running apps.
+  Your Flutter app's screen will be mirrored in Vysor.
+Tips:
 
-2. Use either the "debug and run" command or "continue without debugging"
-
-OR
-
-2. Run the program in the terminal after navigating to the root of folder with
-
-`flutter run`
-
-You can run it in an emulator, or with a real android device after turning on USB-Debugging. Your editor will be able to help you select what platform you want to run from multiple devices.
+  If you are having trouble running your Flutter app in Vysor, make sure that USB debugging is enabled on your Android device.
+  You can adjust the quality and resolution of the mirrored screen in the Vysor settings.
+  Vysor also supports audio mirroring, which can be useful for debugging audio issues in your Flutter app.
 
 ## Getting Started with the Project
 

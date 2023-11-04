@@ -36,7 +36,7 @@ class _ListOfTasksState extends State<ListOfTasks> {
       child: ExpansionPanelList(
         expansionCallback: (int index, bool isExpanded) {
           setState(() {
-            _taskProfile[index].isExpanded = !isExpanded;
+            _taskProfile[index].isExpanded = !_taskProfile[index].isExpanded;
           });
         },
         children: [

@@ -8,6 +8,20 @@ This is a simple app that will allow you to schedule your tasks, create a simple
 
 We are constantly updating our application with the help of our contributors. Feel free to open an `issue` if you face any problem or would like to add any new feature.
 
+## Requirements
+
+- Flutter 3.32.0 or newer (ships with Dart 3.8)
+- Dart SDK 3.8.0 or newer (bundled with Flutter)
+- Android Studio / VS Code with the Flutter extension
+- Xcode 15+ if you plan to build for iOS
+
+Check your local toolchain with:
+
+```
+flutter --version
+flutter doctor
+```
+
 <p align="center">
 <b>Old Look &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; New Look </b>
 <p align="center"> 
@@ -40,43 +54,41 @@ We are constantly updating our application with the help of our contributors. Fe
 
 ## Dependencies
 
-The following packages are needed for the development of this application.
- - `cupertino_icons: ^1.0.2`
- - `provider: ^6.0.0`
- - `card_swiper: ^1.0.4`
- - `flutter_local_notifications: ^8.1.1+1`
- - `intl: ^0.17.0`
- - `flutter_native_timezone: ^2.0.0`
- - `sqflite: ^2.0.0+4`
- - `url_launcher: ^6.0.9`
- - `mdi: ^5.0.0-nullsafety.0`
- - `fl_chart: ^0.40.0`
- - `flutter_launcher_icons: ^0.9.2`
- - `flutter_native_splash: ^1.2.4`
-
-More details about these can be found in the [`pubspec.yaml`](https://github.com/Routinger/routinger/tree/master/pubspec.yaml) file.
+The complete list of packages (and their exact versions) is tracked in [`pubspec.yaml`](https://github.com/Routinger/routinger/tree/master/pubspec.yaml) and [`pubspec.lock`](https://github.com/Routinger/routinger/tree/master/pubspec.lock). Core dependencies include:
+- `card_swiper`
+- `firebase_core`
+- `fl_chart`
+- `flutter_local_notifications`
+- `flutter_native_timezone`
+- `intl`
+- `provider`
+- `sqflite`
+- `url_launcher`
+- `mdi`
+- Tooling packages: `flutter_launcher_icons`, `flutter_native_splash`
 
 ## Installation
 
-- Fork and clone the repository onto your system.
-
-  `git clone https://github.com/theexidge/routinger.git`
-- Install the dependencies.
-
-  `cd routinger`
-  `flutter pub get`
-- Install the latest versions of "Flutter" and "Android Studio".
-
-  - Flutter: Download Flutter: https://flutter.dev/docs/get-started/install
-  - Android Studio: Download Android Studio: https://developer.android.com/studio
-- Run the application.
-
-  In code editor:
-  Use either the "debug and run" command or "continue without debugging".
-  In terminal:
-  Navigate to the root of the folder with the routinger project.
-  Run `flutter run`.
-  Note: Make sure Flutter and Android Studio are installed properly before running the app. Any code editor is valid for running and developing the app.
+- Fork and clone the repository.
+  ```
+  git clone https://github.com/theexidge/routinger.git
+  cd routinger
+  ```
+- Make sure you are on Flutter `3.32.0` (or newer) and have the Dart 3.8 SDK by running:
+  ```
+  flutter upgrade
+  flutter --version
+  flutter doctor
+  ```
+- Install the project dependencies.
+  ```
+  flutter pub get
+  ```
+- Run the application from your IDE (`Run`/`Debug`) or the terminal:
+  ```
+  flutter run
+  ```
+  > Tip: keep Android Studio / VS Code up to date for the best Flutter plugin experience.
 
   Vysor
   
